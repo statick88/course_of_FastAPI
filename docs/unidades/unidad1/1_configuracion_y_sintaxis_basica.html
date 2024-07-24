@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -437,6 +471,38 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="justify">
+<div class="center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png" class="img-fluid figure-img" width="200"></p>
+<figcaption>Python</figcaption>
+</figure>
+</div>
+</div>
+<p>Para empezar a trabajar con python es necesario tener instalado el interprete de python en tu computadora. Para ello puedes descargarlo desde la página oficial de python <a href="https://www.python.org/" class="uri">https://www.python.org/</a>.</p>
+<p>Una vez instalado, puedes abrir una terminal y escribir <strong>python</strong> para abrir el interprete de python. Si ves un mensaje similar a este:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Python <span class="fl">3.12.4</span> (main, Jun  <span class="dv">7</span> <span class="dv">2024</span>, <span class="dv">00</span>:<span class="dv">00</span>:<span class="dv">00</span>) [GCC <span class="fl">14.1.1</span> <span class="dv">20240607</span> (Red Hat <span class="fl">14.1.1</span><span class="op">-</span><span class="dv">5</span>)] on linux</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Type <span class="st">"help"</span>, <span class="st">"copyright"</span>, <span class="st">"credits"</span> <span class="kw">or</span> <span class="st">"license"</span> <span class="cf">for</span> more information.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Significa que python está instalado correctamente en tu computadora.</p>
+<div class="center">
+<p><img src="images/paste-1.png" class="img-fluid"></p>
+</div>
+<p>Para salir del interprete de python puedes escribir <strong>exit()</strong> o <strong>Ctrl + D</strong>.</p>
+<section id="sintaxis-básica" class="level2">
+<h2 class="anchored" data-anchor-id="sintaxis-básica">Sintaxis básica</h2>
+<p>Python es un lenguaje de programación interpretado, lo que significa que el código se ejecuta línea por línea. A continuación se muestra un ejemplo de un programa simple en python:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Este es un comentario</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hola Mundo!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para ejecutar este programa, puedes guardar el código en un archivo con extensión <strong>.py</strong> y ejecutarlo desde la terminal con el comando <strong>python nombre_del_archivo.py</strong>.</p>
+<div class="center">
+<p><img src="images/paste-2.png" class="img-fluid"></p>
+</div>
+<p>En este caso, el programa imprimirá en la terminal el mensaje <strong>Hola Mundo!</strong>.</p>
+<p>En este primer capítulo de la unidad, aprenderemos la configuración básica de python y la sintaxis básica para escribir programas en python.</p>
+</section>
+</div>
 
 
 

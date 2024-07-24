@@ -1,1 +1,44 @@
+::: {.justify}
 # Configuración y Sintaxis básica
+
+::: {.center}
+![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+:::
+
+Para empezar a trabajar con python es necesario tener instalado el interprete de python en tu computadora. Para ello puedes descargarlo desde la página oficial de python <https://www.python.org/>.
+
+Una vez instalado, puedes abrir una terminal y escribir **python** para abrir el interprete de python. Si ves un mensaje similar a este:
+
+``` python
+Python 3.12.4 (main, Jun  7 2024, 00:00:00) [GCC 14.1.1 20240607 (Red Hat 14.1.1-5)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+Significa que python está instalado correctamente en tu computadora.
+
+::: {.center}
+![](images/paste-1.png)
+:::
+
+Para salir del interprete de python puedes escribir **exit()** o **Ctrl + D**.
+
+## Sintaxis básica
+
+Python es un lenguaje de programación interpretado, lo que significa que el código se ejecuta línea por línea. A continuación se muestra un ejemplo de un programa simple en python:
+
+``` python
+# Este es un comentario
+print("Hola Mundo!")
+```
+
+Para ejecutar este programa, puedes guardar el código en un archivo con extensión **.py** y ejecutarlo desde la terminal con el comando **python nombre_del_archivo.py**.
+
+::: {.center}
+![](images/paste-2.png)
+:::
+
+En este caso, el programa imprimirá en la terminal el mensaje **Hola Mundo!**.
+
+En este primer capítulo de la unidad, aprenderemos la configuración básica de python y la sintaxis básica para escribir programas en python.
+:::
