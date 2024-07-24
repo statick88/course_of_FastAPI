@@ -1,6 +1,9 @@
-# Curso de Django y React.
-`Elaborado por:` [Diego Saavedra][def]
+# Curso de FastAPI
+
+`Elaborado por:`[Diego Saavedra][def]
+
 `Revisado por  por:` [Miguel Amaya][def]
+
 `Fecha de Elaboración:` Julio del 2024
 
 > Estos recursos los puedes encontrar en el siguiente link para ir paso a paso con el curso [Curso de FastAPI][def]
