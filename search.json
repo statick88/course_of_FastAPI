@@ -1,0 +1,484 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Curso de FastAPI",
+    "section": "",
+    "text": "Bienvenido",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Bienvenido</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#de-qué-trata-este-curso",
+    "href": "index.html#de-qué-trata-este-curso",
+    "title": "Curso de FastAPI",
+    "section": "¿De qué trata este curso?",
+    "text": "¿De qué trata este curso?\nEste curso completo me llevará desde los fundamentos básicos de la programación hasta la construcción de aplicaciones prácticas utilizando los frameworks Django y la biblioteca de React.\nA través de una combinación de teoría y ejercicios prácticos, me sumergiré en los conceptos esenciales del desarrollo web y avanzaré hacia la creación de proyectos del mundo real.\nDesde la configuración del entorno de desarrollo hasta la construcción de una aplicación web de pila completa, este curso me proporcionará una comprensión sólida y experiencia práctica con FastAPI.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Bienvenido</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#para-quién-es-este-curso",
+    "href": "index.html#para-quién-es-este-curso",
+    "title": "Curso de FastAPI",
+    "section": "¿Para quién es este curso?",
+    "text": "¿Para quién es este curso?\nEste curso está diseñado para principiantes y aquellos con poca o ninguna experiencia en programación.\nYa sea que sea un estudiante curioso, un profesional que busca cambiar de carrera o simplemente alguien que quiere aprender desarrollo web, este curso es para usted. Desde adolescentes hasta adultos, todos son bienvenidos a participar y explorar el emocionante mundo del desarrollo web con FastAPI.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Bienvenido</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#cómo-contribuir",
+    "href": "index.html#cómo-contribuir",
+    "title": "Curso de FastAPI",
+    "section": "¿Cómo contribuir?",
+    "text": "¿Cómo contribuir?\nValoramos su contribución a este curso. Si encuentra algún error, desea sugerir mejoras o agregar contenido adicional, me encantaría saber de usted.\nPuede contribuir a través del repositorio en linea, donde puede compartir sus comentarios y sugerencias.\nJuntos, podemos mejorar continuamente este recurso educativo para beneficiar a la comunidad de estudiantes y entusiastas de la programación.\nEste ebook ha sido creado con el objetivo de proporcionar acceso gratuito y universal al conocimiento.\nEstará disponible en línea para cualquier persona, sin importar su ubicación o circunstancias, para acceder y aprender a su propio ritmo.\nPuede descargarlo en formato PDF, Epub o verlo en línea en cualquier momento y lugar.\nEsperamos que disfrute este emocionante viaje de aprendizaje y descubrimiento en el mundo del desarrollo web con FastAPI!",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Bienvenido</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro.html",
+    "href": "unidades/unidad1/1_intro.html",
+    "title": "Introducción a FastAPI",
+    "section": "",
+    "text": "¿Qué es FastAPI?\nFastAPI es un framework web moderno y rápido para crear APIs con Python 3.6+ basado en estándares abiertos y estándares de tipo de datos Python. Es muy rápido (alto rendimiento) gracias a Starlette y Pydantic. Es fácil de aprender y usar, y también es rápido en la ejecución.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro.html#por-qué-usar-fastapi",
+    "href": "unidades/unidad1/1_intro.html#por-qué-usar-fastapi",
+    "title": "Introducción a FastAPI",
+    "section": "¿Por qué usar FastAPI?",
+    "text": "¿Por qué usar FastAPI?\n\nRápido: Muy alto rendimiento, en par con NodeJS y Go (gracias a Starlette y Pydantic). Uno de los frameworks web más rápidos disponibles.\nRápido para escribir: Aumenta la velocidad para escribir APIs web en comparación con otros frameworks, como Flask y Django.\nMenos errores: Reduce los errores de código (gracias a la comprobación estática de tipos Python).\nMenos tiempo de depuración: Reduce el tiempo de depuración con un sistema de comprobación estática de tipos Python.\nIntegración con Swagger UI: Todos los endpoints automáticamente documentados con Swagger UI y Redoc.\nFácil de aprender: Diseñado para ser fácil de aprender y usar. Menos tiempo leyendo documentación.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro.html#cómo-instalar-fastapi",
+    "href": "unidades/unidad1/1_intro.html#cómo-instalar-fastapi",
+    "title": "Introducción a FastAPI",
+    "section": "¿Cómo instalar FastAPI?",
+    "text": "¿Cómo instalar FastAPI?\nPara instalar FastAPI, simplemente ejecuta el siguiente comando:\npyton -m venv env\nsource env/bin/activate\npip install fastapi\npip install uvicorn",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro.html#cómo-ejecutar-fastapi",
+    "href": "unidades/unidad1/1_intro.html#cómo-ejecutar-fastapi",
+    "title": "Introducción a FastAPI",
+    "section": "¿Cómo ejecutar FastAPI?",
+    "text": "¿Cómo ejecutar FastAPI?\nPara ejecutar FastAPI, simplemente ejecuta el siguiente comando:\nuvicorn main:app --reload\nDonde main es el nombre del archivo principal de tu aplicación y app es la instancia de FastAPI.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro.html#cómo-probar-fastapi",
+    "href": "unidades/unidad1/1_intro.html#cómo-probar-fastapi",
+    "title": "Introducción a FastAPI",
+    "section": "¿Cómo probar FastAPI?",
+    "text": "¿Cómo probar FastAPI?\nPara probar FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro.html#cómo-probar-la-documentación-de-fastapi",
+    "href": "unidades/unidad1/1_intro.html#cómo-probar-la-documentación-de-fastapi",
+    "title": "Introducción a FastAPI",
+    "section": "¿Cómo probar la documentación de FastAPI?",
+    "text": "¿Cómo probar la documentación de FastAPI?\nPara probar la documentación de FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro.html#cómo-crear-una-api-con-fastapi",
+    "href": "unidades/unidad1/1_intro.html#cómo-crear-una-api-con-fastapi",
+    "title": "Introducción a FastAPI",
+    "section": "¿Cómo crear una API con FastAPI?",
+    "text": "¿Cómo crear una API con FastAPI?\nPara crear una API con FastAPI, simplemente crea un archivo Python con el siguiente contenido:\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\nGuarda el archivo con el nombre main.py y ejecuta el siguiente comando:\nuvicorn main:app --reload",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro.html#cómo-probar-una-api-con-fastapi",
+    "href": "unidades/unidad1/1_intro.html#cómo-probar-una-api-con-fastapi",
+    "title": "Introducción a FastAPI",
+    "section": "¿Cómo probar una API con FastAPI?",
+    "text": "¿Cómo probar una API con FastAPI?\nPara probar una API con FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000 y verás el siguiente resultado:\n{\"Hello\": \"World\"}",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro.html#cómo-documentar-una-api-con-fastapi",
+    "href": "unidades/unidad1/1_intro.html#cómo-documentar-una-api-con-fastapi",
+    "title": "Introducción a FastAPI",
+    "section": "¿Cómo documentar una API con FastAPI?",
+    "text": "¿Cómo documentar una API con FastAPI?\nPara documentar una API con FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y verás la documentación de tu API.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro_quiz.html",
+    "href": "unidades/unidad1/1_intro_quiz.html",
+    "title": "Quiz FastAPI",
+    "section": "",
+    "text": "Pregunta 1\n¿Cuál es el propósito principal de FastAPI?",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-1",
+    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-1",
+    "title": "Quiz FastAPI",
+    "section": "",
+    "text": "Crear aplicaciones web rápidas y eficientes.\nFacilitar el desarrollo de APIs RESTful.\nAmbas opciones anteriores.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-2",
+    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-2",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 2",
+    "text": "Pregunta 2\nCuál de las siguientes afirmaciones sobre FastAPI es correcta?\n\nFastAPI es un framework basado en Flask.\nFastAPI utiliza el lenguaje de programación Java.\nFastAPI es compatible con Python 3.7 y versiones posteriores.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-3",
+    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-3",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 3",
+    "text": "Pregunta 3\nCuál de las siguientes características es una ventaja de FastAPI?\n\nSoporte para tipos de datos estáticos.\nGeneración automática de documentación interactiva.\nAmbas opciones anteriores.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-4",
+    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-4",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 4",
+    "text": "Pregunta 4\nCuál de las siguientes afirmaciones sobre FastAPI es incorrecta?\n\nFastAPI es un framework asincrónico.\nFastAPI es compatible con bases de datos SQL y NoSQL.\nFastAPI no es adecuado para aplicaciones de alto rendimiento.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-5",
+    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-5",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 5",
+    "text": "Pregunta 5\n¿Cuál es el comando correcto para instalar FastAPI?\n\npip install fastapi\npip install fastapi uvicorn\npip install fastapi[all]\n\n\n\nRespuestas\n\n\nAmbas opciones anteriores.\nFastAPI es compatible con Python 3.7 y versiones posteriores.\nAmbas opciones anteriores.\nFastAPI no es adecuado para aplicaciones de alto rendimiento.\npip install fastapi uvicorn",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/2_api_restfull.html",
+    "href": "unidades/unidad1/2_api_restfull.html",
+    "title": "API Restful con FastAPI",
+    "section": "",
+    "text": "Para crear un API Restful con FastAPI, empezamos creando el directorio app y dentro de este directorio creamos el archivo main.py con el siguiente contenido:\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\nEn el directorio app, ejecutamos el siguiente comando para iniciar el servidor de FastAPI:\nuvicorn main:app --reload\nPara probar el API Restful, simplemente abrimos nuestro navegador y navegamos a la siguiente URL: http://127.0.0.1:8000 y veremos el siguiente resultado:\n{\"Hello\": \"World\"}\nPara probar la documentación interactiva de FastAPI, simplemente abrimos nuestro navegador y navegamos a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y veremos la documentación de nuestro API.\nPara más información sobre FastAPI, visita la documentación oficial de FastAPI.\n\n¿Qué sigue?\nEn la siguiente lección, aprenderemos cómo crear una API RESTful con FastAPI.\nPrueba tu conocimiento",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>API Restful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/2_api_restfull_quiz.html",
+    "href": "unidades/unidad1/2_api_restfull_quiz.html",
+    "title": "Quiz FastAPI",
+    "section": "",
+    "text": "Pregunta 1\n¿Qué devuelve el servidor de uvicorn?",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-1",
+    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-1",
+    "title": "Quiz FastAPI",
+    "section": "",
+    "text": "Un mensaje de error.\nUn mensaje de advertencia.\nUn mensaje de éxito.\nUn mensaje de información.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-2",
+    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-2",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 2",
+    "text": "Pregunta 2\n¿Para qué me sirve un json en FASTAPI?\n\nPara crear una API RESTful.\nPara crear una API SOAP.\nPara crear una API GraphQL.\nPara crear una API RESTful y una API SOAP.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-3",
+    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-3",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 3",
+    "text": "Pregunta 3\n¿Como ejecuto un servidor de FastAPI?\n\nuvicorn main:app –reload\nuvicorn main:app –no-reload\nuvicorn main:app –reload –port 8000\nuvicorn main:app –reload –port 8000 –host",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-4",
+    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-4",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 4",
+    "text": "Pregunta 4\n¿Por qué debo instalar uvicorn?\n\nPara ejecutar FastAPI.\nPara ejecutar Flask.\nPara ejecutar Django.\nPara ejecutar FastAPI y Flask.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-5",
+    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-5",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 5",
+    "text": "Pregunta 5\n¿Qué comando debo ejecutar para instalar FastAPI y uvicorn?\n\npip install fastapi\npip install uvicorn\npip install fastapi uvicorn\npip install fastapi[all]\n\n\n\nRespuestas\n\n\nUn mensaje de éxito.\nPara crear una API RESTful.\nuvicorn main:app –reload\nPara ejecutar FastAPI.\npip install fastapi uvicorn",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html",
+    "title": "Crear un API RESTful con FastAPI",
+    "section": "",
+    "text": "Crear un proyecto FastAPI\nPara crear un proyecto FastAPI, primero debemos instalar FastAPI y Uvicorn. Para ello, ejecuta los siguientes comandos:\nCrear un directorio para tu proyecto con el nombre app y dentro de este directorio crea un archivo main.py con el siguiente contenido:\nPara ejecutar el servidor de FastAPI, ejecuta el siguiente comando:\nAbre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000 y verás el siguiente resultado:\nPara probar la documentación interactiva de FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y verás la documentación de tu API.\nPara más información sobre FastAPI, visita la documentación oficial de FastAPI.\nAhora vamos a crear el CRUD (Create, Read, Update, Delete) para gestionar artículos de un blog.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-proyecto-fastapi",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-proyecto-fastapi",
+    "title": "Crear un API RESTful con FastAPI",
+    "section": "",
+    "text": "Tip\n\n\n\nNo olvides crear un entorno virtual para instalar las dependencias de tu proyecto.\npython -m venv venv\nsource venv/bin/activate\n\n\n\npip install fastapi\npip install uvicorn\n\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\nuvicorn main:app --reload\n\n{\"Hello\": \"World\"}",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-modelo-de-datos",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-modelo-de-datos",
+    "title": "Crear un API RESTful con FastAPI",
+    "section": "Crear un modelo de datos",
+    "text": "Crear un modelo de datos\nCrea un directorio models y dentro de este directorio crea un archivo article.py con el siguiente contenido:\nfrom pydantic import BaseModel\n\nclass Article(BaseModel):\n    id: int\n    title: str\n    content: str",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-controlador",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-controlador",
+    "title": "Crear un API RESTful con FastAPI",
+    "section": "Crear un controlador",
+    "text": "Crear un controlador\nCrea un directorio controllers y dentro de este directorio crea un archivo article_controller.py con el siguiente contenido:\nfrom fastapi import APIRouter\nfrom models.article import Article\n\nrouter = APIRouter()\n\narticles = [\n    Article(id=1, title=\"First Article\", content=\"This is the content of the first article.\"),\n    Article(id=2, title=\"Second Article\", content=\"This is the content of the second article.\"),\n]\n\n@router.get(\"/articles\")\ndef read_articles():\n    return articles\n\n@router.get(\"/articles/{article_id}\")\ndef read_article(article_id: int):\n    for article in articles:\n        if article.id == article_id:\n            return article\n    return {\"message\": \"Article not found\"}\n\n@router.post(\"/articles\")\ndef create_article(article: Article):\n    articles.append(article)\n    return article\n\n@router.put(\"/articles/{article_id}\")\ndef update_article(article_id: int, article: Article):\n    for i, a in enumerate(articles):\n        if a.id == article_id:\n            articles[i] = article\n            return article\n    return {\"message\": \"Article not found\"}\n\n@router.delete(\"/articles/{article_id}\")\ndef delete_article(article_id: int):\n    for i, article in enumerate(articles):\n        if article.id == article_id:\n            del articles[i]\n            return {\"message\": \"Article deleted\"}\n    return {\"message\": \"Article not found\"}",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-enrutador",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-enrutador",
+    "title": "Crear un API RESTful con FastAPI",
+    "section": "Crear un enrutador",
+    "text": "Crear un enrutador\nCrea un directorio routers y dentro de este directorio crea un archivo article_router.py con el siguiente contenido:\nfrom fastapi import APIRouter\nfrom controllers.article_controller import router as article_router\n\nrouter = APIRouter()\n\nrouter.include_router(article_router)",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-servicio",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-servicio",
+    "title": "Crear un API RESTful con FastAPI",
+    "section": "Crear un servicio",
+    "text": "Crear un servicio\nCrea un directorio services y dentro de este directorio crea un archivo article_service.py con el siguiente contenido:\nfrom models.article import Article\n\nclass ArticleService:\n    def __init__(self):\n        self.articles = [\n            Article(id=1, title=\"First Article\", content=\"This is the content of the first article.\"),\n            Article(id=2, title=\"Second Article\", content=\"This is the content of the second article.\"),\n        ]\n\n    def get_articles(self):\n        return self.articles\n\n    def get_article(self, article_id: int):\n        for article in self.articles:\n            if article.id == article_id:\n                return article\n        return None\n\n    def create_article(self, article: Article):\n        self.articles.append(article)\n        return article\n\n    def update_article(self, article_id: int, article: Article):\n        for i, a in enumerate(self.articles):\n            if a.id == article_id:\n                self.articles[i] = article\n                return article\n        return None\n\n    def delete_article(self, article_id: int):\n        for i, article in enumerate(self.articles):\n            if article.id == article_id:\n                del self.articles[i]\n                return True\n        return False",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-controlador-con-servicios",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-controlador-con-servicios",
+    "title": "Crear un API RESTful con FastAPI",
+    "section": "Crear un controlador con servicios",
+    "text": "Crear un controlador con servicios\nCrea un directorio controllers y dentro de este directorio crea un archivo article_controller.py con el siguiente contenido:\nfrom fastapi import APIRouter\nfrom services.article_service import ArticleService\nfrom models.article import Article\n\nrouter = APIRouter()\narticle_service = ArticleService()\n\n@router.get(\"/articles\")\ndef read_articles():\n    return article_service.get_articles()\n\n@router.get(\"/articles/{article_id}\")\ndef read_article(article_id: int):\n    article = article_service.get_article(article_id)\n    if article:\n        return article\n    return {\"message\": \"Article not found\"}\n\n@router.post(\"/articles\")\ndef create_article(article: Article):\n    return article_service.create_article(article)\n\n@router.put(\"/articles/{article_id}\")\ndef update_article(article_id: int, article: Article):\n    updated_article = article_service.update_article(article_id, article)\n    if updated_article:\n        return updated_article\n    return {\"message\": \"Article not found\"}\n\n@router.delete(\"/articles/{article_id}\")\ndef delete_article(article_id: int):\n    if article_service.delete_article(article_id):\n        return {\"message\": \"Article deleted\"}\n    return {\"message\": \"Article not found\"}",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-enrutador-con-controladores",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-enrutador-con-controladores",
+    "title": "Crear un API RESTful con FastAPI",
+    "section": "Crear un enrutador con controladores",
+    "text": "Crear un enrutador con controladores\nCrea un directorio routers y dentro de este directorio crea un archivo article_router.py con el siguiente contenido:\nfrom fastapi import APIRouter\nfrom controllers.article_controller import router as article_router\n\nrouter = APIRouter()\n\nrouter.include_router(article_router)",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-archivo-principal",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-archivo-principal",
+    "title": "Crear un API RESTful con FastAPI",
+    "section": "Crear un archivo principal",
+    "text": "Crear un archivo principal\nModifica un archivo main.py en el directorio app con el siguiente contenido:\nfrom fastapi import FastAPI\nfrom routers.article_router import router as article_router\n\napp = FastAPI()\n\napp.include_router(article_router)\nPara ejecutar el servidor de FastAPI, ejecuta el siguiente comando:\nuvicorn main:app --reload\nAbre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y verás la documentación de tu API.\nEn la siguiente lección, aprenderemos cómo crear una API RESTful con FastAPI.\nPrueba tu conocimiento;",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html",
+    "title": "Quiz FastAPI",
+    "section": "",
+    "text": "Pregunta 1\n¿Qué comando se utiliza para crear un entorno virtual en Python?",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-1",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-1",
+    "title": "Quiz FastAPI",
+    "section": "",
+    "text": "python -m venv venv\npython -m venv env\npython -m venv virtualenv\npython -m venv env",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-2",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-2",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 2",
+    "text": "Pregunta 2\n¿Qué comando se utiliza para activar un entorno virtual en Python?\n\nsource env/bin/activate\nsource venv/bin/activate\nsource env/activate\nsource venv/activate",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-3",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-3",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 3",
+    "text": "Pregunta 3\n¿Qué código se utiliza para crear un método get en FASTAPI?\n\n@app.get(“/”)\n@app.post(“/”)\n@app.put(“/”)\n@app.delete(“/”)",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-4",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-4",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 4",
+    "text": "Pregunta 4\n¿Qué código se utiliza para crear un método post en FASTAPI?\n\n@app.get(“/”)\n@app.post(“/”)\n@app.put(“/”)\n@app.delete(“/”)",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-5",
+    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-5",
+    "title": "Quiz FastAPI",
+    "section": "Pregunta 5",
+    "text": "Pregunta 5\n¿Qué código se utiliza para crear un método put en FASTAPI?\n\n@app.get(“/”)\n@app.post(“/”)\n@app.put(“/”)\n@app.delete(“/”)\n\n\n\nRespuestas\n\n\npython -m venv env\nsource env/bin/activate\n@app.get(“/”)\n@app.post(“/”)\n@app.put(“/”)",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Acerca de mi",
+    "section": "",
+    "text": "¡Hola! Soy Diego Saavedra, un experto en desarrollo avanzado de software e investigación. Mi amplia experiencia abarca diversas tecnologías, incluyendo Python (Django, Flask, Fast API) y JavaScript (Express, Next, React, Nestjs), así como también tengo conocimientos sólidos en bases de datos, arquitecturas de software y liderazgo ágil.\nMi pasión por la innovación, el desarrollo y la educación me ha llevado a destacarme como un profesional versátil e invaluable. Estoy constantemente listo para enfrentar desafíos técnicos y liderar proyectos de vanguardia.\nMi formación académica incluye el ser estudiante de Doctorado centrado en la inteligencia artificial, estoy enfocando mi investigación en la detección de TDA+H y Asperger mediante Visión Artificial a traves de algoritmos de Inteligencia Artificial. Además, poseo una Maestría en Ciencias de la Computación, con un enfoque en el Deep Learning (Convolutional Neural Network) y la Atención.\nCon esta sólida base académica y experiencia profesional, estoy preparado para aportar soluciones innovadoras y liderar equipos hacia el éxito en cualquier proyecto tecnológico que se me presente.\nAdemás, tengo experiencia en el desarrollo móvil utilizando Flutter y en la implementación de soluciones backend utilizando servicios Backend as a Service (BaaS) como Firebase y Supabase.\nEn el ámbito de la educación, he sido docente de programación en institutos y universidades, actualmente soy parte del Departamento de Ciencias de la Computación en la Universidad de las Fuerzas Armadas ESPE, donde he impartido asignaturas de desarrollo de Software Web con tecnologías como JavaScript, Java y C# asi como sus respectivos frameworks.\nMi experiencia en el desarrollo de software y la investigación me ha permitido adquirir habilidades de liderazgo, trabajo en equipo y comunicación efectiva. Estoy seguro de que mi experiencia y habilidades serán de gran valor para cualquier proyecto tecnológico que se me presente.\nEn este curso aprenderás a desarrollar aplicaciones web con Python y Django, una de las tecnologías más populares y poderosas para el desarrollo de aplicaciones web. A lo largo del curso, aprenderás a crear aplicaciones web desde cero, utilizando Django y Python, y a implementar funcionalidades avanzadas como integración con APIs externas y mucho más.\nTambien veremos tecnologías como Git, Github, Docker, Python, Django, Django Rest Framework, Html5, Css3, JavaScript, Nodejs, Npm y React.\n\n\n¡Estoy emocionado de compartir contigo mi conocimiento y experiencia en el desarrollo de aplicaciones web con Python y Django!"
+  },
+  {
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "Licencia",
+    "section": "",
+    "text": "Uso Permitido\nPuedes utilizar el contenido de este curso con fines educativos y personales. Puedes modificar los ejemplos y el código proporcionado para tus propias necesidades de aprendizaje."
+  },
+  {
+    "objectID": "license.html#restricciones",
+    "href": "license.html#restricciones",
+    "title": "Licencia",
+    "section": "Restricciones",
+    "text": "Restricciones\nNo tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de [Nombre de la Compañía]. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio."
+  },
+  {
+    "objectID": "license.html#atribución",
+    "href": "license.html#atribución",
+    "title": "Licencia",
+    "section": "Atribución",
+    "text": "Atribución\nSi compartes los ejemplos, los fragmentos de código o el contenido de este curso en línea, te pedimos que proporciones la atribución adecuada a [Nombre de la Compañía]."
+  },
+  {
+    "objectID": "license.html#cambios-en-la-licencia",
+    "href": "license.html#cambios-en-la-licencia",
+    "title": "Licencia",
+    "section": "Cambios en la Licencia",
+    "text": "Cambios en la Licencia\n[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.\nGracias por respetar nuestros derechos de autor y por tu comprensión."
+  }
+]
