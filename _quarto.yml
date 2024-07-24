@@ -1,0 +1,82 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Curso de FastAPI"
+  author: ["Diego Saavedra", "Miguel Amaya"]
+  output-file: "curso_fast_api"  
+  date: today
+  date-format: medium
+  favicon: logo.png
+  description: Curso de FastAPI
+  keyword: Python, Dajngo, JavaScript, React
+  url: https://github.com/statick88/Course_of_fastAPI
+  page-navigation: true
+  sidebar: 
+    logo: logo.png
+    search: true
+    collapse-level: 1
+
+  repo-subdir: book
+  sharing: [twitter, linkedin]
+  downloads: [pdf, epub]
+  image: logo.png
+
+  page-footer:
+    center: 
+      - text: "About"
+        href: about.qmd
+      - text: "License"
+        href: license.qmd
+        
+  chapters:
+    - index.qmd
+    - part: "Unidad 1: Introducción a Python"
+      chapters: 
+        - unidades/unidad1/1_intro.qmd
+        - unidades/unidad1/1_intro_quiz.qmd
+        - unidades/unidad1/2_api_restfull.qmd
+        - unidades/unidad1/2_api_restfull_quiz.qmd
+        - unidades/unidad1/3_crear_api_restfull_fastAPI.qmd
+        - unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.qmd
+
+    - part: "Laboratorios"
+      chapters: 
+        - unidades/unidad1/1_intro.qmd
+
+bibliography: references.bib
+biblio-style: "apalike"
+
+format:
+  html:
+    number-sections: false
+    theme: 
+      dark:  solar #slate, darkly, solar, superhero, vapor
+      # light: cosmo
+    number-depth: 4
+    link-external-icon: true
+    link-external-newwindow: true
+    css: css/styles.css
+
+  pdf:
+    documentclass: scrreprt
+    classoption: ["onepage", "openany"]
+    papersize: a4
+    toc: true
+    margin-top: 35mm
+    margin-left: 30mm
+    margin-bottom: 30mm
+    margin-right: 30mm
+    titlepage-geometry: 
+      - top=35mm
+      - bottom=30mm
+      - right=30mm
+      - left=30mm
+  epub: 
+    belongs-to-collection: "Curso de FastAPI"
+    group-position: 0
+    creator: "Lcdo. Diego Saavedra Mgtr."
+    rights: "© Statick | 2024"
+    fig-responsive: true
+    number-sections: true

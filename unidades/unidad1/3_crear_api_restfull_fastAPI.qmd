@@ -1,0 +1,246 @@
+# Crear un API RESTful con FastAPI
+
+En este capítulo aprenderemos a crear un API RESTful con FastAPI que nos permita crear un CMS (Content Management System) para gestionar artículos de un blog.
+
+## Crear un proyecto FastAPI
+
+:::{.callout-tip}
+No olvides crear un entorno virtual para instalar las dependencias de tu proyecto.
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+:::
+
+Para crear un proyecto FastAPI, primero debemos instalar FastAPI y Uvicorn. Para ello, ejecuta los siguientes comandos:
+
+```bash
+pip install fastapi
+pip install uvicorn
+```
+
+Crear un directorio para tu proyecto con el nombre **app** y dentro de este directorio crea un archivo **main.py** con el siguiente contenido:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+```
+
+Para ejecutar el servidor de FastAPI, ejecuta el siguiente comando:
+
+```bash
+uvicorn main:app --reload
+```
+
+Abre tu navegador y navega a la siguiente URL: <http://127.0.0.1:8000> y verás el siguiente resultado:
+
+```json
+{"Hello": "World"}
+```
+
+Para probar la documentación interactiva de FastAPI, simplemente abre tu navegador y navega a la siguiente URL: <http://127.0.0.1:8000/docs> o <http://127.0.0.1:8000/redoc> y verás la documentación de tu API.
+
+Para más información sobre FastAPI, visita la [documentación oficial de FastAPI](https://fastapi.tiangolo.com/).
+
+Ahora vamos a crear el CRUD (Create, Read, Update, Delete) para gestionar artículos de un blog.
+
+## Crear un modelo de datos
+
+Crea un directorio **models** y dentro de este directorio crea un archivo **article.py** con el siguiente contenido:
+
+```python
+from pydantic import BaseModel
+
+class Article(BaseModel):
+    id: int
+    title: str
+    content: str
+```
+
+## Crear un controlador
+
+Crea un directorio **controllers** y dentro de este directorio crea un archivo **article_controller.py** con el siguiente contenido:
+
+```python
+from fastapi import APIRouter
+from models.article import Article
+
+router = APIRouter()
+
+articles = [
+    Article(id=1, title="First Article", content="This is the content of the first article."),
+    Article(id=2, title="Second Article", content="This is the content of the second article."),
+]
+
+@router.get("/articles")
+def read_articles():
+    return articles
+
+@router.get("/articles/{article_id}")
+def read_article(article_id: int):
+    for article in articles:
+        if article.id == article_id:
+            return article
+    return {"message": "Article not found"}
+
+@router.post("/articles")
+def create_article(article: Article):
+    articles.append(article)
+    return article
+
+@router.put("/articles/{article_id}")
+def update_article(article_id: int, article: Article):
+    for i, a in enumerate(articles):
+        if a.id == article_id:
+            articles[i] = article
+            return article
+    return {"message": "Article not found"}
+
+@router.delete("/articles/{article_id}")
+def delete_article(article_id: int):
+    for i, article in enumerate(articles):
+        if article.id == article_id:
+            del articles[i]
+            return {"message": "Article deleted"}
+    return {"message": "Article not found"}
+```
+
+## Crear un enrutador
+
+Crea un directorio **routers** y dentro de este directorio crea un archivo **article_router.py** con el siguiente contenido:
+
+```python
+from fastapi import APIRouter
+from controllers.article_controller import router as article_router
+
+router = APIRouter()
+
+router.include_router(article_router)
+```
+
+## Crear un servicio
+
+Crea un directorio **services** y dentro de este directorio crea un archivo **article_service.py** con el siguiente contenido:
+
+```python
+from models.article import Article
+
+class ArticleService:
+    def __init__(self):
+        self.articles = [
+            Article(id=1, title="First Article", content="This is the content of the first article."),
+            Article(id=2, title="Second Article", content="This is the content of the second article."),
+        ]
+
+    def get_articles(self):
+        return self.articles
+
+    def get_article(self, article_id: int):
+        for article in self.articles:
+            if article.id == article_id:
+                return article
+        return None
+
+    def create_article(self, article: Article):
+        self.articles.append(article)
+        return article
+
+    def update_article(self, article_id: int, article: Article):
+        for i, a in enumerate(self.articles):
+            if a.id == article_id:
+                self.articles[i] = article
+                return article
+        return None
+
+    def delete_article(self, article_id: int):
+        for i, article in enumerate(self.articles):
+            if article.id == article_id:
+                del self.articles[i]
+                return True
+        return False
+```
+
+## Crear un controlador con servicios
+
+Crea un directorio **controllers** y dentro de este directorio crea un archivo **article_controller.py** con el siguiente contenido:
+
+```python
+from fastapi import APIRouter
+from services.article_service import ArticleService
+from models.article import Article
+
+router = APIRouter()
+article_service = ArticleService()
+
+@router.get("/articles")
+def read_articles():
+    return article_service.get_articles()
+
+@router.get("/articles/{article_id}")
+def read_article(article_id: int):
+    article = article_service.get_article(article_id)
+    if article:
+        return article
+    return {"message": "Article not found"}
+
+@router.post("/articles")
+def create_article(article: Article):
+    return article_service.create_article(article)
+
+@router.put("/articles/{article_id}")
+def update_article(article_id: int, article: Article):
+    updated_article = article_service.update_article(article_id, article)
+    if updated_article:
+        return updated_article
+    return {"message": "Article not found"}
+
+@router.delete("/articles/{article_id}")
+def delete_article(article_id: int):
+    if article_service.delete_article(article_id):
+        return {"message": "Article deleted"}
+    return {"message": "Article not found"}
+```
+
+## Crear un enrutador con controladores
+
+Crea un directorio **routers** y dentro de este directorio crea un archivo **article_router.py** con el siguiente contenido:
+
+```python
+from fastapi import APIRouter
+from controllers.article_controller import router as article_router
+
+router = APIRouter()
+
+router.include_router(article_router)
+```
+
+## Crear un archivo principal
+
+Modifica un archivo **main.py** en el directorio **app** con el siguiente contenido:
+
+```python
+from fastapi import FastAPI
+from routers.article_router import router as article_router
+
+app = FastAPI()
+
+app.include_router(article_router)
+```
+
+Para ejecutar el servidor de FastAPI, ejecuta el siguiente comando:
+
+```bash
+uvicorn main:app --reload
+```
+
+Abre tu navegador y navega a la siguiente URL: <http://127.0.0.1:8000/docs> o <http://127.0.0.1:8000/redoc> y verás la documentación de tu API.
+
+En la siguiente lección, aprenderemos cómo crear una API RESTful con FastAPI.
+
+[Prueba tu conocimiento](3_crear_api_restfull_fastAPI_quiz.qmd);
