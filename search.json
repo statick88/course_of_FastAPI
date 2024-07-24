@@ -40,6 +40,17 @@
     ]
   },
   {
+    "objectID": "unidades/unidad1/1_configuracion_y_sintaxis_basica.html#sintaxis-básica",
+    "href": "unidades/unidad1/1_configuracion_y_sintaxis_basica.html#sintaxis-básica",
+    "title": "Configuración y Sintaxis básica",
+    "section": "Sintaxis básica",
+    "text": "Sintaxis básica\nPython es un lenguaje de programación interpretado, lo que significa que el código se ejecuta línea por línea. A continuación se muestra un ejemplo de un programa simple en python:\n# Este es un comentario\nprint(\"Hola Mundo!\")\nPara ejecutar este programa, puedes guardar el código en un archivo con extensión .py y ejecutarlo desde la terminal con el comando python nombre_del_archivo.py.\n\n\n\nEn este caso, el programa imprimirá en la terminal el mensaje Hola Mundo!.\nEn este primer capítulo de la unidad, aprenderemos la configuración básica de python y la sintaxis básica para escribir programas en python.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Configuración y Sintaxis básica</span>"
+    ]
+  },
+  {
     "objectID": "unidades/laboratorios/lab1.html",
     "href": "unidades/laboratorios/lab1.html",
     "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
