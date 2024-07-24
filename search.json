@@ -40,410 +40,146 @@
     ]
   },
   {
-    "objectID": "unidades/unidad1/1_intro.html",
-    "href": "unidades/unidad1/1_intro.html",
-    "title": "Introducción a FastAPI",
+    "objectID": "unidades/laboratorios/lab1.html",
+    "href": "unidades/laboratorios/lab1.html",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
     "section": "",
-    "text": "¿Qué es FastAPI?\nFastAPI es un framework web moderno y rápido para crear APIs con Python 3.6+ basado en estándares abiertos y estándares de tipo de datos Python. Es muy rápido (alto rendimiento) gracias a Starlette y Pydantic. Es fácil de aprender y usar, y también es rápido en la ejecución.",
+    "text": "1. Configuración Inicial del Proyecto",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/1_intro.html#por-qué-usar-fastapi",
-    "href": "unidades/unidad1/1_intro.html#por-qué-usar-fastapi",
-    "title": "Introducción a FastAPI",
-    "section": "¿Por qué usar FastAPI?",
-    "text": "¿Por qué usar FastAPI?\n\nRápido: Muy alto rendimiento, en par con NodeJS y Go (gracias a Starlette y Pydantic). Uno de los frameworks web más rápidos disponibles.\nRápido para escribir: Aumenta la velocidad para escribir APIs web en comparación con otros frameworks, como Flask y Django.\nMenos errores: Reduce los errores de código (gracias a la comprobación estática de tipos Python).\nMenos tiempo de depuración: Reduce el tiempo de depuración con un sistema de comprobación estática de tipos Python.\nIntegración con Swagger UI: Todos los endpoints automáticamente documentados con Swagger UI y Redoc.\nFácil de aprender: Diseñado para ser fácil de aprender y usar. Menos tiempo leyendo documentación.",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/1_intro.html#cómo-instalar-fastapi",
-    "href": "unidades/unidad1/1_intro.html#cómo-instalar-fastapi",
-    "title": "Introducción a FastAPI",
-    "section": "¿Cómo instalar FastAPI?",
-    "text": "¿Cómo instalar FastAPI?\nPara instalar FastAPI, simplemente ejecuta el siguiente comando:\npyton -m venv env\nsource env/bin/activate\npip install fastapi\npip install uvicorn",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/1_intro.html#cómo-ejecutar-fastapi",
-    "href": "unidades/unidad1/1_intro.html#cómo-ejecutar-fastapi",
-    "title": "Introducción a FastAPI",
-    "section": "¿Cómo ejecutar FastAPI?",
-    "text": "¿Cómo ejecutar FastAPI?\nPara ejecutar FastAPI, simplemente ejecuta el siguiente comando:\nuvicorn main:app --reload\nDonde main es el nombre del archivo principal de tu aplicación y app es la instancia de FastAPI.",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/1_intro.html#cómo-probar-fastapi",
-    "href": "unidades/unidad1/1_intro.html#cómo-probar-fastapi",
-    "title": "Introducción a FastAPI",
-    "section": "¿Cómo probar FastAPI?",
-    "text": "¿Cómo probar FastAPI?\nPara probar FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/1_intro.html#cómo-probar-la-documentación-de-fastapi",
-    "href": "unidades/unidad1/1_intro.html#cómo-probar-la-documentación-de-fastapi",
-    "title": "Introducción a FastAPI",
-    "section": "¿Cómo probar la documentación de FastAPI?",
-    "text": "¿Cómo probar la documentación de FastAPI?\nPara probar la documentación de FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/1_intro.html#cómo-crear-una-api-con-fastapi",
-    "href": "unidades/unidad1/1_intro.html#cómo-crear-una-api-con-fastapi",
-    "title": "Introducción a FastAPI",
-    "section": "¿Cómo crear una API con FastAPI?",
-    "text": "¿Cómo crear una API con FastAPI?\nPara crear una API con FastAPI, simplemente crea un archivo Python con el siguiente contenido:\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\nGuarda el archivo con el nombre main.py y ejecuta el siguiente comando:\nuvicorn main:app --reload",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/1_intro.html#cómo-probar-una-api-con-fastapi",
-    "href": "unidades/unidad1/1_intro.html#cómo-probar-una-api-con-fastapi",
-    "title": "Introducción a FastAPI",
-    "section": "¿Cómo probar una API con FastAPI?",
-    "text": "¿Cómo probar una API con FastAPI?\nPara probar una API con FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000 y verás el siguiente resultado:\n{\"Hello\": \"World\"}",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/1_intro.html#cómo-documentar-una-api-con-fastapi",
-    "href": "unidades/unidad1/1_intro.html#cómo-documentar-una-api-con-fastapi",
-    "title": "Introducción a FastAPI",
-    "section": "¿Cómo documentar una API con FastAPI?",
-    "text": "¿Cómo documentar una API con FastAPI?\nPara documentar una API con FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y verás la documentación de tu API.",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción a FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/1_intro_quiz.html",
-    "href": "unidades/unidad1/1_intro_quiz.html",
-    "title": "Quiz FastAPI",
+    "objectID": "unidades/laboratorios/lab1.html#configuración-inicial-del-proyecto",
+    "href": "unidades/laboratorios/lab1.html#configuración-inicial-del-proyecto",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
     "section": "",
-    "text": "Pregunta 1\n¿Cuál es el propósito principal de FastAPI?",
+    "text": "1.1. Crear un Proyecto Django\nAbre tu terminal y ejecuta los siguientes comandos para crear un nuevo proyecto Django:\npython -m venv env\nsource env/bin/activate\npip install django==4.2\ndjango-admin startproject ecommerce_project .\ncd ecommerce_project\n\n\n1.2 Crear una Aplicación Django\nDentro del directorio del proyecto, crea una aplicación para manejar el e-commerce:\npython manage.py startapp products\n\n\n1.3 Instalar Django Rest Framework\nInstala DRF usando pip:\npip install djangorestframework\n\n\n1.4 Configurar el Proyecto\nAñade ‘rest_framework’ y tu nueva aplicación ‘products’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:\nINSTALLED_APPS = [\n    # ... otras apps\n    'rest_framework',\n    'products',\n]",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-1",
-    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-1",
-    "title": "Quiz FastAPI",
-    "section": "",
-    "text": "Crear aplicaciones web rápidas y eficientes.\nFacilitar el desarrollo de APIs RESTful.\nAmbas opciones anteriores.",
+    "objectID": "unidades/laboratorios/lab1.html#definir-el-modelo-de-datos",
+    "href": "unidades/laboratorios/lab1.html#definir-el-modelo-de-datos",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "2. Definir el Modelo de Datos",
+    "text": "2. Definir el Modelo de Datos\n\n2.1 Crear Modelos en products/models.py\nDefine los modelos para el e-commerce, como Product, Category, y Order:\nfrom django.db import models\n\nclass Category(models.Model):\n    name = models.CharField(max_length=100)\n\n    def __str__(self):\n        return self.name\n\nclass Product(models.Model):\n    name = models.CharField(max_length=100)\n    description = models.TextField()\n    price = models.DecimalField(max_digits=10, decimal_places=2)\n    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)\n    stock = models.PositiveIntegerField()\n\n    def __str__(self):\n        return self.name\n\nclass Order(models.Model):\n    product = models.ForeignKey(Product, related_name='orders', on_delete=models.CASCADE)\n    quantity = models.PositiveIntegerField()\n    total_price = models.DecimalField(max_digits=10, decimal_places=2)\n    order_date = models.DateTimeField(auto_now_add=True)\n\n    def __str__(self):\n        return f\"Order {self.id} - {self.product.name}\"\n\n\n2.2 Crear y Aplicar Migraciones\nGenera y aplica las migraciones para los modelos:\npython manage.py makemigrations\npython manage.py migrate",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-2",
-    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-2",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 2",
-    "text": "Pregunta 2\nCuál de las siguientes afirmaciones sobre FastAPI es correcta?\n\nFastAPI es un framework basado en Flask.\nFastAPI utiliza el lenguaje de programación Java.\nFastAPI es compatible con Python 3.7 y versiones posteriores.",
+    "objectID": "unidades/laboratorios/lab1.html#crear-serializers",
+    "href": "unidades/laboratorios/lab1.html#crear-serializers",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "3. Crear Serializers",
+    "text": "3. Crear Serializers\n\n3.1 Definir Serializers en products/serializers.py\nLos serializers se encargan de transformar los modelos en formatos JSON y viceversa:\nfrom rest_framework import serializers\nfrom .models import Category, Product, Order\n\nclass CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = '__all__'\n\nclass ProductSerializer(serializers.ModelSerializer):\n    category = CategorySerializer()\n\n    class Meta:\n        model = Product\n        fields = '__all__'\n\nclass OrderSerializer(serializers.ModelSerializer):\n    product = ProductSerializer()\n\n    class Meta:\n        model = Order\n        fields = '__all__'",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-3",
-    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-3",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 3",
-    "text": "Pregunta 3\nCuál de las siguientes características es una ventaja de FastAPI?\n\nSoporte para tipos de datos estáticos.\nGeneración automática de documentación interactiva.\nAmbas opciones anteriores.",
+    "objectID": "unidades/laboratorios/lab1.html#crear-vistas-y-rutas",
+    "href": "unidades/laboratorios/lab1.html#crear-vistas-y-rutas",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "4. Crear Vistas y Rutas",
+    "text": "4. Crear Vistas y Rutas\n\n4.1 Definir Vistas en products/views.py\nUtiliza las vistas basadas en clases de DRF para crear y manejar las operaciones CRUD:\nfrom rest_framework import generics\nfrom .models import Category, Product, Order\nfrom .serializers import CategorySerializer, ProductSerializer, OrderSerializer\n\nclass CategoryListCreate(generics.ListCreateAPIView):\n    queryset = Category.objects.all()\n    serializer_class = CategorySerializer\n\nclass CategoryDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Category.objects.all()\n    serializer_class = CategorySerializer\n\nclass ProductListCreate(generics.ListCreateAPIView):\n    queryset = Product.objects.all()\n    serializer_class = ProductSerializer\n\nclass ProductDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Product.objects.all()\n    serializer_class = ProductSerializer\n\nclass OrderListCreate(generics.ListCreateAPIView):\n    queryset = Order.objects.all()\n    serializer_class = OrderSerializer\n\nclass OrderDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Order.objects.all()\n    serializer_class = OrderSerializer",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-4",
-    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-4",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 4",
-    "text": "Pregunta 4\nCuál de las siguientes afirmaciones sobre FastAPI es incorrecta?\n\nFastAPI es un framework asincrónico.\nFastAPI es compatible con bases de datos SQL y NoSQL.\nFastAPI no es adecuado para aplicaciones de alto rendimiento.",
+    "objectID": "unidades/laboratorios/lab1.html#configurar-rutas-en-productsurls.py",
+    "href": "unidades/laboratorios/lab1.html#configurar-rutas-en-productsurls.py",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "4.2 Configurar Rutas en products/urls.py",
+    "text": "4.2 Configurar Rutas en products/urls.py\nDefine las rutas para acceder a las vistas:\nfrom django.urls import path\nfrom . import views\n\nurlpatterns = [\n    path('categories/', views.CategoryListCreate.as_view(), name='category-list-create'),\n    path('categories/&lt;int:pk&gt;/', views.CategoryDetail.as_view(), name='category-detail'),\n    path('products/', views.ProductListCreate.as_view(), name='product-list-create'),\n    path('products/&lt;int:pk&gt;/', views.ProductDetail.as_view(), name='product-detail'),\n    path('orders/', views.OrderListCreate.as_view(), name='order-list-create'),\n    path('orders/&lt;int:pk&gt;/', views.OrderDetail.as_view(), name='order-detail'),\n]",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/1_intro_quiz.html#pregunta-5",
-    "href": "unidades/unidad1/1_intro_quiz.html#pregunta-5",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 5",
-    "text": "Pregunta 5\n¿Cuál es el comando correcto para instalar FastAPI?\n\npip install fastapi\npip install fastapi uvicorn\npip install fastapi[all]\n\n\n\nRespuestas\n\n\nAmbas opciones anteriores.\nFastAPI es compatible con Python 3.7 y versiones posteriores.\nAmbas opciones anteriores.\nFastAPI no es adecuado para aplicaciones de alto rendimiento.\npip install fastapi uvicorn",
+    "objectID": "unidades/laboratorios/lab1.html#incluir-las-urls-en-ecommerce_projecturls.py",
+    "href": "unidades/laboratorios/lab1.html#incluir-las-urls-en-ecommerce_projecturls.py",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "4.3 Incluir las URLs en ecommerce_project/urls.py",
+    "text": "4.3 Incluir las URLs en ecommerce_project/urls.py\nAñade las URLs de la aplicación al archivo principal de URLs del proyecto:\nfrom django.contrib import admin\nfrom django.urls import path, include\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('products.urls')),\n]",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/2_api_restfull.html",
-    "href": "unidades/unidad1/2_api_restfull.html",
-    "title": "API Restful con FastAPI",
-    "section": "",
-    "text": "Para crear un API Restful con FastAPI, empezamos creando el directorio app y dentro de este directorio creamos el archivo main.py con el siguiente contenido:\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\nEn el directorio app, ejecutamos el siguiente comando para iniciar el servidor de FastAPI:\nuvicorn main:app --reload\nPara probar el API Restful, simplemente abrimos nuestro navegador y navegamos a la siguiente URL: http://127.0.0.1:8000 y veremos el siguiente resultado:\n{\"Hello\": \"World\"}\nPara probar la documentación interactiva de FastAPI, simplemente abrimos nuestro navegador y navegamos a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y veremos la documentación de nuestro API.\nPara más información sobre FastAPI, visita la documentación oficial de FastAPI.\n\n¿Qué sigue?\nEn la siguiente lección, aprenderemos cómo crear una API RESTful con FastAPI.\nPrueba tu conocimiento",
+    "objectID": "unidades/laboratorios/lab1.html#probar-la-api",
+    "href": "unidades/laboratorios/lab1.html#probar-la-api",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "5. Probar la API",
+    "text": "5. Probar la API\n\n5.1 Ejecutar el Servidor de Desarrollo\nInicia el servidor de desarrollo de Django:\npython manage.py runserver",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>API Restful con FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/2_api_restfull_quiz.html",
-    "href": "unidades/unidad1/2_api_restfull_quiz.html",
-    "title": "Quiz FastAPI",
-    "section": "",
-    "text": "Pregunta 1\n¿Qué devuelve el servidor de uvicorn?",
+    "objectID": "unidades/laboratorios/lab1.html#probar-los-endpoints",
+    "href": "unidades/laboratorios/lab1.html#probar-los-endpoints",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "5.2 Probar los Endpoints",
+    "text": "5.2 Probar los Endpoints\nUtiliza herramientas como Postman o cURL para probar los endpoints:\n\nListar categorías: GET /api/categories/\nCrear categoría: POST /api/categories/\nObtener categoría específica: GET /api/categories/{id}/\nActualizar categoría: PUT /api/categories/{id}/\nEliminar categoría: DELETE /api/categories/{id}/\n\nY lo mismo para productos y pedidos.\n\nListar productos: GET /api/products/\nCrear producto: POST /api/products/\nObtener producto específico: GET /api/products/{id}/\nActualizar producto: PUT /api/products/{id}/\nEliminar producto: DELETE /api/products/{id}/",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-1",
-    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-1",
-    "title": "Quiz FastAPI",
-    "section": "",
-    "text": "Un mensaje de error.\nUn mensaje de advertencia.\nUn mensaje de éxito.\nUn mensaje de información.",
+    "objectID": "unidades/laboratorios/lab1.html#instalar-django-rest-swagger",
+    "href": "unidades/laboratorios/lab1.html#instalar-django-rest-swagger",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "1. Instalar Django Rest Swagger",
+    "text": "1. Instalar Django Rest Swagger\nInstala Django Rest Swagger usando pip:\npip install drf-yasg",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-2",
-    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-2",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 2",
-    "text": "Pregunta 2\n¿Para qué me sirve un json en FASTAPI?\n\nPara crear una API RESTful.\nPara crear una API SOAP.\nPara crear una API GraphQL.\nPara crear una API RESTful y una API SOAP.",
+    "objectID": "unidades/laboratorios/lab1.html#configurar-django-rest-swagger",
+    "href": "unidades/laboratorios/lab1.html#configurar-django-rest-swagger",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "2. Configurar Django Rest Swagger",
+    "text": "2. Configurar Django Rest Swagger\nAñade ‘rest_framework_swagger’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:\nfrom django.contrib import admin\nfrom django.urls import path, include\nfrom rest_framework import permissions\nfrom drf_yasg.views import get_schema_view\nfrom drf_yasg import openapi\n\nschema_view = get_schema_view(\n    openapi.Info(\n        title=\"E-commerce API\",\n        default_version='v1',\n        description=\"API documentation for the E-commerce project\",\n        terms_of_service=\"https://www.google.com/policies/terms/\",\n        contact=openapi.Contact(email=\"contact@ecommerce.local\"),\n        license=openapi.License(name=\"BSD License\"),\n    ),\n    public=True,\n    permission_classes=(permissions.AllowAny,),\n)\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('products.urls')),\n    path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n]",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-3",
-    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-3",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 3",
-    "text": "Pregunta 3\n¿Como ejecuto un servidor de FastAPI?\n\nuvicorn main:app –reload\nuvicorn main:app –no-reload\nuvicorn main:app –reload –port 8000\nuvicorn main:app –reload –port 8000 –host",
+    "objectID": "unidades/laboratorios/lab1.html#configurar-las-urls",
+    "href": "unidades/laboratorios/lab1.html#configurar-las-urls",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "3. Configurar las URLs",
+    "text": "3. Configurar las URLs\nAñade las URLs de Swagger al archivo principal de URLs del proyecto:\n´´´\nfrom rest_framework_swagger.views import get_swagger_view\n\nschema_view = get_swagger_view(title='E-Commerce API')\n\nurlpatterns = [\n    ´´´\n    path('docs/', schema_view),\n]\n\n\n\n\n\n\nTip\n\n\n\nPara evitar un error común es necesario instalr setuptools con el siguiente comando:\npip install setuptools\n\n\nFinalmente es necesario agregar el siguiente código al final del archivo settings.py\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'drf_yasg',\n    'rest_framework',\n    'products',\n]\n\n´´´\nREST_FRAMEWORK = {\n    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'\n}\n\nCORS_ALLOWED_ORIGINS = [\n    \"http://localhost:8000\",\n    \"http://127.0.0.1:8000\",\n    # Añade otros orígenes permitidos aquí\n]",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-4",
-    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-4",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 4",
-    "text": "Pregunta 4\n¿Por qué debo instalar uvicorn?\n\nPara ejecutar FastAPI.\nPara ejecutar Flask.\nPara ejecutar Django.\nPara ejecutar FastAPI y Flask.",
+    "objectID": "unidades/laboratorios/lab1.html#probar-la-documentación",
+    "href": "unidades/laboratorios/lab1.html#probar-la-documentación",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "4. Probar la Documentación",
+    "text": "4. Probar la Documentación",
     "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-5",
-    "href": "unidades/unidad1/2_api_restfull_quiz.html#pregunta-5",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 5",
-    "text": "Pregunta 5\n¿Qué comando debo ejecutar para instalar FastAPI y uvicorn?\n\npip install fastapi\npip install uvicorn\npip install fastapi uvicorn\npip install fastapi[all]\n\n\n\nRespuestas\n\n\nUn mensaje de éxito.\nPara crear una API RESTful.\nuvicorn main:app –reload\nPara ejecutar FastAPI.\npip install fastapi uvicorn",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Quiz FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html",
-    "title": "Crear un API RESTful con FastAPI",
-    "section": "",
-    "text": "Crear un proyecto FastAPI\nPara crear un proyecto FastAPI, primero debemos instalar FastAPI y Uvicorn. Para ello, ejecuta los siguientes comandos:\nCrear un directorio para tu proyecto con el nombre app y dentro de este directorio crea un archivo main.py con el siguiente contenido:\nPara ejecutar el servidor de FastAPI, ejecuta el siguiente comando:\nAbre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000 y verás el siguiente resultado:\nPara probar la documentación interactiva de FastAPI, simplemente abre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y verás la documentación de tu API.\nPara más información sobre FastAPI, visita la documentación oficial de FastAPI.\nAhora vamos a crear el CRUD (Create, Read, Update, Delete) para gestionar artículos de un blog.",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-proyecto-fastapi",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-proyecto-fastapi",
-    "title": "Crear un API RESTful con FastAPI",
-    "section": "",
-    "text": "Tip\n\n\n\nNo olvides crear un entorno virtual para instalar las dependencias de tu proyecto.\npython -m venv venv\nsource venv/bin/activate\n\n\n\npip install fastapi\npip install uvicorn\n\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\ndef read_root():\n    return {\"Hello\": \"World\"}\n\nuvicorn main:app --reload\n\n{\"Hello\": \"World\"}",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-modelo-de-datos",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-modelo-de-datos",
-    "title": "Crear un API RESTful con FastAPI",
-    "section": "Crear un modelo de datos",
-    "text": "Crear un modelo de datos\nCrea un directorio models y dentro de este directorio crea un archivo article.py con el siguiente contenido:\nfrom pydantic import BaseModel\n\nclass Article(BaseModel):\n    id: int\n    title: str\n    content: str",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-controlador",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-controlador",
-    "title": "Crear un API RESTful con FastAPI",
-    "section": "Crear un controlador",
-    "text": "Crear un controlador\nCrea un directorio controllers y dentro de este directorio crea un archivo article_controller.py con el siguiente contenido:\nfrom fastapi import APIRouter\nfrom models.article import Article\n\nrouter = APIRouter()\n\narticles = [\n    Article(id=1, title=\"First Article\", content=\"This is the content of the first article.\"),\n    Article(id=2, title=\"Second Article\", content=\"This is the content of the second article.\"),\n]\n\n@router.get(\"/articles\")\ndef read_articles():\n    return articles\n\n@router.get(\"/articles/{article_id}\")\ndef read_article(article_id: int):\n    for article in articles:\n        if article.id == article_id:\n            return article\n    return {\"message\": \"Article not found\"}\n\n@router.post(\"/articles\")\ndef create_article(article: Article):\n    articles.append(article)\n    return article\n\n@router.put(\"/articles/{article_id}\")\ndef update_article(article_id: int, article: Article):\n    for i, a in enumerate(articles):\n        if a.id == article_id:\n            articles[i] = article\n            return article\n    return {\"message\": \"Article not found\"}\n\n@router.delete(\"/articles/{article_id}\")\ndef delete_article(article_id: int):\n    for i, article in enumerate(articles):\n        if article.id == article_id:\n            del articles[i]\n            return {\"message\": \"Article deleted\"}\n    return {\"message\": \"Article not found\"}",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-enrutador",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-enrutador",
-    "title": "Crear un API RESTful con FastAPI",
-    "section": "Crear un enrutador",
-    "text": "Crear un enrutador\nCrea un directorio routers y dentro de este directorio crea un archivo article_router.py con el siguiente contenido:\nfrom fastapi import APIRouter\nfrom controllers.article_controller import router as article_router\n\nrouter = APIRouter()\n\nrouter.include_router(article_router)",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-servicio",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-servicio",
-    "title": "Crear un API RESTful con FastAPI",
-    "section": "Crear un servicio",
-    "text": "Crear un servicio\nCrea un directorio services y dentro de este directorio crea un archivo article_service.py con el siguiente contenido:\nfrom models.article import Article\n\nclass ArticleService:\n    def __init__(self):\n        self.articles = [\n            Article(id=1, title=\"First Article\", content=\"This is the content of the first article.\"),\n            Article(id=2, title=\"Second Article\", content=\"This is the content of the second article.\"),\n        ]\n\n    def get_articles(self):\n        return self.articles\n\n    def get_article(self, article_id: int):\n        for article in self.articles:\n            if article.id == article_id:\n                return article\n        return None\n\n    def create_article(self, article: Article):\n        self.articles.append(article)\n        return article\n\n    def update_article(self, article_id: int, article: Article):\n        for i, a in enumerate(self.articles):\n            if a.id == article_id:\n                self.articles[i] = article\n                return article\n        return None\n\n    def delete_article(self, article_id: int):\n        for i, article in enumerate(self.articles):\n            if article.id == article_id:\n                del self.articles[i]\n                return True\n        return False",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-controlador-con-servicios",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-controlador-con-servicios",
-    "title": "Crear un API RESTful con FastAPI",
-    "section": "Crear un controlador con servicios",
-    "text": "Crear un controlador con servicios\nCrea un directorio controllers y dentro de este directorio crea un archivo article_controller.py con el siguiente contenido:\nfrom fastapi import APIRouter\nfrom services.article_service import ArticleService\nfrom models.article import Article\n\nrouter = APIRouter()\narticle_service = ArticleService()\n\n@router.get(\"/articles\")\ndef read_articles():\n    return article_service.get_articles()\n\n@router.get(\"/articles/{article_id}\")\ndef read_article(article_id: int):\n    article = article_service.get_article(article_id)\n    if article:\n        return article\n    return {\"message\": \"Article not found\"}\n\n@router.post(\"/articles\")\ndef create_article(article: Article):\n    return article_service.create_article(article)\n\n@router.put(\"/articles/{article_id}\")\ndef update_article(article_id: int, article: Article):\n    updated_article = article_service.update_article(article_id, article)\n    if updated_article:\n        return updated_article\n    return {\"message\": \"Article not found\"}\n\n@router.delete(\"/articles/{article_id}\")\ndef delete_article(article_id: int):\n    if article_service.delete_article(article_id):\n        return {\"message\": \"Article deleted\"}\n    return {\"message\": \"Article not found\"}",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-enrutador-con-controladores",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-enrutador-con-controladores",
-    "title": "Crear un API RESTful con FastAPI",
-    "section": "Crear un enrutador con controladores",
-    "text": "Crear un enrutador con controladores\nCrea un directorio routers y dentro de este directorio crea un archivo article_router.py con el siguiente contenido:\nfrom fastapi import APIRouter\nfrom controllers.article_controller import router as article_router\n\nrouter = APIRouter()\n\nrouter.include_router(article_router)",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-archivo-principal",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-archivo-principal",
-    "title": "Crear un API RESTful con FastAPI",
-    "section": "Crear un archivo principal",
-    "text": "Crear un archivo principal\nModifica un archivo main.py en el directorio app con el siguiente contenido:\nfrom fastapi import FastAPI\nfrom routers.article_router import router as article_router\n\napp = FastAPI()\n\napp.include_router(article_router)\nPara ejecutar el servidor de FastAPI, ejecuta el siguiente comando:\nuvicorn main:app --reload\nAbre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y verás la documentación de tu API.\nEn la siguiente lección, aprenderemos cómo crear una API RESTful con FastAPI.\nPrueba tu conocimiento;",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html",
-    "title": "Quiz FastAPI",
-    "section": "",
-    "text": "Pregunta 1\n¿Qué comando se utiliza para crear un entorno virtual en Python?",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-1",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-1",
-    "title": "Quiz FastAPI",
-    "section": "",
-    "text": "python -m venv venv\npython -m venv env\npython -m venv virtualenv\npython -m venv env",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-2",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-2",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 2",
-    "text": "Pregunta 2\n¿Qué comando se utiliza para activar un entorno virtual en Python?\n\nsource env/bin/activate\nsource venv/bin/activate\nsource env/activate\nsource venv/activate",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-3",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-3",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 3",
-    "text": "Pregunta 3\n¿Qué código se utiliza para crear un método get en FASTAPI?\n\n@app.get(“/”)\n@app.post(“/”)\n@app.put(“/”)\n@app.delete(“/”)",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-4",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-4",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 4",
-    "text": "Pregunta 4\n¿Qué código se utiliza para crear un método post en FASTAPI?\n\n@app.get(“/”)\n@app.post(“/”)\n@app.put(“/”)\n@app.delete(“/”)",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-5",
-    "href": "unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.html#pregunta-5",
-    "title": "Quiz FastAPI",
-    "section": "Pregunta 5",
-    "text": "Pregunta 5\n¿Qué código se utiliza para crear un método put en FASTAPI?\n\n@app.get(“/”)\n@app.post(“/”)\n@app.put(“/”)\n@app.delete(“/”)\n\n\n\nRespuestas\n\n\npython -m venv env\nsource env/bin/activate\n@app.get(“/”)\n@app.post(“/”)\n@app.put(“/”)",
-    "crumbs": [
-      "Unidad 1: Introducción a Python",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Quiz FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
   },
   {
