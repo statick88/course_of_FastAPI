@@ -1,8 +1,8 @@
 # Curso de FastAPI
 
-`Elaborado por:`[Diego Saavedra][def]
+`Elaborado por:`[Diego Saavedra](https://statick88.github.io/)
 
-`Revisado por  por:` [Miguel Amaya][def]
+`Revisado por  por:` [Miguel Amaya](https://joseamaya.github.io/)
 
 `Fecha de Elaboración:` Julio del 2024
 
