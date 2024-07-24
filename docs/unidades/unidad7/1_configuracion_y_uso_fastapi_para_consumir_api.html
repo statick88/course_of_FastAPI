@@ -8,7 +8,7 @@
 
 <meta name="description" content="Curso de FastAPI">
 
-<title>Desarrollo del Backend para un E-Commerce con Django Rest Framework – Curso de FastAPI</title>
+<title>Configuración y Uso de FastAPI para consumir APIs – Curso de FastAPI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,7 +31,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../unidades/proyecto_final/3_presentacion_y_evaluacion.html" rel="prev">
+<link href="../../unidades/unidad7/2_integracion_de_apis_de_terceros_con_fastapi.html" rel="next">
+<link href="../../unidades/unidad6/5_creacion_de_una_api_de_gestion_de_tareas.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -119,7 +86,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/laboratorios/lab1.html">Laboratorios</a></li><li class="breadcrumb-item"><a href="../../unidades/laboratorios/lab1.html"><span class="chapter-title">Desarrollo del Backend para un E-Commerce con Django Rest Framework</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad7/1_configuracion_y_uso_fastapi_para_consumir_api.html">Unidad 7: Consumo API con FastAPI</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad7/1_configuracion_y_uso_fastapi_para_consumir_api.html"><span class="chapter-title">Configuración y Uso de FastAPI para consumir APIs</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -332,16 +299,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Unidad 7: Consumo API con FastAPI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../unidades/unidad7/1_configuracion_y_uso_fastapi_para_consumir_api.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Configuración y Uso de FastAPI para consumir APIs</span></a>
+  <a href="../../unidades/unidad7/1_configuracion_y_uso_fastapi_para_consumir_api.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Configuración y Uso de FastAPI para consumir APIs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -426,16 +393,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
  <span class="menu-text">Laboratorios</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../unidades/laboratorios/lab1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Desarrollo del Backend para un E-Commerce con Django Rest Framework</span></a>
+  <a href="../../unidades/laboratorios/lab1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Desarrollo del Backend para un E-Commerce con Django Rest Framework</span></a>
   </div>
 </li>
       </ul>
@@ -445,54 +412,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#configuración-inicial-del-proyecto" id="toc-configuración-inicial-del-proyecto" class="nav-link active" data-scroll-target="#configuración-inicial-del-proyecto">1. Configuración Inicial del Proyecto</a>
-  <ul class="collapse">
-  <li><a href="#crear-un-proyecto-django" id="toc-crear-un-proyecto-django" class="nav-link" data-scroll-target="#crear-un-proyecto-django">1.1. Crear un Proyecto Django</a></li>
-  <li><a href="#crear-una-aplicación-django" id="toc-crear-una-aplicación-django" class="nav-link" data-scroll-target="#crear-una-aplicación-django">1.2 Crear una Aplicación Django</a></li>
-  <li><a href="#instalar-django-rest-framework" id="toc-instalar-django-rest-framework" class="nav-link" data-scroll-target="#instalar-django-rest-framework">1.3 Instalar Django Rest Framework</a></li>
-  <li><a href="#configurar-el-proyecto" id="toc-configurar-el-proyecto" class="nav-link" data-scroll-target="#configurar-el-proyecto">1.4 Configurar el Proyecto</a></li>
-  </ul></li>
-  <li><a href="#definir-el-modelo-de-datos" id="toc-definir-el-modelo-de-datos" class="nav-link" data-scroll-target="#definir-el-modelo-de-datos">2. Definir el Modelo de Datos</a>
-  <ul class="collapse">
-  <li><a href="#crear-modelos-en-productsmodels.py" id="toc-crear-modelos-en-productsmodels.py" class="nav-link" data-scroll-target="#crear-modelos-en-productsmodels.py">2.1 Crear Modelos en products/models.py</a></li>
-  <li><a href="#crear-y-aplicar-migraciones" id="toc-crear-y-aplicar-migraciones" class="nav-link" data-scroll-target="#crear-y-aplicar-migraciones">2.2 Crear y Aplicar Migraciones</a></li>
-  </ul></li>
-  <li><a href="#crear-serializers" id="toc-crear-serializers" class="nav-link" data-scroll-target="#crear-serializers">3. Crear Serializers</a>
-  <ul class="collapse">
-  <li><a href="#definir-serializers-en-productsserializers.py" id="toc-definir-serializers-en-productsserializers.py" class="nav-link" data-scroll-target="#definir-serializers-en-productsserializers.py">3.1 Definir Serializers en products/serializers.py</a></li>
-  </ul></li>
-  <li><a href="#crear-vistas-y-rutas" id="toc-crear-vistas-y-rutas" class="nav-link" data-scroll-target="#crear-vistas-y-rutas">4. Crear Vistas y Rutas</a>
-  <ul class="collapse">
-  <li><a href="#definir-vistas-en-productsviews.py" id="toc-definir-vistas-en-productsviews.py" class="nav-link" data-scroll-target="#definir-vistas-en-productsviews.py">4.1 Definir Vistas en products/views.py</a></li>
-  </ul></li>
-  <li><a href="#configurar-rutas-en-productsurls.py" id="toc-configurar-rutas-en-productsurls.py" class="nav-link" data-scroll-target="#configurar-rutas-en-productsurls.py">4.2 Configurar Rutas en products/urls.py</a></li>
-  <li><a href="#incluir-las-urls-en-ecommerce_projecturls.py" id="toc-incluir-las-urls-en-ecommerce_projecturls.py" class="nav-link" data-scroll-target="#incluir-las-urls-en-ecommerce_projecturls.py">4.3 Incluir las URLs en ecommerce_project/urls.py</a></li>
-  <li><a href="#probar-la-api" id="toc-probar-la-api" class="nav-link" data-scroll-target="#probar-la-api">5. Probar la API</a>
-  <ul class="collapse">
-  <li><a href="#ejecutar-el-servidor-de-desarrollo" id="toc-ejecutar-el-servidor-de-desarrollo" class="nav-link" data-scroll-target="#ejecutar-el-servidor-de-desarrollo">5.1 Ejecutar el Servidor de Desarrollo</a></li>
-  </ul></li>
-  <li><a href="#probar-los-endpoints" id="toc-probar-los-endpoints" class="nav-link" data-scroll-target="#probar-los-endpoints">5.2 Probar los Endpoints</a></li>
-  <li><a href="#extra" id="toc-extra" class="nav-link" data-scroll-target="#extra">Extra</a>
-  <ul class="collapse">
-  <li><a href="#instalar-django-rest-swagger" id="toc-instalar-django-rest-swagger" class="nav-link" data-scroll-target="#instalar-django-rest-swagger">1. Instalar Django Rest Swagger</a></li>
-  <li><a href="#configurar-django-rest-swagger" id="toc-configurar-django-rest-swagger" class="nav-link" data-scroll-target="#configurar-django-rest-swagger">2. Configurar Django Rest Swagger</a></li>
-  <li><a href="#configurar-las-urls" id="toc-configurar-las-urls" class="nav-link" data-scroll-target="#configurar-las-urls">3. Configurar las URLs</a></li>
-  <li><a href="#probar-la-documentación" id="toc-probar-la-documentación" class="nav-link" data-scroll-target="#probar-la-documentación">4. Probar la Documentación</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/laboratorios/lab1.html">Laboratorios</a></li><li class="breadcrumb-item"><a href="../../unidades/laboratorios/lab1.html"><span class="chapter-title">Desarrollo del Backend para un E-Commerce con Django Rest Framework</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad7/1_configuracion_y_uso_fastapi_para_consumir_api.html">Unidad 7: Consumo API con FastAPI</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad7/1_configuracion_y_uso_fastapi_para_consumir_api.html"><span class="chapter-title">Configuración y Uso de FastAPI para consumir APIs</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Desarrollo del Backend para un E-Commerce con Django Rest Framework</span></h1>
+<h1 class="title"><span class="chapter-title">Configuración y Uso de FastAPI para consumir APIs</span></h1>
 </div>
 
 
@@ -509,284 +437,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="configuración-inicial-del-proyecto" class="level2">
-<h2 class="anchored" data-anchor-id="configuración-inicial-del-proyecto">1. Configuración Inicial del Proyecto</h2>
-<section id="crear-un-proyecto-django" class="level3">
-<h3 class="anchored" data-anchor-id="crear-un-proyecto-django">1.1. Crear un Proyecto Django</h3>
-<p>Abre tu terminal y ejecuta los siguientes comandos para crear un nuevo proyecto Django:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv env</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> env/bin/activate</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install django==4.2</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">django-admin</span> startproject ecommerce_project .</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ecommerce_project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="crear-una-aplicación-django" class="level3">
-<h3 class="anchored" data-anchor-id="crear-una-aplicación-django">1.2 Crear una Aplicación Django</h3>
-<p>Dentro del directorio del proyecto, crea una aplicación para manejar el e-commerce:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py startapp products</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="instalar-django-rest-framework" class="level3">
-<h3 class="anchored" data-anchor-id="instalar-django-rest-framework">1.3 Instalar Django Rest Framework</h3>
-<p>Instala DRF usando pip:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install djangorestframework</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="configurar-el-proyecto" class="level3">
-<h3 class="anchored" data-anchor-id="configurar-el-proyecto">1.4 Configurar el Proyecto</h3>
-<p>Añade ‘rest_framework’ y tu nueva aplicación ‘products’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>INSTALLED_APPS <span class="op">=</span> [</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ... otras apps</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'rest_framework'</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'products'</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="definir-el-modelo-de-datos" class="level2">
-<h2 class="anchored" data-anchor-id="definir-el-modelo-de-datos">2. Definir el Modelo de Datos</h2>
-<section id="crear-modelos-en-productsmodels.py" class="level3">
-<h3 class="anchored" data-anchor-id="crear-modelos-en-productsmodels.py">2.1 Crear Modelos en products/models.py</h3>
-<p>Define los modelos para el e-commerce, como Product, Category, y Order:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.db <span class="im">import</span> models</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Category(models.Model):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.name</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Product(models.Model):</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    name <span class="op">=</span> models.CharField(max_length<span class="op">=</span><span class="dv">100</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    description <span class="op">=</span> models.TextField()</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    price <span class="op">=</span> models.DecimalField(max_digits<span class="op">=</span><span class="dv">10</span>, decimal_places<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    category <span class="op">=</span> models.ForeignKey(Category, related_name<span class="op">=</span><span class="st">'products'</span>, on_delete<span class="op">=</span>models.CASCADE)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    stock <span class="op">=</span> models.PositiveIntegerField()</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.name</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Order(models.Model):</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    product <span class="op">=</span> models.ForeignKey(Product, related_name<span class="op">=</span><span class="st">'orders'</span>, on_delete<span class="op">=</span>models.CASCADE)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    quantity <span class="op">=</span> models.PositiveIntegerField()</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    total_price <span class="op">=</span> models.DecimalField(max_digits<span class="op">=</span><span class="dv">10</span>, decimal_places<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    order_date <span class="op">=</span> models.DateTimeField(auto_now_add<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__str__</span>(<span class="va">self</span>):</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="ss">f"Order </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>product<span class="sc">.</span>name<span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="crear-y-aplicar-migraciones" class="level3">
-<h3 class="anchored" data-anchor-id="crear-y-aplicar-migraciones">2.2 Crear y Aplicar Migraciones</h3>
-<p>Genera y aplica las migraciones para los modelos:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py makemigrations</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py migrate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="crear-serializers" class="level2">
-<h2 class="anchored" data-anchor-id="crear-serializers">3. Crear Serializers</h2>
-<section id="definir-serializers-en-productsserializers.py" class="level3">
-<h3 class="anchored" data-anchor-id="definir-serializers-en-productsserializers.py">3.1 Definir Serializers en products/serializers.py</h3>
-<p>Los serializers se encargan de transformar los modelos en formatos JSON y viceversa:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rest_framework <span class="im">import</span> serializers</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .models <span class="im">import</span> Category, Product, Order</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CategorySerializer(serializers.ModelSerializer):</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Meta:</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> Category</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> <span class="st">'__all__'</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ProductSerializer(serializers.ModelSerializer):</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    category <span class="op">=</span> CategorySerializer()</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Meta:</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> Product</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> <span class="st">'__all__'</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OrderSerializer(serializers.ModelSerializer):</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    product <span class="op">=</span> ProductSerializer()</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">class</span> Meta:</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> Order</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        fields <span class="op">=</span> <span class="st">'__all__'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="crear-vistas-y-rutas" class="level2">
-<h2 class="anchored" data-anchor-id="crear-vistas-y-rutas">4. Crear Vistas y Rutas</h2>
-<section id="definir-vistas-en-productsviews.py" class="level3">
-<h3 class="anchored" data-anchor-id="definir-vistas-en-productsviews.py">4.1 Definir Vistas en products/views.py</h3>
-<p>Utiliza las vistas basadas en clases de DRF para crear y manejar las operaciones CRUD:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rest_framework <span class="im">import</span> generics</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .models <span class="im">import</span> Category, Product, Order</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .serializers <span class="im">import</span> CategorySerializer, ProductSerializer, OrderSerializer</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CategoryListCreate(generics.ListCreateAPIView):</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    queryset <span class="op">=</span> Category.objects.<span class="bu">all</span>()</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    serializer_class <span class="op">=</span> CategorySerializer</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CategoryDetail(generics.RetrieveUpdateDestroyAPIView):</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    queryset <span class="op">=</span> Category.objects.<span class="bu">all</span>()</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    serializer_class <span class="op">=</span> CategorySerializer</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ProductListCreate(generics.ListCreateAPIView):</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    queryset <span class="op">=</span> Product.objects.<span class="bu">all</span>()</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    serializer_class <span class="op">=</span> ProductSerializer</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ProductDetail(generics.RetrieveUpdateDestroyAPIView):</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    queryset <span class="op">=</span> Product.objects.<span class="bu">all</span>()</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    serializer_class <span class="op">=</span> ProductSerializer</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OrderListCreate(generics.ListCreateAPIView):</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    queryset <span class="op">=</span> Order.objects.<span class="bu">all</span>()</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    serializer_class <span class="op">=</span> OrderSerializer</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OrderDetail(generics.RetrieveUpdateDestroyAPIView):</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    queryset <span class="op">=</span> Order.objects.<span class="bu">all</span>()</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    serializer_class <span class="op">=</span> OrderSerializer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="configurar-rutas-en-productsurls.py" class="level2">
-<h2 class="anchored" data-anchor-id="configurar-rutas-en-productsurls.py">4.2 Configurar Rutas en products/urls.py</h2>
-<p>Define las rutas para acceder a las vistas:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.urls <span class="im">import</span> path</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> . <span class="im">import</span> views</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>urlpatterns <span class="op">=</span> [</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'categories/'</span>, views.CategoryListCreate.as_view(), name<span class="op">=</span><span class="st">'category-list-create'</span>),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'categories/&lt;int:pk&gt;/'</span>, views.CategoryDetail.as_view(), name<span class="op">=</span><span class="st">'category-detail'</span>),</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'products/'</span>, views.ProductListCreate.as_view(), name<span class="op">=</span><span class="st">'product-list-create'</span>),</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'products/&lt;int:pk&gt;/'</span>, views.ProductDetail.as_view(), name<span class="op">=</span><span class="st">'product-detail'</span>),</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'orders/'</span>, views.OrderListCreate.as_view(), name<span class="op">=</span><span class="st">'order-list-create'</span>),</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'orders/&lt;int:pk&gt;/'</span>, views.OrderDetail.as_view(), name<span class="op">=</span><span class="st">'order-detail'</span>),</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="incluir-las-urls-en-ecommerce_projecturls.py" class="level2">
-<h2 class="anchored" data-anchor-id="incluir-las-urls-en-ecommerce_projecturls.py">4.3 Incluir las URLs en ecommerce_project/urls.py</h2>
-<p>Añade las URLs de la aplicación al archivo principal de URLs del proyecto:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.contrib <span class="im">import</span> admin</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.urls <span class="im">import</span> path, include</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>urlpatterns <span class="op">=</span> [</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'admin/'</span>, admin.site.urls),</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'api/'</span>, include(<span class="st">'products.urls'</span>)),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="probar-la-api" class="level2">
-<h2 class="anchored" data-anchor-id="probar-la-api">5. Probar la API</h2>
-<section id="ejecutar-el-servidor-de-desarrollo" class="level3">
-<h3 class="anchored" data-anchor-id="ejecutar-el-servidor-de-desarrollo">5.1 Ejecutar el Servidor de Desarrollo</h3>
-<p>Inicia el servidor de desarrollo de Django:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> manage.py runserver</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="probar-los-endpoints" class="level2">
-<h2 class="anchored" data-anchor-id="probar-los-endpoints">5.2 Probar los Endpoints</h2>
-<p>Utiliza herramientas como Postman o cURL para probar los endpoints:</p>
-<ul>
-<li>Listar categorías: GET /api/categories/</li>
-<li>Crear categoría: POST /api/categories/</li>
-<li>Obtener categoría específica: GET /api/categories/{id}/</li>
-<li>Actualizar categoría: PUT /api/categories/{id}/</li>
-<li>Eliminar categoría: DELETE /api/categories/{id}/</li>
-</ul>
-<p>Y lo mismo para productos y pedidos.</p>
-<ul>
-<li>Listar productos: GET /api/products/</li>
-<li>Crear producto: POST /api/products/</li>
-<li>Obtener producto específico: GET /api/products/{id}/</li>
-<li>Actualizar producto: PUT /api/products/{id}/</li>
-<li>Eliminar producto: DELETE /api/products/{id}/</li>
-</ul>
-</section>
-<section id="extra" class="level1">
-<h1>Extra</h1>
-<p>Agreguemos Swagger a nuestro proyecto para tener una documentación de nuestra API.</p>
-<section id="instalar-django-rest-swagger" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-django-rest-swagger">1. Instalar Django Rest Swagger</h2>
-<p>Instala Django Rest Swagger usando pip:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install drf-yasg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="configurar-django-rest-swagger" class="level2">
-<h2 class="anchored" data-anchor-id="configurar-django-rest-swagger">2. Configurar Django Rest Swagger</h2>
-<p>Añade ‘rest_framework_swagger’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.contrib <span class="im">import</span> admin</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> django.urls <span class="im">import</span> path, include</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rest_framework <span class="im">import</span> permissions</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> drf_yasg.views <span class="im">import</span> get_schema_view</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> drf_yasg <span class="im">import</span> openapi</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>schema_view <span class="op">=</span> get_schema_view(</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    openapi.Info(</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">"E-commerce API"</span>,</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        default_version<span class="op">=</span><span class="st">'v1'</span>,</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"API documentation for the E-commerce project"</span>,</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        terms_of_service<span class="op">=</span><span class="st">"https://www.google.com/policies/terms/"</span>,</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>        contact<span class="op">=</span>openapi.Contact(email<span class="op">=</span><span class="st">"contact@ecommerce.local"</span>),</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        license<span class="op">=</span>openapi.License(name<span class="op">=</span><span class="st">"BSD License"</span>),</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    public<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    permission_classes<span class="op">=</span>(permissions.AllowAny,),</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>urlpatterns <span class="op">=</span> [</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'admin/'</span>, admin.site.urls),</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'api/'</span>, include(<span class="st">'products.urls'</span>)),</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'docs/'</span>, schema_view.with_ui(<span class="st">'swagger'</span>, cache_timeout<span class="op">=</span><span class="dv">0</span>), name<span class="op">=</span><span class="st">'schema-swagger-ui'</span>),</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'redoc/'</span>, schema_view.with_ui(<span class="st">'redoc'</span>, cache_timeout<span class="op">=</span><span class="dv">0</span>), name<span class="op">=</span><span class="st">'schema-redoc'</span>),</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="configurar-las-urls" class="level2">
-<h2 class="anchored" data-anchor-id="configurar-las-urls">3. Configurar las URLs</h2>
-<p>Añade las URLs de Swagger al archivo principal de URLs del proyecto:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>´´´</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rest_framework_swagger.views <span class="im">import</span> get_swagger_view</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>schema_view <span class="op">=</span> get_swagger_view(title<span class="op">=</span><span class="st">'E-Commerce API'</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>urlpatterns <span class="op">=</span> [</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    ´´´</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    path(<span class="st">'docs/'</span>, schema_view),</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Para evitar un error común es necesario instalr <strong>setuptools</strong> con el siguiente comando:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install setuptools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<p>Finalmente es necesario agregar el siguiente código al final del archivo settings.py</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>INSTALLED_APPS <span class="op">=</span> [</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.admin'</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.auth'</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.contenttypes'</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.sessions'</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.messages'</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'django.contrib.staticfiles'</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'drf_yasg'</span>,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'rest_framework'</span>,</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'products'</span>,</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>´´´</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>REST_FRAMEWORK <span class="op">=</span> {</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'DEFAULT_SCHEMA_CLASS'</span>: <span class="st">'rest_framework.schemas.coreapi.AutoSchema'</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>CORS_ALLOWED_ORIGINS <span class="op">=</span> [</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://localhost:8000"</span>,</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"http://127.0.0.1:8000"</span>,</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Añade otros orígenes permitidos aquí</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="probar-la-documentación" class="level2">
-<h2 class="anchored" data-anchor-id="probar-la-documentación">4. Probar la Documentación</h2>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1362,11 +1014,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../unidades/proyecto_final/3_presentacion_y_evaluacion.html" class="pagination-link" aria-label="3_presentacion_y_evaluacion.html">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">3_presentacion_y_evaluacion.html</span></span>
+      <a href="../../unidades/unidad6/5_creacion_de_una_api_de_gestion_de_tareas.html" class="pagination-link" aria-label="Creación de una API de gestión de tareas utilizando FastAPI">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Creación de una API de gestión de tareas utilizando FastAPI</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../unidades/unidad7/2_integracion_de_apis_de_terceros_con_fastapi.html" class="pagination-link" aria-label="Integración de APIs de terceros con FastAPI">
+        <span class="nav-page-text"><span class="chapter-title">Integración de APIs de terceros con FastAPI</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

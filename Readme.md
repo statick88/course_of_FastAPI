@@ -100,16 +100,10 @@ En esta unidad comprenderemos los conceptos básicos de Python, la sintaxis y la
 ## Consumo de APIs con FastAPI
 
 <p style="text-align: justify">
-En esta unidad aprenderemos los conceptos básicos de HTML5, CSS3, JavaScript y JSON, así como el consumo de APIs con FastAPI.
+En esta unidad aprenderemos el consumo de APIs con FastAPI.
 </p>
 
-- **Unidad 7:** HTML5, CSS3, JavaScript y JSON
-  - Estructura y Semántica de HTML5
-  - Estilos y Diseño con CSS3
-  - Conceptos Básicos de JavaScript
-  - Manipulación de JSON
-
-- **Unidad 8:** Consumo de APIs con FastAPI
+- **Unidad 7:** Consumo de APIs con FastAPI
   - Configuración y Uso de FastAPI para consumir APIs
   - Integración de APIs de terceros con FastAPI
 
@@ -119,12 +113,12 @@ En esta unidad aprenderemos los conceptos básicos de HTML5, CSS3, JavaScript y 
 En esta unidad aprenderemos a manejar el estado en FastAPI, a utilizar la Context API y a implementar la navegación en FastAPI con FastRouter.
 </p>
 
-- **Unidad 9:** FastAPI - Desarrollo Avanzado
+- **Unidad 8:** FastAPI - Desarrollo Avanzado
   - Manejo de Estado en FastAPI, Context API
   - Navegación en FastAPI con FastRouter
   - Aplicación en FastAPI que consume APIs de terceros
 
-- **Unidad 10:** Prácticas Avanzadas de Programación
+- **Unidad 9:** Prácticas Avanzadas de Programación
   - Patrones de Diseño en FastAPI
   - Arquitectura de Software y Diseño Modular
 

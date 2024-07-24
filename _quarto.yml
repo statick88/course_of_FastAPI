@@ -34,16 +34,62 @@ book:
     - index.qmd
     - part: "Unidad 1: Introducción a Python"
       chapters: 
-        - unidades/unidad1/1_intro.qmd
-        - unidades/unidad1/1_intro_quiz.qmd
-        - unidades/unidad1/2_api_restfull.qmd
-        - unidades/unidad1/2_api_restfull_quiz.qmd
-        - unidades/unidad1/3_crear_api_restfull_fastAPI.qmd
-        - unidades/unidad1/3_crear_api_restfull_fastAPI_quiz.qmd
+        - unidades/unidad1/1_configuracion_y_sintaxis_basica.qmd
+        - unidades/unidad1/2_variables_y_control_de_flujo.qmd
+        - unidades/unidad1/3_funciones_y_parametros.qmd
+ 
+    - part: "Unidad 2: Estructura de Datos en Python"
+      chapters: 
+        - unidades/unidad2/1_listas_y_tuplas.qmd
+        - unidades/unidad2/2_diccionarios_y_conjuntos.qmd
+
+    - part: "Unidad 3: Programación Orientada a Objetos en Python"
+      chapters: 
+        - unidades/unidad3/1_conceptos_basicos.qmd
+        - unidades/unidad3/2_herencia_y_polimorfismo.qmd
+
+    - part: "Unidad 4: Herramientas de Desarrollo"
+      chapters: 
+        - unidades/unidad4/1_git_y_github.qmd
+
+    - part: "Unidad 5: Introducción a FastAPI"
+      chapters: 
+        - unidades/unidad5/1_configuracion_basica.qmd
+        - unidades/unidad5/2_modelos_en_fastapi.qmd
+
+    - part: "Unidad 6: Desarrollo Avanzado en FastAPI"
+      chapters: 
+        - unidades/unidad6/1_rutas_y_validaciones_en_fastapi.qmd
+        - unidades/unidad6/2_apis_restful_con_fastapi.qmd
+        - unidades/unidad6/3_pruebas_unitarias_en_fastapi.qmd
+        - unidades/unidad6/4_optimizacion_y_rendimiento.qmd
+        - unidades/unidad6/5_creacion_de_una_api_de_gestion_de_tareas.qmd
+
+    - part: "Unidad 7: Consumo API con FastAPI"
+      chapters: 
+        - unidades/unidad7/1_configuracion_y_uso_fastapi_para_consumir_api.qmd
+        - unidades/unidad7/2_integracion_de_apis_de_terceros_con_fastapi.qmd
+
+    - part: "Unidad 8: Desarrollo Avanzado"
+      chapters: 
+        - unidades/unidad8/1_manejo_de_estado.qmd
+        - unidades/unidad8/2_navegacion_fast_api.qmd
+        - unidades/unidad8/3_consumo_api_terceros.qmd
+
+    - part: "Unidad 9: Prácticas Avanadas de Programación"
+      chapters: 
+        - unidades/unidad9/1_patrones_de_diseno.qmd
+        - unidades/unidad9/2_arquitectura_de_software_y_diseno_modular.qmd
+
+    - part: "Proyecto Final"
+      chapters: 
+        - unidades/proyecto_final/1_planificacion_y_diseno.qmd
+        - unidades/proyecto_final/2_desarrollo_e_implementacion.qmd
+        - unidades/proyecto_final/3_presentacion_y_evaluacion.qmd
 
     - part: "Laboratorios"
       chapters: 
-        - unidades/unidad1/1_intro.qmd
+        - unidades/laboratorios/lab1.qmd
 
 bibliography: references.bib
 biblio-style: "apalike"

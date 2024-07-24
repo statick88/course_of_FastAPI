@@ -1,0 +1,1 @@
+# Manejo de Estado en FastAPI, Context API
