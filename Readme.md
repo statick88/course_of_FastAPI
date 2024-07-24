@@ -1,15 +1,14 @@
 # Curso de Django y React.
-
 `Elaborado por:` [Diego Saavedra][def]
+`Revisado por  por:` [Miguel Amaya][def]
+`Fecha de Elaboración:` Julio del 2024
 
-`Fecha de Elaboración:` Enero del 2024
-
-> Estos recursos los puedes encontrar en el siguiente link para ir paso a paso con el curso [Curso de Django y React][def]
+> Estos recursos los puedes encontrar en el siguiente link para ir paso a paso con el curso [Curso de FastAPI][def]
 
 ## Objetivo Principal
 
 <p style="text-align: justify">
-Capacitar a los participantes en el desarrollo web utilizando el framework Django (versión 4.2 LTS) y la biblioteca React, proporcionando las habilidades necesarias para construir aplicaciones web modernas y escalables.
+Capacitar a los participantes en el desarrollo de aplicaciones web utilizando el framework FastAPI, proporcionando las habilidades necesarias para construir APIs rápidas, seguras y escalables.
 </p>
 
 ## Objetivos Secundarios
@@ -17,33 +16,32 @@ Capacitar a los participantes en el desarrollo web utilizando el framework Djang
 - Comprender los principios de la programación orientada a objetos (POO).
 - Dominar el uso de Git y Github para el control de versiones.
 - Familiarizarse con Docker para la creación y gestión de entornos de desarrollo.
-- Adquirir conocimientos sólidos sobre Django, desde la creación de modelos hasta la implementación de vistas y plantillas.
-- Dominar el desarrollo de API REST con Django Rest Framework.
-- Obtener nociones básicas de HTML5, CSS3, JavaScript, Node.js y NPM para aprender React.js.
-- Desarrollar habilidades en la creación de aplicaciones web interactivas utilizando React.
-- Aprender a consumir API de Django Rest Framework con React.
-- Aplicar todos los conocimientos adquiridos en la elaboración de un proyecto final: una tienda virtual.
+- Adquirir conocimientos sólidos sobre FastAPI, desde la creación de modelos hasta la implementación de rutas y validaciones.
+- Dominar el desarrollo de APIs RESTful con FastAPI.
+- Obtener nociones básicas de HTML5, CSS3, JavaScript, y JSON para consumir APIs con FastAPI.
+- Desarrollar habilidades en la creación de aplicaciones web interactivas utilizando FastAPI.
+- Aprender a consumir APIs de terceros con FastAPI.
+- Aplicar todos los conocimientos adquiridos en la elaboración de un proyecto final: una aplicación web de gestión de tareas.
 
 ## ¿Por qué seguir este curso?
 
 <p style="text-align: justify">
-Este curso proporcionará a los participantes las habilidades prácticas necesarias para desarrollar aplicaciones web completas utilizando tecnologías modernas como Django y React. Estas habilidades son altamente demandadas en la industria de desarrollo web y permitirán a los participantes construir proyectos reales y avanzar en sus carreras profesionales.
+Este curso proporcionará a los participantes las habilidades prácticas necesarias para desarrollar aplicaciones web utilizando FastAPI, un framework moderno y eficiente. FastAPI es ampliamente utilizado en la industria y permite construir APIs rápidas y seguras. Aprender FastAPI abrirá oportunidades profesionales y permitirá a los participantes desarrollar proyectos web de alta calidad.
 </p>
 
 ## ¿Qué aprenderé durante este curso?
 
 Al final del curso, los participantes serán capaces de:
 
-- Desarrollar aplicaciones web utilizando Django y React.
+- Desarrollar aplicaciones web utilizando FastAPI.
 - Utilizar eficientemente Git y Github para el control de versiones.
 - Crear y gestionar entornos virtuales con virtualenv.
 - Comprender el uso y eficiencia de Docker en el desarrollo web.
-- Diseñar y trabajar con modelos de bases de datos en Django.
-- Implementar vistas y plantillas en sus proyectos web.
-- Desarrollar API REST con Django Rest Framework.
-- Integrar React.js en proyectos web.
-- Consumir API de Django Rest Framework con React.
-- Elaborar un proyecto final de una tienda virtual, aplicando todos los conceptos aprendidos.
+- Diseñar y trabajar con modelos de bases de datos en FastAPI.
+- Implementar rutas y validaciones en sus proyectos web.
+- Desarrollar APIs RESTful con FastAPI.
+- Consumir APIs de terceros con FastAPI.
+- Elaborar un proyecto final de una aplicación web de gestión de tareas, aplicando todos los conceptos aprendidos.
 
 ## Metodología
 
@@ -59,7 +57,7 @@ El curso se llevará a cabo de manera virtual a través de plataformas de videoc
 
 # Temas
 
-A continuación conoceremos el temario del Curso de Django y React
+A continuación conoceremos el temario del Curso de FastAPI
 
 ## Python
 
@@ -83,65 +81,54 @@ En esta unidad comprenderemos los conceptos básicos de Python, la sintaxis y la
 - **Unidad 4:** Herramientas de Desarrollo
   - Git y Github
   
-## Django - Desarrollo Web Backend
+## FastAPI - Desarrollo de APIs con Python
 
-- **Unidad 5:** Introducción a Django
+- **Unidad 5:** Introducción a FastAPI
   - Configuración y Estructura
-  - Modelos en Django
+  - Modelos en FastAPI
 
-- **Unidad 6:** Desarrollo Avanzado en Django
-  - Vistas y Plantillas en Django
-  - Django Rest Framework
-  - Pruebas Unitarias en Django
+- **Unidad 6:** Desarrollo Avanzado en FastAPI
+  - Rutas y Validaciones en FastAPI
+  - APIs RESTful con FastAPI
+  - Pruebas Unitarias en FastAPI
   - Optimización y Rendimiento
-  - Creación de un CRUD de Tareas utilizando Django Rest Framework
+  - Creación de una API de gestión de tareas utilizando FastAPI
 
-## Desarrollo Frontend con React y Tecnologías Web
+## Consumo de APIs con FastAPI
 
 <p style="text-align: justify">
-En esta unidad aprenderemos los conceptos básicos de HTML5, CSS3 y JavaScript, así como el uso de Node.js y NPM para gestionar paquetes.
+En esta unidad aprenderemos los conceptos básicos de HTML5, CSS3, JavaScript y JSON, así como el consumo de APIs con FastAPI.
 </p>
 
-- **Unidad 7:** HTML5, CSS3, JavaScript
+- **Unidad 7:** HTML5, CSS3, JavaScript y JSON
   - Estructura y Semántica de HTML5
   - Estilos y Diseño con CSS3
   - Conceptos Básicos de JavaScript
+  - Manipulación de JSON
 
-- **Unidad 8:** Node.js y NPM
-  - Instalación y Configuración de Node.js
-  - Uso de NPM para gestionar paquetes
+- **Unidad 8:** Consumo de APIs con FastAPI
+  - Configuración y Uso de FastAPI para consumir APIs
+  - Integración de APIs de terceros con FastAPI
 
-- **Unidad 9:** React - Fundamentos
-  - Filosofía y Estructura de React
-  - Componentes y Props
-  - Estado y Ciclo de Vida
-  - Creación de Componentes en React
-
-- **Unidad 10:** React - Desarrollo Avanzado
-  - Manejo de Estado en React, Context API
-  - Navegación en React con React Router
-  - Aplicación en React que consume el API de Django
-
-
-## React - Desarrollo Avanzado, Prácticas Avanzadas y Proyecto Final
+## FastAPI - Desarrollo Avanzado, Prácticas Avanzadas y Proyecto Final
 
 <p style="text-align: justify">
-En esta unidad aprenderemos a manejar el estado en React, a utilizar la Context API y a implementar la navegación en React con React Router.
+En esta unidad aprenderemos a manejar el estado en FastAPI, a utilizar la Context API y a implementar la navegación en FastAPI con FastRouter.
 </p>
 
-- **Unidad 10:** React - Desarrollo Avanzado
-  - Manejo de Estado en React, Context API
-  - Navegación en React con React Router
-  - Aplicación en React que consume el API generado en la Unidad 6 Creación de un CRUD de Tareas Utilizando Django Rest Framework
+- **Unidad 9:** FastAPI - Desarrollo Avanzado
+  - Manejo de Estado en FastAPI, Context API
+  - Navegación en FastAPI con FastRouter
+  - Aplicación en FastAPI que consume APIs de terceros
 
-- **Unidad 11:** Prácticas Avanzadas de Programación
-  - Patrones de Diseño en Django y React
+- **Unidad 10:** Prácticas Avanzadas de Programación
+  - Patrones de Diseño en FastAPI
   - Arquitectura de Software y Diseño Modular
 
 ## Proyecto Final
 
 <p style="text-align: justify">
-En el proyecto final desarrollaremos una Tienda Virtual utilizando Django y React, aplicando todos los conceptos aprendidos durante el curso.
+En el proyecto final desarrollaremos una aplicación web de gestión de tareas utilizando FastAPI, aplicando todos los conceptos aprendidos durante el curso.
 </p>
 
   - Planificación y Diseño
@@ -151,20 +138,20 @@ En el proyecto final desarrollaremos una Tienda Virtual utilizando Django y Reac
 # Público Objetivo
 
 <p style="text-align: justify">
-Este curso está diseñado para desarrolladores web principiantes o intermedios que deseen adquirir habilidades avanzadas en el desarrollo de aplicaciones web utilizando Django y React.
+Este curso está diseñado para desarrolladores web principiantes o intermedios que deseen adquirir habilidades avanzadas en el desarrollo de APIs utilizando FastAPI.
 </p>
 
 # Recursos Hardware y Software
 
-- **Hardware:** PC o laptop con capacidad suficiente para ejecutar entornos de desarrollo Django y React.
+- **Hardware:** PC o laptop con capacidad suficiente para ejecutar entornos de desarrollo FastAPI.
   - **CPU:** i5 o i7 superior a 10ma Generación
   - **RAM:** Mínimo 8 GB de RAM, de preferencia 16 GB, 32 GB o 64 GB.
 
-- **Software:** Python, Node.js, NPM, editor de código (por ejemplo, VSCode), navegador web, Git, Docker.
+- **Software:** Python, editor de código (por ejemplo, VSCode), navegador web, Git, Docker.
 
 # Conocimientos Previos
 
-> Se requieren conocimientos básicos de programación en Python y comprensión general de HTML y CSS.
+> Se requieren conocimientos básicos de programación en Python y comprensión general de HTML, CSS, JavaScript y JSON.
 
 
 # Dedicación para Actividades Prácticas Fuera del Curso

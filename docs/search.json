@@ -374,7 +374,7 @@
     "href": "unidades/unidad1/3_crear_api_restfull_fastAPI.html#crear-un-archivo-principal",
     "title": "Crear un API RESTful con FastAPI",
     "section": "Crear un archivo principal",
-    "text": "Crear un archivo principal\nModifica un archivo main.py en el directorio app con el siguiente contenido:\nfrom fastapi import FastAPI\nfrom routers.article_router import router as article_router\n\napp = FastAPI()\n\napp.include_router(article_router)\nPara ejecutar el servidor de FastAPI, ejecuta el siguiente comando:\nuvicorn main:app --reload\nAbre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y verás la documentación de tu API.\nEn la siguiente lección, aprenderemos cómo crear una API RESTful con FastAPI.\nPrueba tu conocimiento`;",
+    "text": "Crear un archivo principal\nModifica un archivo main.py en el directorio app con el siguiente contenido:\nfrom fastapi import FastAPI\nfrom routers.article_router import router as article_router\n\napp = FastAPI()\n\napp.include_router(article_router)\nPara ejecutar el servidor de FastAPI, ejecuta el siguiente comando:\nuvicorn main:app --reload\nAbre tu navegador y navega a la siguiente URL: http://127.0.0.1:8000/docs o http://127.0.0.1:8000/redoc y verás la documentación de tu API.\nEn la siguiente lección, aprenderemos cómo crear una API RESTful con FastAPI.\nPrueba tu conocimiento;",
     "crumbs": [
       "Unidad 1: Introducción a Python",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Crear un API RESTful con FastAPI</span>"
