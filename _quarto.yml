@@ -55,7 +55,8 @@ book:
     - part: "Unidad 5: Introducción a FastAPI"
       chapters: 
         - unidades/unidad5/1_configuracion_basica.qmd
-        - unidades/unidad5/2_modelos_en_fastapi.qmd
+        - unidades/unidad5/2_pydantic.qmd
+        - unidades/unidad5/3_modelos_en_fastapi.qmd
 
     - part: "Unidad 6: Desarrollo Avanzado en FastAPI"
       chapters: 

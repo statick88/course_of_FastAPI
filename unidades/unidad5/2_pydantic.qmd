@@ -1,0 +1,105 @@
+:::{.justify}
+# Pydantic en FastAPI
+
+:::{.center}
+![Pydantic](https://pbs.twimg.com/profile_images/1668281675774664705/EEzdj0tm_400x400.jpg){width="200px"}
+:::
+
+## ¿Qué es Pydantic?
+
+Pydantic es una librería de Python que permite definir esquemas de datos y validarlos. Pydantic se utiliza en FastAPI para definir los modelos de datos que se utilizan en la API y validar los datos que se reciben en las solicitudes.
+
+En FastAPI se utiliza Pydantic para definir los modelos de datos que se utilizan en la API. Pydantic es una librería que permite definir esquemas de datos y validarlos.
+
+La estructura del proyecto de esta unidad es la siguiente:
+
+``` plaintext
+proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt
+```
+
+A continuación se muestra un ejemplo de cómo definir un modelo de datos con Pydantic:
+
+Es necesario instalar Pydantic para poder utilizarlo en FastAPI. Para instalar Pydantic se utiliza el siguiente comando:
+
+``` bash
+pip install pydantic
+```
+
+Sin olvidar nuestro framework FastAPI:
+
+``` bash
+pip install fastapi uvicorn
+```
+
+Ahora se puede definir un modelo de datos con Pydantic. A continuación se muestra un ejemplo de cómo definir un modelo de datos con Pydantic:
+
+``` python
+from pydantic import BaseModel
+
+class Item(BaseModel):
+    name: str
+    price: float
+    is_offer: bool = None
+```
+
+En el ejemplo anterior se define un modelo de datos **Item** que contiene tres campos: **name**, **price** e **is_offer**. El campo **name** es de tipo **str**, el campo **price** es de tipo **float** y el campo **is_offer** es de tipo **bool** con un valor por defecto de **None**.
+
+Para utilizar el modelo de datos **Item** en una operación de la API se importa la clase **Item** y se utiliza como tipo de parámetro en la operación. A continuación se muestra un ejemplo de cómo utilizar el modelo de datos **Item** en una operación de la API:
+
+``` python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+class Item(BaseModel):
+    name: str
+    price: float
+    is_offer: bool = None
+
+@app.post("/items/")
+async def create_item(item: Item):
+    return {"name": item.name, "price": item.price}
+```
+
+En el ejemplo anterior se importa la clase **Item** y se define una operación **create_item()** que recibe un parámetro **item** de tipo **Item**. En la operación se retorna un diccionario con los campos **name** y **price** del objeto **item**.
+
+Es necesario probar nuestro código, para ello se ejecuta el servidor web con el siguiente comando:
+
+``` bash
+uvicorn app.main:app --reload
+```
+
+Para probar la operación **create_item()** se puede utilizar una herramienta como **Tunder Client** o **Postman**. A continuación se muestra un ejemplo de cómo probar la operación **create_item()** con **Tunder Client**:
+
+Para realizar una solicitud **POST** a la ruta **/items/** con un objeto **item** se utiliza la siguiente solicitud:
+
+``` plaintext
+POST /items/
+Content-Type: application/json
+
+{
+    "name": "item1",
+    "price": 10.5
+}
+```
+
+En la solicitud anterior se envía un objeto **item** con los campos **name** y **price**. La operación **create_item()** recibe el objeto **item** y retorna un diccionario con los campos **name** y **price** del objeto **item**.
+
+:::{.center}
+![](images/paste-20.png)
+:::
+
+En este ejemplo se ha utilizado Pydantic para definir un modelo de datos **Item** y validar los datos que se reciben en la solicitud. Pydantic permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.
+
+Para comprobar que todo funciona correctamente, se puede probar la operación **create_item()** con **Tunder Client** o **Postman** y verificar que se retorna un diccionario con los campos **name** y **price** del objeto **item**.
+
+En este capítulo se ha mostrado cómo utilizar Pydantic en FastAPI para definir modelos de datos y validar los datos que se reciben en las solicitudes. Pydantic es una librería que permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.
+::::

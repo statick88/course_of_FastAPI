@@ -8,7 +8,7 @@
 
 <meta name="description" content="Curso de FastAPI">
 
-<title>Navegación en FastAPI con FastRouter – Curso de FastAPI</title>
+<title>Pydantic en FastAPI – Curso de FastAPI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../unidades/unidad8/3_consumo_api_terceros.html" rel="next">
-<link href="../../unidades/unidad8/1_manejo_de_estado.html" rel="prev">
+<link href="../../unidades/unidad5/3_modelos_en_fastapi.html" rel="next">
+<link href="../../unidades/unidad5/1_configuracion_basica.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -86,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad8/1_manejo_de_estado.html">Unidad 8: Desarrollo Avanzado</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad8/2_navegacion_fast_api.html"><span class="chapter-title">Navegación en FastAPI con FastRouter</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad5/1_configuracion_basica.html">Unidad 5: Introducción a FastAPI</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad5/2_pydantic.html"><span class="chapter-title">Pydantic en FastAPI</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -242,13 +276,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Unidad 5: Introducción a FastAPI</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../unidades/unidad5/1_configuracion_basica.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Configuraciòn y Estructura</span></a>
@@ -256,7 +290,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../unidades/unidad5/2_modelos_en_fastapi.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Modelos en FastAPI</span></a>
+  <a href="../../unidades/unidad5/2_pydantic.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Pydantic en FastAPI</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../unidades/unidad5/3_modelos_en_fastapi.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Modelos en FastAPI</span></a>
   </div>
 </li>
       </ul>
@@ -320,13 +359,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Unidad 8: Desarrollo Avanzado</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../unidades/unidad8/1_manejo_de_estado.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Manejo de Estado en FastAPI, Context API</span></a>
@@ -334,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../unidades/unidad8/2_navegacion_fast_api.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Navegación en FastAPI con FastRouter</span></a>
+  <a href="../../unidades/unidad8/2_navegacion_fast_api.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Navegación en FastAPI con FastRouter</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -418,9 +457,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad8/1_manejo_de_estado.html">Unidad 8: Desarrollo Avanzado</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad8/2_navegacion_fast_api.html"><span class="chapter-title">Navegación en FastAPI con FastRouter</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad5/1_configuracion_basica.html">Unidad 5: Introducción a FastAPI</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad5/2_pydantic.html"><span class="chapter-title">Pydantic en FastAPI</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Navegación en FastAPI con FastRouter</span></h1>
+<h1 class="title"><span class="chapter-title">Pydantic en FastAPI</span></h1>
 </div>
 
 
@@ -437,6 +476,76 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="justify">
+<div class="center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://pbs.twimg.com/profile_images/1668281675774664705/EEzdj0tm_400x400.jpg" class="img-fluid figure-img" width="200"></p>
+<figcaption>Pydantic</figcaption>
+</figure>
+</div>
+</div>
+<section id="qué-es-pydantic" class="level2">
+<h2 class="anchored" data-anchor-id="qué-es-pydantic">¿Qué es Pydantic?</h2>
+<p>Pydantic es una librería de Python que permite definir esquemas de datos y validarlos. Pydantic se utiliza en FastAPI para definir los modelos de datos que se utilizan en la API y validar los datos que se reciben en las solicitudes.</p>
+<p>En FastAPI se utiliza Pydantic para definir los modelos de datos que se utilizan en la API. Pydantic es una librería que permite definir esquemas de datos y validarlos.</p>
+<p>La estructura del proyecto de esta unidad es la siguiente:</p>
+<pre class="plaintext"><code>proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt</code></pre>
+<p>A continuación se muestra un ejemplo de cómo definir un modelo de datos con Pydantic:</p>
+<p>Es necesario instalar Pydantic para poder utilizarlo en FastAPI. Para instalar Pydantic se utiliza el siguiente comando:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pydantic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin olvidar nuestro framework FastAPI:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install fastapi uvicorn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ahora se puede definir un modelo de datos con Pydantic. A continuación se muestra un ejemplo de cómo definir un modelo de datos con Pydantic:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Item(BaseModel):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    price: <span class="bu">float</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    is_offer: <span class="bu">bool</span> <span class="op">=</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el ejemplo anterior se define un modelo de datos <strong>Item</strong> que contiene tres campos: <strong>name</strong>, <strong>price</strong> e <strong>is_offer</strong>. El campo <strong>name</strong> es de tipo <strong>str</strong>, el campo <strong>price</strong> es de tipo <strong>float</strong> y el campo <strong>is_offer</strong> es de tipo <strong>bool</strong> con un valor por defecto de <strong>None</strong>.</p>
+<p>Para utilizar el modelo de datos <strong>Item</strong> en una operación de la API se importa la clase <strong>Item</strong> y se utiliza como tipo de parámetro en la operación. A continuación se muestra un ejemplo de cómo utilizar el modelo de datos <strong>Item</strong> en una operación de la API:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Item(BaseModel):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    price: <span class="bu">float</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    is_offer: <span class="bu">bool</span> <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">@app.post</span>(<span class="st">"/items/"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> create_item(item: Item):</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"name"</span>: item.name, <span class="st">"price"</span>: item.price}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el ejemplo anterior se importa la clase <strong>Item</strong> y se define una operación <strong>create_item()</strong> que recibe un parámetro <strong>item</strong> de tipo <strong>Item</strong>. En la operación se retorna un diccionario con los campos <strong>name</strong> y <strong>price</strong> del objeto <strong>item</strong>.</p>
+<p>Es necesario probar nuestro código, para ello se ejecuta el servidor web con el siguiente comando:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvicorn</span> app.main:app <span class="at">--reload</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para probar la operación <strong>create_item()</strong> se puede utilizar una herramienta como <strong>Tunder Client</strong> o <strong>Postman</strong>. A continuación se muestra un ejemplo de cómo probar la operación <strong>create_item()</strong> con <strong>Tunder Client</strong>:</p>
+<p>Para realizar una solicitud <strong>POST</strong> a la ruta <strong>/items/</strong> con un objeto <strong>item</strong> se utiliza la siguiente solicitud:</p>
+<pre class="plaintext"><code>POST /items/
+Content-Type: application/json
+
+{
+    "name": "item1",
+    "price": 10.5
+}</code></pre>
+<p>En la solicitud anterior se envía un objeto <strong>item</strong> con los campos <strong>name</strong> y <strong>price</strong>. La operación <strong>create_item()</strong> recibe el objeto <strong>item</strong> y retorna un diccionario con los campos <strong>name</strong> y <strong>price</strong> del objeto <strong>item</strong>.</p>
+<div class="center">
+<p><img src="images/paste-20.png" class="img-fluid"></p>
+</div>
+<p>En este ejemplo se ha utilizado Pydantic para definir un modelo de datos <strong>Item</strong> y validar los datos que se reciben en la solicitud. Pydantic permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.</p>
+<p>Para comprobar que todo funciona correctamente, se puede probar la operación <strong>create_item()</strong> con <strong>Tunder Client</strong> o <strong>Postman</strong> y verificar que se retorna un diccionario con los campos <strong>name</strong> y <strong>price</strong> del objeto <strong>item</strong>.</p>
+<p>En este capítulo se ha mostrado cómo utilizar Pydantic en FastAPI para definir modelos de datos y validar los datos que se reciben en las solicitudes. Pydantic es una librería que permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.</p>
+</section>
+</div>
 
 
 
@@ -1014,13 +1123,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../unidades/unidad8/1_manejo_de_estado.html" class="pagination-link" aria-label="Manejo de Estado en FastAPI, Context API">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Manejo de Estado en FastAPI, Context API</span></span>
+      <a href="../../unidades/unidad5/1_configuracion_basica.html" class="pagination-link" aria-label="Configuraciòn y Estructura">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Configuraciòn y Estructura</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../unidades/unidad8/3_consumo_api_terceros.html" class="pagination-link" aria-label="Aplicación en FastAPI que consume APIs de terceros">
-        <span class="nav-page-text"><span class="chapter-title">Aplicación en FastAPI que consume APIs de terceros</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../unidades/unidad5/3_modelos_en_fastapi.html" class="pagination-link" aria-label="Modelos en FastAPI">
+        <span class="nav-page-text"><span class="chapter-title">Modelos en FastAPI</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

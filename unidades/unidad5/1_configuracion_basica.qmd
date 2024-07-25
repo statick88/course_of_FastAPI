@@ -1,1 +1,124 @@
 # Configuraciòn y Estructura
+
+::: center
+![FastAPI](https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png){width="200px"}
+:::
+
+Despues de conocer algunos conceptos fundamentales de Python, es momento de conocer FastAPI, un framework web moderno y rápido para crear APIs con Python 3.6+ basado en estándares abiertos y estándares de tipo Python (PEP 484).
+
+## Instalación de FastAPI
+
+Antes de realizar la instalación de FastAPI es muy recomendable que en cualquier proyecto de python se cree un entorno virtual, para ello se puede utilizar la herramienta **virtualenv** que permite crear entornos virtuales de python. O de forma nativa con el módulo **venv** que viene incluido en la instalación de python.
+
+Para crear un entorno virtual con venv se utiliza el siguiente comando:
+
+``` bash
+python -m venv nombre_entorno
+```
+
+Para activar el entorno virtual se utiliza el siguiente comando:
+
+``` bash
+source nombre_entorno/bin/activate
+```
+
+En el caso de sistemas operativos Windows se utiliza el siguiente comando:
+
+``` bash
+nombre_entorno\Scripts\activate
+```
+
+Para desactivar el entorno virtual se utiliza el siguiente comando:
+
+``` bash
+deactivate
+```
+
+Para instalar FastAPI se utiliza el siguiente comando:
+
+``` bash
+pip install fastapi
+```
+
+Para instalar el servidor web **uvicorn** se utiliza el siguiente comando:
+
+``` bash
+pip install uvicorn
+```
+
+## Estructura de un proyecto FastAPI
+
+A continuación se muestra la estructura de un proyecto FastAPI:
+
+``` plaintext
+proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt
+```
+
+-   **app/**: Directorio que contiene el código fuente de la aplicación.
+    -   **\_\_init\_\_.py**: Archivo que indica que el directorio es un paquete de Python.
+    -   **main.py**: Archivo principal de la aplicación que contiene la lógica de la API.
+-   **.gitignore**: Archivo que contiene los archivos y directorios que se deben ignorar en el control de versiones.
+-   **README.md**: Archivo que contiene la documentación del proyecto.
+-   **requirements.txt**: Archivo que contiene las dependencias del proyecto.
+
+En el directorio **app/** se encuentra el archivo **main.py** que contiene la lógica de la API. En el archivo **main.py** se definen las rutas de la API y las operaciones que se realizan en cada ruta.
+
+En el archivo **main.py** se importan las clases **FastAPI** y **Request** de la librería **fastapi** y se crea una instancia de la clase **FastAPI** que representa la aplicación. A continuación se definen las rutas de la API utilizando la instancia de la clase **FastAPI** y se definen las operaciones que se realizan en cada ruta.
+
+En el archivo **main.py** se define una ruta de la API utilizando el decorador @app.get**()** y se define una operación que retorna un mensaje de bienvenida. A continuación se muestra un ejemplo de un archivo **main.py** con una ruta de la API y una operación que retorna un mensaje de bienvenida:
+
+![](images/paste-16.png)
+
+``` python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello, World!"}
+```
+
+En el ejemplo anterior se importa la clase **FastAPI** de la librería **fastapi** y se crea una instancia de la clase **FastAPI** llamada **app**. A continuación se define una ruta de la API utilizando el decorador @app.get**()** y se define una operación llamada **read_root()** que retorna un mensaje de bienvenida.
+
+## Ejecución de un proyecto FastAPI
+
+![](images/paste-17.png)
+
+Para ejecutar un proyecto FastAPI se utiliza el siguiente comando:
+
+``` bash
+uvicorn app.main:app --reload
+```
+
+En el comando anterior se utiliza el comando **uvicorn** para ejecutar el servidor web y se especifica el archivo **main.py** que contiene la lógica de la API y la instancia de la clase **FastAPI** llamada **app**. El parámetro **--reload** indica que el servidor web se reinicia automáticamente cuando se realizan cambios en el código fuente.
+
+Al ejecutar el comando anterior se inicia el servidor web y se muestra la URL de la API en la consola. Para acceder a la API se utiliza la URL que se muestra en la consola.
+
+## Documentación de una API FastAPI
+
+FastAPI proporciona una interfaz de usuario interactiva que permite visualizar y probar la API. Para acceder a la interfaz de usuario se utiliza la URL de la API seguida de **/docs**. Por ejemplo, si la URL de la API es **http://127.0.0.1:8000**, la URL de la interfaz de usuario es **http://127.0.0.1:8000/docs**.
+
+En la interfaz de usuario se muestra una lista de las rutas de la API y las operaciones que se realizan en cada ruta. Para probar una operación se hace clic en la operación y se ingresan los parámetros de la operación.
+
+A continuación se muestra un ejemplo de la interfaz de usuario de FastAPI:
+
+![](images/paste-18.png)
+
+En la interfaz de usuario se muestra una lista de las rutas de la API y las operaciones que se realizan en cada ruta.
+
+FastAPI cuenta con una segunda opción de documentación llamada **/redoc** que es una interfaz de usuario alternativa que permite visualizar y probar la API. Para acceder a la interfaz de usuario **redoc** se utiliza la URL de la API seguida de **/redoc**. Por ejemplo, si la URL de la API es **http://127.0.0.1:8000**, la URL de la interfaz de usuario **redoc** es **http://127.0.0.1:8000/redoc**.
+
+![](images/paste-19.png)
+
+En la interfaz de usuario **redoc** se muestra una lista de las rutas de la API y las operaciones que se realizan en cada ruta.
+
+En este capítulo se ha mostrado la instalación de FastAPI, la estructura de un proyecto FastAPI, la ejecución de un proyecto FastAPI y la documentación de una API FastAPI. En los siguientes capítulos se mostrará cómo definir rutas y operaciones en FastAPI, cómo validar datos en FastAPI y cómo trabajar con bases de datos en FastAPI.
