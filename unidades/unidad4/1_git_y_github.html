@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -219,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../unidades/unidad3/2_herencia_y_polimorfismo.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Herencia y Polimorfismo</span></a>
+  <a href="../../unidades/unidad3/2_herencia_y_polimorfismo.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Herencia, Polimorfismo y Encapsulación</span></a>
   </div>
 </li>
       </ul>
@@ -437,6 +471,141 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="justify">
+<div class="center">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png" class="img-fluid" width="200" alt="Git"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png" class="img-fluid" width="150" alt="Github"></p>
+</div>
+<p>En este capítulo un poco diferente vamos a aprender acerca de <strong>Git</strong> y <strong>Github</strong>. Sin embargo lo aplicaremos con el leguaje de programación <strong>Python</strong>.</p>
+<section id="git" class="level2">
+<h2 class="anchored" data-anchor-id="git">Git</h2>
+<div class="center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png" class="img-fluid figure-img" width="200"></p>
+<figcaption>Git</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Git</strong> es un sistema de control de versiones distribuido que permite llevar un registro de los cambios en los archivos de un proyecto. <strong>Git</strong> es ampliamente utilizado en el desarrollo de software para colaborar en proyectos con otros desarrolladores.</p>
+<section id="instalación-de-git" class="level3">
+<h3 class="anchored" data-anchor-id="instalación-de-git">Instalación de Git</h3>
+<p>Para instalar <strong>Git</strong> en tu computadora, sigue los siguientes pasos:</p>
+<ol type="1">
+<li><p>Descarga el instalador de <strong>Git</strong> desde el siguiente enlace: <a href="https://git-scm.com/">https://git-scm.com/</a>.</p></li>
+<li><p>Ejecuta el instalador de <strong>Git</strong> y sigue las instrucciones del instalador.</p></li>
+<li><p>Verifica que <strong>Git</strong> se ha instalado correctamente ejecutando el siguiente comando en la terminal:</p></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si <strong>Git</strong> se ha instalado correctamente, verás un mensaje similar a este:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> version 2.45.2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="comandos-básicos-de-git" class="level3">
+<h3 class="anchored" data-anchor-id="comandos-básicos-de-git">Comandos básicos de Git</h3>
+<p>A continuación se muestran algunos comandos básicos de <strong>Git</strong> que te serán útiles para trabajar con <strong>Git</strong>:</p>
+<ul>
+<li><strong>git init</strong>: Inicializa un repositorio de <strong>Git</strong> en el directorio actual.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>git add</strong>: Agrega los archivos al área de preparación.</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add archivo.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>git commit</strong>: Guarda los cambios en el repositorio.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Mensaje del commit"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>git status</strong>: Muestra el estado de los archivos en el repositorio.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>git log</strong>: Muestra el historial de los commits en el repositorio.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="github" class="level2">
+<h2 class="anchored" data-anchor-id="github">Github</h2>
+<div class="center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png" class="img-fluid figure-img" width="150"></p>
+<figcaption>Github</figcaption>
+</figure>
+</div>
+</div>
+<p><strong>Github</strong> es una plataforma en línea que permite alojar proyectos de <strong>Git</strong> de forma gratuita. <strong>Github</strong> es ampliamente utilizado en el desarrollo de software para colaborar en proyectos con otros desarrolladores.</p>
+<section id="crear-una-cuenta-en-github" class="level3">
+<h3 class="anchored" data-anchor-id="crear-una-cuenta-en-github">Crear una cuenta en Github</h3>
+<p>Para crear una cuenta en <strong>Github</strong>, sigue los siguientes pasos:</p>
+<ol type="1">
+<li><p>Ingresa a la página de <strong>Github</strong>: <a href="https://github.com">https://github.com</a>.</p></li>
+<li><p>Haz clic en el botón <strong>Sign up</strong>.</p></li>
+<li><p>Completa el formulario de registro con tu nombre de usuario, dirección de correo electrónico y contraseña.</p></li>
+<li><p>Haz clic en el botón <strong>Create account</strong>.</p></li>
+<li><p>Verifica tu dirección de correo electrónico.</p></li>
+</ol>
+</section>
+<section id="crear-un-repositorio-en-github" class="level3">
+<h3 class="anchored" data-anchor-id="crear-un-repositorio-en-github">Crear un repositorio en Github</h3>
+<p>Para crear un repositorio en <strong>Github</strong>, sigue los siguientes pasos:</p>
+<ol type="1">
+<li><p>Inicia sesión en tu cuenta de <strong>Github</strong>.</p></li>
+<li><p>Haz clic en el botón <strong>New</strong>.</p></li>
+<li><p>Completa el formulario con el nombre del repositorio, la descripción y la visibilidad del repositorio.</p></li>
+<li><p>Haz clic en el botón <strong>Create repository</strong>.</p></li>
+<li><p>Copia la URL del repositorio.</p></li>
+</ol>
+</section>
+<section id="clonar-un-repositorio-en-github" class="level3">
+<h3 class="anchored" data-anchor-id="clonar-un-repositorio-en-github">Clonar un repositorio en Github</h3>
+<p>Para clonar un repositorio en <strong>Github</strong>, sigue los siguientes pasos:</p>
+<ol type="1">
+<li><p>Copia la URL del repositorio.</p></li>
+<li><p>Abre la terminal y ejecuta el siguiente comando:</p></li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone URL_del_repositorio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li><p>Ingresa tus credenciales de <strong>Github</strong>.</p></li>
+<li><p>El repositorio se clonará en tu computadora.</p></li>
+</ol>
+</section>
+<section id="subir-cambios-a-un-repositorio-en-github" class="level3">
+<h3 class="anchored" data-anchor-id="subir-cambios-a-un-repositorio-en-github">Subir cambios a un repositorio en Github</h3>
+<p>Para subir cambios a un repositorio en <strong>Github</strong>, sigue los siguientes pasos:</p>
+<ol type="1">
+<li>Agrega los archivos al área de preparación.</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add archivo.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Guarda los cambios en el repositorio.</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Mensaje del commit"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Sube los cambios al repositorio en <strong>Github</strong>.</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li><p>Ingresa tus credenciales de <strong>Github</strong>.</p></li>
+<li><p>Los cambios se subirán al repositorio en <strong>Github</strong>.</p></li>
+</ol>
+</section>
+<section id="descargar-cambios-de-un-repositorio-en-github" class="level3">
+<h3 class="anchored" data-anchor-id="descargar-cambios-de-un-repositorio-en-github">Descargar cambios de un repositorio en Github</h3>
+<p>Para descargar cambios de un repositorio en <strong>Github</strong>, sigue los siguientes pasos:</p>
+<ol type="1">
+<li>Descarga los cambios del repositorio en <strong>Github</strong>.</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li><p>Ingresa tus credenciales de <strong>Github</strong>.</p></li>
+<li><p>Los cambios se descargarán del repositorio en <strong>Github</strong>.</p></li>
+</ol>
+<p>En FastAPI es posible utilizar <strong>Git</strong> y <strong>Github</strong> para colaborar en proyectos con otros desarrolladores. Cuando analicemos FastAPI veremos cómo utilizar <strong>Git</strong> y <strong>Github</strong> para colaborar en proyectos con otros desarrolladores.</p>
+<p>En este capítulo de la unidad, aprendimos acerca de <strong>Git</strong> y <strong>Github</strong>.</p>
+</section>
+</section>
+</div>
 
 
 
@@ -1014,8 +1183,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../unidades/unidad3/2_herencia_y_polimorfismo.html" class="pagination-link" aria-label="Herencia y Polimorfismo">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Herencia y Polimorfismo</span></span>
+      <a href="../../unidades/unidad3/2_herencia_y_polimorfismo.html" class="pagination-link" aria-label="Herencia, Polimorfismo y Encapsulación">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Herencia, Polimorfismo y Encapsulación</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -44,10 +44,153 @@
     "href": "unidades/unidad1/1_configuracion_y_sintaxis_basica.html#sintaxis-básica",
     "title": "Configuración y Sintaxis básica",
     "section": "Sintaxis básica",
-    "text": "Sintaxis básica\nPython es un lenguaje de programación interpretado, lo que significa que el código se ejecuta línea por línea. A continuación se muestra un ejemplo de un programa simple en python:\n# Este es un comentario\nprint(\"Hola Mundo!\")\nPara ejecutar este programa, puedes guardar el código en un archivo con extensión .py y ejecutarlo desde la terminal con el comando python nombre_del_archivo.py.\n\n\n\nEn este caso, el programa imprimirá en la terminal el mensaje Hola Mundo!.\nEn este primer capítulo de la unidad, aprenderemos la configuración básica de python y la sintaxis básica para escribir programas en python.",
+    "text": "Sintaxis básica\nPython es un lenguaje de programación interpretado, lo que significa que el código se ejecuta línea por línea. A continuación se muestra un ejemplo de un programa simple en python:\n# Este es un comentario\nprint(\"Hola Mundo!\")\nPara ejecutar este programa, puedes guardar el código en un archivo con extensión .py y ejecutarlo desde la terminal con el comando python nombre_del_archivo.py.\n\n\n\nEn este caso, el programa imprimirá en la terminal el mensaje Hola Mundo!.\nEn este primer capítulo de la unidad, aprendimos la configuración básica de python y la sintaxis básica para escribir programas en python.",
     "crumbs": [
       "Unidad 1: Introducción a Python",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Configuración y Sintaxis básica</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/2_variables_y_control_de_flujo.html",
+    "href": "unidades/unidad1/2_variables_y_control_de_flujo.html",
+    "title": "Variables y Control de flujo",
+    "section": "",
+    "text": "Python\n\n\n\nEn python las variables se pueden declarar sin necesidad de especificar el tipo de dato, por lo que se puede asignar cualquier tipo de dato a una variable, sin embargo en FastAPI es necesario especificar el tipo de dato de las variables.\n# Declaración de variables\na = 5\nb = 3.14\nc = \"Hola Mundo\"\nPara imprimir el valor de una variable se utiliza la función print().\nprint(a)\nprint(b)\nprint(c)\nPara especìficar el tipo de dato de una variable se utiliza la siguiente sintaxis:\n# Declaración de variables con tipo de dato\na: int = 5\nb: float = 3.14\nc: str = \"Hola Mundo\"\nPara realizar operaciones aritméticas se utilizan los siguientes operadores:\n\nSuma: +\nResta: -\nMultiplicación: *\nDivisión: /\nMódulo: %\nExponente: **\nDivisión entera: //\n\n# Operaciones aritméticas\nsuma = a + b\nresta = a - b\nmultiplicacion = a * b\ndivision = a / b\nmodulo = a % b\nexponente = a ** b\ndivision_entera = a // b\n\nprint(suma)\nprint(resta)\nprint(multiplicacion)\nprint(division)\nprint(modulo)\nprint(exponente)\nprint(division_entera)\nPara realizar comparaciones se utilizan los siguientes operadores:\n\nIgual que: ==\nDiferente de: !=\nMayor que: &gt;\nMenor que: &lt;\nMayor o igual que: &gt;=\nMenor o igual que: &lt;=\n\n# Comparaciones\nigual = a == b\ndiferente =\nPara realizar operaciones lógicas se utilizan los siguientes operadores:\n\nAND: and\nOR: or\nNOT: not\n\n# Operaciones lógicas\nand = True and False\nor = True or False\nnot = not True\nPara realizar estructuras de control de flujo se utilizan las siguientes estructuras:\n\nif\nelif\nelse\n\n# Estructuras de control de flujo\nif a &gt; b:\n    print(\"a es mayor que b\")\nelif a &lt; b:\n    print(\"a es menor que b\")\nelse:\n    print(\"a es igual a b\")\nTambien existen otras estructuras de control de flujo como:\n\nfor\nwhile\n\n# Estructuras de control de flujo\nfor i in range(5):\n    print(i)\n    \ni = 0\nwhile i &lt; 5:\n    print(i)\n    i += 1\nEn FastAPI se pueden declarar variables en las rutas y se pueden especificar el tipo de dato de las variables.\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: int):\n    return {\"item_id\": item_id}\nEn el ejemplo anterior se declara una ruta con una variable llamada item_id de tipo entero, cuando analicemos FastAPI en sus primeros capítulos se explicará con más detalle.\nEn este capítulo de la unidad, aprendimos a declarar variables, realizar operaciones aritméticas, comparaciones, operaciones lógicas y estructuras de control de flujo en python.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Variables y Control de flujo</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_funciones_y_parametros.html#parámetros-con-valores-por-defecto",
+    "href": "unidades/unidad1/3_funciones_y_parametros.html#parámetros-con-valores-por-defecto",
+    "title": "Funciones y Parámetros",
+    "section": "Parámetros con valores por defecto",
+    "text": "Parámetros con valores por defecto\nEn Python es posible asignar valores por defecto a los parámetros de una función. A continuación se muestra un ejemplo de una función que suma dos números con un valor por defecto para el segundo parámetro:\ndef suma(a, b=0):\n    return a + b\n\nresultado = suma(5)\nprint(resultado)\nEn el ejemplo anterior, la función suma() recibe dos parámetros, el primer parámetro es obligatorio y el segundo parámetro tiene un valor por defecto de 0.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funciones y Parámetros</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad1/3_funciones_y_parametros.html#parámetros-con-nombre",
+    "href": "unidades/unidad1/3_funciones_y_parametros.html#parámetros-con-nombre",
+    "title": "Funciones y Parámetros",
+    "section": "Parámetros con nombre",
+    "text": "Parámetros con nombre\nEn Python es posible pasar los parámetros de una función por nombre. A continuación se muestra un ejemplo de una función que multiplica dos números con los parámetros pasados por nombre:\ndef multiplicacion(a, b):\n    return a * b\n\nresultado = multiplicacion(b=5, a=3)\nprint(resultado)\nEn el ejemplo anterior, los parámetros de la función multiplicacion() se pasan por nombre, por lo que el orden de los parámetros no importa.\n\n\n\n\n\n\nTip\n\n\n\nCuando aprendamos acerca de la POO (Programaciòn Orientada a Objetos) veremos que las funciones que se definen dentro de una clase se llaman métodos.\n\n\nEn FastAPI es posible definir funciones que se ejecutan cuando se realiza una petición HTTP a una ruta específica. Cuando analicemos FastAPI veremos cómo definir funciones que se ejecutan cuando se realiza una petición HTTP a una ruta específica.\nEn este tercer capítulo de la unidad, aprendimos a definir funciones en Python y a utilizar parámetros con valores por defecto y parámetros con nombre.",
+    "crumbs": [
+      "Unidad 1: Introducción a Python",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Funciones y Parámetros</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad2/1_listas_y_tuplas.html#listas",
+    "href": "unidades/unidad2/1_listas_y_tuplas.html#listas",
+    "title": "Listas y Tuplas",
+    "section": "Listas",
+    "text": "Listas\nLas listas en Python se definen utilizando corchetes [ ] y los elementos de la lista se separan por comas ,. A continuación se muestra un ejemplo de una lista con números enteros:\n# Declaración de una lista\nnumeros = [1, 2, 3, 4, 5]\nPara acceder a un elemento de la lista se utiliza el índice del elemento. Los índices en Python empiezan en 0. A continuación se muestra un ejemplo de cómo acceder al primer elemento de la lista:\n# Acceso a un elemento de la lista\nprimer_elemento = numeros[0]\nprint(primer_elemento)\nPara agregar un elemento a la lista se utiliza el método append(). A continuación se muestra un ejemplo de cómo agregar un elemento a la lista:\n# Agregar un elemento a la lista\nnumeros.append(6)\nprint(numeros)\nPara eliminar un elemento de la lista se utiliza el método remove(). A continuación se muestra un ejemplo de cómo eliminar un elemento de la lista:\n# Eliminar un elemento de la lista\nnumeros.remove(3)\nprint(numeros)",
+    "crumbs": [
+      "Unidad 2: Estructura de Datos en Python",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Listas y Tuplas</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad2/1_listas_y_tuplas.html#tuplas",
+    "href": "unidades/unidad2/1_listas_y_tuplas.html#tuplas",
+    "title": "Listas y Tuplas",
+    "section": "Tuplas",
+    "text": "Tuplas\nLas tuplas en Python se definen utilizando paréntesis ( ) y los elementos de la tupla se separan por comas ,. A continuación se muestra un ejemplo de una tupla con números enteros:\n# Declaración de una tupla\nnumeros = (1, 2, 3, 4, 5)\nPara acceder a un elemento de la tupla se utiliza el índice del elemento. Los índices en Python empiezan en 0. A continuación se muestra un ejemplo de cómo acceder al primer elemento de la tupla:\n# Acceso a un elemento de la tupla\nprimer_elemento = numeros[0]\nprint(primer_elemento)\nLas tuplas son inmutables, lo que significa que una vez que se crea una tupla no se pueden modificar los elementos de la tupla. A continuación se muestra un ejemplo de cómo intentar modificar un elemento de la tupla:\n# Intentar modificar un elemento de la tupla\nnumeros[0] = 10\nEn FastAPI es posible utilizar listas y tuplas para definir los parámetros de una función. Cuando analicemos FastAPI veremos cómo utilizar listas y tuplas para definir los parámetros de una función.\nEn este capítulo de la unidad, aprendimos acerca de las listas y las tuplas en Python.",
+    "crumbs": [
+      "Unidad 2: Estructura de Datos en Python",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Listas y Tuplas</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad2/2_diccionarios_y_conjuntos.html#diccionarios",
+    "href": "unidades/unidad2/2_diccionarios_y_conjuntos.html#diccionarios",
+    "title": "Diccionarios y Conjuntos",
+    "section": "Diccionarios",
+    "text": "Diccionarios\nLos diccionarios en Python son estructuras de datos que permiten almacenar pares clave-valor en una sola variable. Los diccionarios se definen utilizando llaves { } y los pares clave-valor se separan por comas ,. A continuación se muestra un ejemplo de un diccionario con nombres de personas y sus edades:\n# Declaración de un diccionario\n\npersonas = {\n    \"Juan\": 25,\n    \"Maria\": 30,\n    \"Pedro\": 35\n}\nPara acceder a un valor del diccionario se utiliza la clave del valor. A continuación se muestra un ejemplo de cómo acceder a la edad de la persona Juan:\n# Acceso a un valor del diccionario\n\nedad_juan = personas[\"Juan\"]\nprint(edad_juan)\nPara agregar un par clave-valor al diccionario se utiliza la siguiente sintaxis:\n# Agregar un par clave-valor al diccionario\n\npersonas[\"Ana\"] = 40\nprint(personas)\nPara eliminar un par clave-valor del diccionario se utiliza la siguiente sintaxis:\n# Eliminar un par clave-valor del diccionario\n\ndel personas[\"Pedro\"]\nprint(personas)",
+    "crumbs": [
+      "Unidad 2: Estructura de Datos en Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Diccionarios y Conjuntos</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad2/2_diccionarios_y_conjuntos.html#conjuntos",
+    "href": "unidades/unidad2/2_diccionarios_y_conjuntos.html#conjuntos",
+    "title": "Diccionarios y Conjuntos",
+    "section": "Conjuntos",
+    "text": "Conjuntos\nLos conjuntos en Python son estructuras de datos que permiten almacenar elementos únicos en una sola variable. Los conjuntos se definen utilizando llaves { } y los elementos del conjunto se separan por comas ,. A continuación se muestra un ejemplo de un conjunto con números enteros:\n# Declaración de un conjunto\n\nnumeros = {1, 2, 3, 4, 5}\nPara agregar un elemento al conjunto se utiliza el método add(). A continuación se muestra un ejemplo de cómo agregar un elemento al conjunto:\n# Agregar un elemento al conjunto\n\nnumeros.add(6)\nprint(numeros)\nPara eliminar un elemento del conjunto se utiliza el método remove(). A continuación se muestra un ejemplo de cómo eliminar un elemento del conjunto:\n# Eliminar un elemento del conjunto\n\nnumeros.remove(3)\nprint(numeros)\nEn FastAPI es posible utilizar diccionarios y conjuntos para almacenar información y realizar operaciones con ellos. Cuando analicemos FastAPI veremos cómo utilizar diccionarios y conjuntos para almacenar información y realizar operaciones con ellos.\nEn este capítulo aprendimos acerca de los diccionarios y los conjuntos en Python.",
+    "crumbs": [
+      "Unidad 2: Estructura de Datos en Python",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Diccionarios y Conjuntos</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad3/1_conceptos_basicos.html#clases-y-objetos",
+    "href": "unidades/unidad3/1_conceptos_basicos.html#clases-y-objetos",
+    "title": "Conceptos Básicos",
+    "section": "Clases y Objetos",
+    "text": "Clases y Objetos\nEn la Programación Orientada a Objetos (POO) los objetos son instancias de clases. Las clases son plantillas que definen las propiedades y los métodos de los objetos. A continuación se muestra un ejemplo de una clase en Python:\n# Declaración de una clase\n\nclass Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\n    def saludar(self):\n        return f\"Hola, mi nombre es {self.nombre} y tengo {self.edad} años.\"\nEn el ejemplo anterior se declara una clase llamada Persona con dos propiedades nombre y edad y un método saludar() que retorna un mensaje con el nombre y la edad de la persona.\nPara crear un objeto de la clase Persona se utiliza la siguiente sintaxis:\n# Creación de un objeto de la clase Persona\n\npersona = Persona(\"Juan\", 25)\nmensaje = persona.saludar()\nprint(mensaje)\nEn el ejemplo anterior se crea un objeto de la clase Persona con el nombre Juan y la edad 25 y se llama al método saludar() del objeto persona.\nEn FastAPI es posible definir clases que se utilizan para definir los modelos de los datos que se envían y reciben en las peticiones HTTP. Cuando analicemos FastAPI veremos cómo definir clases que se utilizan para definir los modelos de los datos que se envían y reciben en las peticiones HTTP.\nEn este capítulo de la unidad, aprendimos acerca de las clases y los objetos en la Programación Orientada a Objetos (POO) en Python.",
+    "crumbs": [
+      "Unidad 3: Programación Orientada a Objetos en Python",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Conceptos Básicos</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad3/2_herencia_y_polimorfismo.html#herencia",
+    "href": "unidades/unidad3/2_herencia_y_polimorfismo.html#herencia",
+    "title": "Herencia, Polimorfismo y Encapsulación",
+    "section": "Herencia",
+    "text": "Herencia\nLa herencia en la Programación Orientada a Objetos (POO) es un mecanismo que permite crear una nueva clase a partir de una clase existente. La nueva clase hereda las propiedades y los métodos de la clase existente. A continuación se muestra un ejemplo de una clase Vehiculo con las propiedades marca y modelo y un método mostrar() que retorna un mensaje con la marca y el modelo del vehículo:\n# Declaración de una clase Vehiculo\n\nclass Vehiculo:\n    def __init__(self, marca, modelo):\n        self.marca = marca\n        self.modelo = modelo\n\n    def mostrar(self):\n        return f\"Vehículo: {self.marca} {self.modelo}\"\nEn el ejemplo anterior se declara una clase Vehiculo con las propiedades marca y modelo y un método mostrar() que retorna un mensaje con la marca y el modelo del vehículo.\nPara crear una nueva clase Auto que hereda de la clase Vehiculo se utiliza la siguiente sintaxis:\n# Declaración de una clase Auto que hereda de la clase Vehiculo\n\nclass Auto(Vehiculo):\n    def __init__(self, marca, modelo, color):\n        super().__init__(marca, modelo)\n        self.color = color\n\n    def mostrar(self):\n        return f\"Auto: {self.marca} {self.modelo} de color {self.color}\"\nEn el ejemplo anterior se declara una clase Auto que hereda de la clase Vehiculo con la propiedad color y un método mostrar() que retorna un mensaje con la marca, el modelo y el color del auto.\nPara crear un objeto de la clase Auto se utiliza la siguiente sintaxis:\n# Creación de un objeto de la clase Auto\n\nauto = Auto(\"Toyota\", \"Corolla\", \"Rojo\")\nmensaje = auto.mostrar()\nprint(mensaje)\nEn el ejemplo anterior se crea un objeto de la clase Auto con la marca Toyota, el modelo Corolla y el color Rojo y se llama al método mostrar() del objeto auto.",
+    "crumbs": [
+      "Unidad 3: Programación Orientada a Objetos en Python",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Herencia, Polimorfismo y Encapsulación</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad3/2_herencia_y_polimorfismo.html#polimorfismo",
+    "href": "unidades/unidad3/2_herencia_y_polimorfismo.html#polimorfismo",
+    "title": "Herencia, Polimorfismo y Encapsulación",
+    "section": "Polimorfismo",
+    "text": "Polimorfismo\nEl polimorfismo en la Programación Orientada a Objetos (POO) es un mecanismo que permite que un objeto se com\n# Declaración de una clase Vehiculo\n\nclass Vehiculo:\n    def __init__(self, marca, modelo):\n        self.marca = marca\n        self.modelo = modelo\n\n    def mostrar(self):\n        return f\"Vehículo: {self.marca} {self.modelo}\"\nEn el ejemplo anterior se declara una clase Vehiculo con las propiedades marca y modelo y un método mostrar() que retorna un mensaje con la marca y el modelo del vehículo.\nPara crear una nueva clase Auto que hereda de la clase Vehiculo se utiliza la siguiente sintaxis:\n# Declaración de una clase Auto que hereda de la clase Vehiculo\n\nclass Auto(Vehiculo):\n    def __init__(self, marca, modelo, color):\n        super().__init__(marca, modelo)\n        self.color = color\n\n    def mostrar(self):\n        return f\"Auto: {self.marca} {self.modelo} de color {self.color}\"\nEn el ejemplo anterior se declara una clase Auto que hereda de la clase Vehiculo con la propiedad color y un método mostrar() que retorna un mensaje con la marca, el modelo y el color del auto.\nPara crear un objeto de la clase Auto se utiliza la siguiente sintaxis:\n# Creación de un objeto de la clase Auto\n\nauto = Auto(\"Toyota\", \"Corolla\", \"Rojo\")\nmensaje = auto.mostrar()\nprint(mensaje)\nEn el ejemplo anterior se crea un objeto de la clase Auto con la marca Toyota, el modelo Corolla y el color Rojo y se llama al método mostrar() del objeto auto.",
+    "crumbs": [
+      "Unidad 3: Programación Orientada a Objetos en Python",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Herencia, Polimorfismo y Encapsulación</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad3/2_herencia_y_polimorfismo.html#encapsulamiento",
+    "href": "unidades/unidad3/2_herencia_y_polimorfismo.html#encapsulamiento",
+    "title": "Herencia, Polimorfismo y Encapsulación",
+    "section": "Encapsulamiento",
+    "text": "Encapsulamiento\nEl encapsulamiento en la Programación Orientada a Objetos (POO) es un mecanismo que permite ocultar los detalles de implementación de una clase y exponer solo la interfaz de la clase. En Python, el encapsulamiento se logra utilizando los siguientes modificadores de acceso:\n\nPúblico: Los miembros de la clase son públicos y se pueden acceder desde cualquier parte del programa.\nProtegido: Los miembros de la clase son protegidos y se pueden acceder desde la clase y las clases derivadas.\nPrivado: Los miembros de la clase son privados y solo se pueden acceder desde la clase.\n\nA continuación se muestra un ejemplo de una clase Persona con los modificadores de acceso público, protegido y privado:\n# Declaración de una clase Persona\n\nclass Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self._edad = edad\n        self.__dni = \"12345678\"\n\n    def mostrar(self):\n        return f\"Persona: {self.nombre} {self._edad} {self.__dni}\"\n\n# Creación de un objeto de la clase Persona\n\npersona = Persona(\"Juan\", 25)\nmensaje = persona.mostrar()\nprint(mensaje)\nEn el ejemplo anterior se declara una clase Persona con los modificadores de acceso público, protegido y privado y se crea un objeto de la clase Persona con el nombre Juan, la edad 25 y el DNI 12345678.\nEn FastAPI es posible definir clases que se utilizan para definir los modelos de los datos que se envían y reciben en las peticiones HTTP. Cuando analicemos FastAPI veremos cómo definir clases que se utilizan para definir los modelos de los datos que se envían y reciben en las peticiones HTTP.\nEn este capítulo de la unidad, aprendimos acerca de la herencia, polimorfismo y encapsulación en la Programación Orientada a Objetos (POO) en Python.",
+    "crumbs": [
+      "Unidad 3: Programación Orientada a Objetos en Python",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Herencia, Polimorfismo y Encapsulación</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad4/1_git_y_github.html#git",
+    "href": "unidades/unidad4/1_git_y_github.html#git",
+    "title": "Git y Github",
+    "section": "Git",
+    "text": "Git\n\n\n\n\nGit\n\n\n\nGit es un sistema de control de versiones distribuido que permite llevar un registro de los cambios en los archivos de un proyecto. Git es ampliamente utilizado en el desarrollo de software para colaborar en proyectos con otros desarrolladores.\n\nInstalación de Git\nPara instalar Git en tu computadora, sigue los siguientes pasos:\n\nDescarga el instalador de Git desde el siguiente enlace: https://git-scm.com/.\nEjecuta el instalador de Git y sigue las instrucciones del instalador.\nVerifica que Git se ha instalado correctamente ejecutando el siguiente comando en la terminal:\n\ngit --version\nSi Git se ha instalado correctamente, verás un mensaje similar a este:\ngit version 2.45.2\n\n\nComandos básicos de Git\nA continuación se muestran algunos comandos básicos de Git que te serán útiles para trabajar con Git:\n\ngit init: Inicializa un repositorio de Git en el directorio actual.\n\ngit init\n\ngit add: Agrega los archivos al área de preparación.\n\ngit add archivo.py\n\ngit commit: Guarda los cambios en el repositorio.\n\ngit commit -m \"Mensaje del commit\"\n\ngit status: Muestra el estado de los archivos en el repositorio.\n\ngit status\n\ngit log: Muestra el historial de los commits en el repositorio.\n\ngit log",
+    "crumbs": [
+      "Unidad 4: Herramientas de Desarrollo",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git y Github</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad4/1_git_y_github.html#github",
+    "href": "unidades/unidad4/1_git_y_github.html#github",
+    "title": "Git y Github",
+    "section": "Github",
+    "text": "Github\n\n\n\n\nGithub\n\n\n\nGithub es una plataforma en línea que permite alojar proyectos de Git de forma gratuita. Github es ampliamente utilizado en el desarrollo de software para colaborar en proyectos con otros desarrolladores.\n\nCrear una cuenta en Github\nPara crear una cuenta en Github, sigue los siguientes pasos:\n\nIngresa a la página de Github: https://github.com.\nHaz clic en el botón Sign up.\nCompleta el formulario de registro con tu nombre de usuario, dirección de correo electrónico y contraseña.\nHaz clic en el botón Create account.\nVerifica tu dirección de correo electrónico.\n\n\n\nCrear un repositorio en Github\nPara crear un repositorio en Github, sigue los siguientes pasos:\n\nInicia sesión en tu cuenta de Github.\nHaz clic en el botón New.\nCompleta el formulario con el nombre del repositorio, la descripción y la visibilidad del repositorio.\nHaz clic en el botón Create repository.\nCopia la URL del repositorio.\n\n\n\nClonar un repositorio en Github\nPara clonar un repositorio en Github, sigue los siguientes pasos:\n\nCopia la URL del repositorio.\nAbre la terminal y ejecuta el siguiente comando:\n\ngit clone URL_del_repositorio\n\nIngresa tus credenciales de Github.\nEl repositorio se clonará en tu computadora.\n\n\n\nSubir cambios a un repositorio en Github\nPara subir cambios a un repositorio en Github, sigue los siguientes pasos:\n\nAgrega los archivos al área de preparación.\n\ngit add archivo.py\n\nGuarda los cambios en el repositorio.\n\ngit commit -m \"Mensaje del commit\"\n\nSube los cambios al repositorio en Github.\n\ngit push\n\nIngresa tus credenciales de Github.\nLos cambios se subirán al repositorio en Github.\n\n\n\nDescargar cambios de un repositorio en Github\nPara descargar cambios de un repositorio en Github, sigue los siguientes pasos:\n\nDescarga los cambios del repositorio en Github.\n\ngit pull\n\nIngresa tus credenciales de Github.\nLos cambios se descargarán del repositorio en Github.\n\nEn FastAPI es posible utilizar Git y Github para colaborar en proyectos con otros desarrolladores. Cuando analicemos FastAPI veremos cómo utilizar Git y Github para colaborar en proyectos con otros desarrolladores.\nEn este capítulo de la unidad, aprendimos acerca de Git y Github.",
+    "crumbs": [
+      "Unidad 4: Herramientas de Desarrollo",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Git y Github</span>"
     ]
   },
   {
