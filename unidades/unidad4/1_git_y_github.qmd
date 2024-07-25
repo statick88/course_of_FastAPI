@@ -1,1 +1,168 @@
+:::{.justify}
 # Git y Github
+
+:::{.center}
+![Git](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png){width="200px"}
+![Github](https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png){width="150px"}
+:::
+
+En este capítulo un poco diferente vamos a aprender acerca de **Git** y **Github**. Sin embargo lo aplicaremos con el leguaje de programación **Python**.
+
+## Git
+
+:::{.center}
+![Git](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/1280px-Git-logo.svg.png){width="200px"}
+:::
+
+**Git** es un sistema de control de versiones distribuido que permite llevar un registro de los cambios en los archivos de un proyecto. **Git** es ampliamente utilizado en el desarrollo de software para colaborar en proyectos con otros desarrolladores.
+
+### Instalación de Git
+
+Para instalar **Git** en tu computadora, sigue los siguientes pasos:
+
+1. Descarga el instalador de **Git** desde el siguiente enlace: [https://git-scm.com/](https://git-scm.com/).
+
+2. Ejecuta el instalador de **Git** y sigue las instrucciones del instalador.
+
+3. Verifica que **Git** se ha instalado correctamente ejecutando el siguiente comando en la terminal:
+
+``` bash
+git --version
+```
+
+Si **Git** se ha instalado correctamente, verás un mensaje similar a este:
+
+``` bash
+git version 2.45.2
+```
+
+### Comandos básicos de Git
+
+A continuación se muestran algunos comandos básicos de **Git** que te serán útiles para trabajar con **Git**:
+
+- **git init**: Inicializa un repositorio de **Git** en el directorio actual.
+
+``` bash
+git init
+```
+
+- **git add**: Agrega los archivos al área de preparación.
+
+``` bash
+git add archivo.py
+```
+
+- **git commit**: Guarda los cambios en el repositorio.
+
+``` bash
+git commit -m "Mensaje del commit"
+```
+
+- **git status**: Muestra el estado de los archivos en el repositorio.
+
+``` bash
+git status
+```
+
+- **git log**: Muestra el historial de los commits en el repositorio.
+
+``` bash
+git log
+```
+
+## Github
+
+:::{.center}
+![Github](https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png){width="150px"}
+:::
+
+**Github** es una plataforma en línea que permite alojar proyectos de **Git** de forma gratuita. **Github** es ampliamente utilizado en el desarrollo de software para colaborar en proyectos con otros desarrolladores.
+
+### Crear una cuenta en Github
+
+Para crear una cuenta en **Github**, sigue los siguientes pasos:
+
+1. Ingresa a la página de **Github**: [https://github.com](https://github.com).
+
+2. Haz clic en el botón **Sign up**.
+
+3. Completa el formulario de registro con tu nombre de usuario, dirección de correo electrónico y contraseña.
+
+4. Haz clic en el botón **Create account**.
+
+5. Verifica tu dirección de correo electrónico.
+
+### Crear un repositorio en Github
+
+Para crear un repositorio en **Github**, sigue los siguientes pasos:
+
+1. Inicia sesión en tu cuenta de **Github**.
+
+2. Haz clic en el botón **New**.
+
+3. Completa el formulario con el nombre del repositorio, la descripción y la visibilidad del repositorio.
+
+4. Haz clic en el botón **Create repository**.
+
+5. Copia la URL del repositorio.
+
+### Clonar un repositorio en Github
+
+Para clonar un repositorio en **Github**, sigue los siguientes pasos:
+
+1. Copia la URL del repositorio.
+
+2. Abre la terminal y ejecuta el siguiente comando:
+
+``` bash
+git clone URL_del_repositorio
+```
+
+3. Ingresa tus credenciales de **Github**.
+
+4. El repositorio se clonará en tu computadora.
+
+### Subir cambios a un repositorio en Github
+
+Para subir cambios a un repositorio en **Github**, sigue los siguientes pasos:
+
+1. Agrega los archivos al área de preparación.
+
+``` bash
+git add archivo.py
+```
+
+2. Guarda los cambios en el repositorio.
+
+``` bash
+git commit -m "Mensaje del commit"
+```
+
+3. Sube los cambios al repositorio en **Github**.
+
+``` bash
+git push
+```
+
+4. Ingresa tus credenciales de **Github**.
+
+5. Los cambios se subirán al repositorio en **Github**.
+
+### Descargar cambios de un repositorio en Github
+
+Para descargar cambios de un repositorio en **Github**, sigue los siguientes pasos:
+
+1. Descarga los cambios del repositorio en **Github**.
+
+``` bash
+git pull
+```
+
+2. Ingresa tus credenciales de **Github**.
+
+3. Los cambios se descargarán del repositorio en **Github**.
+
+En FastAPI es posible utilizar **Git** y **Github** para colaborar en proyectos con otros desarrolladores. Cuando analicemos FastAPI veremos cómo utilizar **Git** y **Github** para colaborar en proyectos con otros desarrolladores.
+
+En este capítulo de la unidad, aprendimos acerca de **Git** y **Github**.
+:::

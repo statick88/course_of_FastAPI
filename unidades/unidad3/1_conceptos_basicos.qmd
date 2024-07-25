@@ -1,1 +1,43 @@
+:::{.justify}
 # Conceptos Básicos
+
+::: {.center}
+![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+:::
+
+En este capítulo vamos a aprender acerca de los conceptos básicos de la Programación Orientada a Objetos (POO) en Python.
+
+## Clases y Objetos
+
+En la Programación Orientada a Objetos (POO) los objetos son instancias de clases. Las clases son plantillas que definen las propiedades y los métodos de los objetos. A continuación se muestra un ejemplo de una clase en Python:
+
+``` python
+# Declaración de una clase
+
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+    def saludar(self):
+        return f"Hola, mi nombre es {self.nombre} y tengo {self.edad} años."
+```
+
+En el ejemplo anterior se declara una clase llamada **Persona** con dos propiedades **nombre** y **edad** y un método **saludar()** que retorna un mensaje con el nombre y la edad de la persona.
+
+Para crear un objeto de la clase **Persona** se utiliza la siguiente sintaxis:
+
+``` python
+# Creación de un objeto de la clase Persona
+
+persona = Persona("Juan", 25)
+mensaje = persona.saludar()
+print(mensaje)
+```
+
+En el ejemplo anterior se crea un objeto de la clase **Persona** con el nombre **Juan** y la edad **25** y se llama al método **saludar()** del objeto **persona**.
+
+En FastAPI es posible definir clases que se utilizan para definir los modelos de los datos que se envían y reciben en las peticiones HTTP. Cuando analicemos FastAPI veremos cómo definir clases que se utilizan para definir los modelos de los datos que se envían y reciben en las peticiones HTTP.
+
+En este capítulo de la unidad, aprendimos acerca de las clases y los objetos en la Programación Orientada a Objetos (POO) en Python.
+:::

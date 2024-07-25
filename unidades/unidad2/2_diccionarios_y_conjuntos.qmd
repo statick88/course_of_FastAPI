@@ -1,1 +1,82 @@
+:::{.justify}
 # Diccionarios y Conjuntos
+
+::: {.center}
+![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+:::
+
+En este capítulo vamos a aprender acerca de los diccionarios y los conjuntos en Python.
+
+## Diccionarios
+
+Los diccionarios en Python son estructuras de datos que permiten almacenar pares clave-valor en una sola variable. Los diccionarios se definen utilizando llaves **{ }** y los pares clave-valor se separan por comas **,**. A continuación se muestra un ejemplo de un diccionario con nombres de personas y sus edades:
+
+``` python
+# Declaración de un diccionario
+
+personas = {
+    "Juan": 25,
+    "Maria": 30,
+    "Pedro": 35
+}
+```
+
+Para acceder a un valor del diccionario se utiliza la clave del valor. A continuación se muestra un ejemplo de cómo acceder a la edad de la persona **Juan**:
+
+``` python
+# Acceso a un valor del diccionario
+
+edad_juan = personas["Juan"]
+print(edad_juan)
+```
+
+Para agregar un par clave-valor al diccionario se utiliza la siguiente sintaxis:
+
+``` python
+# Agregar un par clave-valor al diccionario
+
+personas["Ana"] = 40
+print(personas)
+```
+
+Para eliminar un par clave-valor del diccionario se utiliza la siguiente sintaxis:
+
+``` python
+# Eliminar un par clave-valor del diccionario
+
+del personas["Pedro"]
+print(personas)
+```
+
+## Conjuntos
+
+Los conjuntos en Python son estructuras de datos que permiten almacenar elementos únicos en una sola variable. Los conjuntos se definen utilizando llaves **{ }** y los elementos del conjunto se separan por comas **,**. A continuación se muestra un ejemplo de un conjunto con números enteros:
+
+``` python
+# Declaración de un conjunto
+
+numeros = {1, 2, 3, 4, 5}
+```
+
+Para agregar un elemento al conjunto se utiliza el método **add()**. A continuación se muestra un ejemplo de cómo agregar un elemento al conjunto:
+
+``` python
+# Agregar un elemento al conjunto
+
+numeros.add(6)
+print(numeros)
+```
+
+Para eliminar un elemento del conjunto se utiliza el método **remove()**. A continuación se muestra un ejemplo de cómo eliminar un elemento del conjunto:
+
+``` python
+# Eliminar un elemento del conjunto
+
+numeros.remove(3)
+print(numeros)
+```
+
+En FastAPI es posible utilizar diccionarios y conjuntos para almacenar información y realizar operaciones con ellos. Cuando analicemos FastAPI veremos cómo utilizar diccionarios y conjuntos para almacenar información y realizar operaciones con ellos.
+
+En este capítulo aprendimos acerca de los diccionarios y los conjuntos en Python.
+:::

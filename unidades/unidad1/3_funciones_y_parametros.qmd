@@ -1,1 +1,54 @@
+:::{.justify}
 # Funciones y Parámetros
+
+::: {.center}
+![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+:::
+
+En Python las funciones se definen con la palabra clave **def** seguida del nombre de la función y los parámetros entre paréntesis. A continuación se muestra un ejemplo de una función que suma dos números:
+
+``` python
+def saludo():
+    return "Hola Mundo!"
+
+mensaje = saludo()
+print(mensaje)
+```
+En el ejemplo anterior, la función **saludo()** retorna el mensaje **Hola Mundo!**.
+
+## Parámetros con valores por defecto
+
+En Python es posible asignar valores por defecto a los parámetros de una función. A continuación se muestra un ejemplo de una función que suma dos números con un valor por defecto para el segundo parámetro:
+
+``` python
+def suma(a, b=0):
+    return a + b
+
+resultado = suma(5)
+print(resultado)
+```
+
+En el ejemplo anterior, la función **suma()** recibe dos parámetros, el primer parámetro es obligatorio y el segundo parámetro tiene un valor por defecto de **0**.
+
+## Parámetros con nombre
+
+En Python es posible pasar los parámetros de una función por nombre. A continuación se muestra un ejemplo de una función que multiplica dos números con los parámetros pasados por nombre:
+
+``` python
+def multiplicacion(a, b):
+    return a * b
+
+resultado = multiplicacion(b=5, a=3)
+print(resultado)
+```
+
+En el ejemplo anterior, los parámetros de la función **multiplicacion()** se pasan por nombre, por lo que el orden de los parámetros no importa.
+
+:::{.callout-tip}
+Cuando aprendamos acerca de la POO (Programaciòn Orientada a Objetos) veremos que las **funciones** que se definen dentro de una clase se llaman **métodos**.
+:::
+
+En FastAPI es posible definir funciones que se ejecutan cuando se realiza una petición HTTP a una ruta específica. Cuando analicemos FastAPI veremos cómo definir funciones que se ejecutan cuando se realiza una petición HTTP a una ruta específica.
+
+En este tercer capítulo de la unidad, aprendimos a definir funciones en Python y a utilizar parámetros con valores por defecto y parámetros con nombre.
+:::

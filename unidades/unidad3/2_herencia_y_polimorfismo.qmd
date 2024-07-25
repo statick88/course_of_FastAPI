@@ -1,1 +1,137 @@
-# Herencia y Polimorfismo
+:::{.justify}
+# Herencia, Polimorfismo y Encapsulación
+
+::: {.center}
+![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+:::
+
+En este capítulo vamos a aprender acerca de la herencia y el polimorfismo en la Programación Orientada a Objetos (POO) en Python.
+
+## Herencia
+
+La herencia en la Programación Orientada a Objetos (POO) es un mecanismo que permite crear una nueva clase a partir de una clase existente. La nueva clase hereda las propiedades y los métodos de la clase existente. A continuación se muestra un ejemplo de una clase **Vehiculo** con las propiedades **marca** y **modelo** y un método **mostrar()** que retorna un mensaje con la marca y el modelo del vehículo:
+
+``` python
+# Declaración de una clase Vehiculo
+
+class Vehiculo:
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+
+    def mostrar(self):
+        return f"Vehículo: {self.marca} {self.modelo}"
+```
+
+En el ejemplo anterior se declara una clase **Vehiculo** con las propiedades **marca** y **modelo** y un método **mostrar()** que retorna un mensaje con la marca y el modelo del vehículo.
+
+Para crear una nueva clase **Auto** que hereda de la clase **Vehiculo** se utiliza la siguiente sintaxis:
+
+``` python
+# Declaración de una clase Auto que hereda de la clase Vehiculo
+
+class Auto(Vehiculo):
+    def __init__(self, marca, modelo, color):
+        super().__init__(marca, modelo)
+        self.color = color
+
+    def mostrar(self):
+        return f"Auto: {self.marca} {self.modelo} de color {self.color}"
+```
+
+En el ejemplo anterior se declara una clase **Auto** que hereda de la clase **Vehiculo** con la propiedad **color** y un método **mostrar()** que retorna un mensaje con la marca, el modelo y el color del auto.
+
+Para crear un objeto de la clase **Auto** se utiliza la siguiente sintaxis:
+
+``` python
+# Creación de un objeto de la clase Auto
+
+auto = Auto("Toyota", "Corolla", "Rojo")
+mensaje = auto.mostrar()
+print(mensaje)
+```
+
+En el ejemplo anterior se crea un objeto de la clase **Auto** con la marca **Toyota**, el modelo **Corolla** y el color **Rojo** y se llama al método **mostrar()** del objeto **auto**.
+
+## Polimorfismo
+
+El polimorfismo en la Programación Orientada a Objetos (POO) es un mecanismo que permite que un objeto se com
+
+``` python
+# Declaración de una clase Vehiculo
+
+class Vehiculo:
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+
+    def mostrar(self):
+        return f"Vehículo: {self.marca} {self.modelo}"
+```
+
+En el ejemplo anterior se declara una clase **Vehiculo** con las propiedades **marca** y **modelo** y un método **mostrar()** que retorna un mensaje con la marca y el modelo del vehículo.
+
+Para crear una nueva clase **Auto** que hereda de la clase **Vehiculo** se utiliza la siguiente sintaxis:
+
+``` python
+# Declaración de una clase Auto que hereda de la clase Vehiculo
+
+class Auto(Vehiculo):
+    def __init__(self, marca, modelo, color):
+        super().__init__(marca, modelo)
+        self.color = color
+
+    def mostrar(self):
+        return f"Auto: {self.marca} {self.modelo} de color {self.color}"
+```
+
+En el ejemplo anterior se declara una clase **Auto** que hereda de la clase **Vehiculo** con la propiedad **color** y un método **mostrar()** que retorna un mensaje con la marca, el modelo y el color del auto.
+
+Para crear un objeto de la clase **Auto** se utiliza la siguiente sintaxis:
+
+``` python
+# Creación de un objeto de la clase Auto
+
+auto = Auto("Toyota", "Corolla", "Rojo")
+mensaje = auto.mostrar()
+print(mensaje)
+```
+
+En el ejemplo anterior se crea un objeto de la clase **Auto** con la marca **Toyota**, el modelo **Corolla** y el color **Rojo** y se llama al método **mostrar()** del objeto **auto**.
+
+## Encapsulamiento
+
+El encapsulamiento en la Programación Orientada a Objetos (POO) es un mecanismo que permite ocultar los detalles de implementación de una clase y exponer solo la interfaz de la clase. En Python, el encapsulamiento se logra utilizando los siguientes modificadores de acceso:
+
+- **Público**: Los miembros de la clase son públicos y se pueden acceder desde cualquier parte del programa.
+
+- **Protegido**: Los miembros de la clase son protegidos y se pueden acceder desde la clase y las clases derivadas.
+
+- **Privado**: Los miembros de la clase son privados y solo se pueden acceder desde la clase.
+
+A continuación se muestra un ejemplo de una clase **Persona** con los modificadores de acceso **público**, **protegido** y **privado**:
+
+``` python
+# Declaración de una clase Persona
+
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self._edad = edad
+        self.__dni = "12345678"
+
+    def mostrar(self):
+        return f"Persona: {self.nombre} {self._edad} {self.__dni}"
+
+# Creación de un objeto de la clase Persona
+
+persona = Persona("Juan", 25)
+mensaje = persona.mostrar()
+print(mensaje)
+```
+
+En el ejemplo anterior se declara una clase **Persona** con los modificadores de acceso **público**, **protegido** y **privado** y se crea un objeto de la clase **Persona** con el nombre **Juan**, la edad **25** y el DNI **12345678**.
+
+En FastAPI es posible definir clases que se utilizan para definir los modelos de los datos que se envían y reciben en las peticiones HTTP. Cuando analicemos FastAPI veremos cómo definir clases que se utilizan para definir los modelos de los datos que se envían y reciben en las peticiones HTTP.
+
+En este capítulo de la unidad, aprendimos acerca de la herencia, polimorfismo y encapsulación en la Programación Orientada a Objetos (POO) en Python.

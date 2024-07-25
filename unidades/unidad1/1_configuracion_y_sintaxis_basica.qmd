@@ -40,5 +40,5 @@ Para ejecutar este programa, puedes guardar el código en un archivo con extensi
 
 En este caso, el programa imprimirá en la terminal el mensaje **Hola Mundo!**.
 
-En este primer capítulo de la unidad, aprenderemos la configuración básica de python y la sintaxis básica para escribir programas en python.
+En este primer capítulo de la unidad, aprendimos la configuración básica de python y la sintaxis básica para escribir programas en python.
 :::

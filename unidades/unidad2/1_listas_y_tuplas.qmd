@@ -1,1 +1,73 @@
+:::{.justify}
 # Listas y Tuplas
+
+::: {.center}
+![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+:::
+
+En este capículo de la segunda unidad vamos a aprender acerca de las listas y las tuplas en Python.
+
+
+En Python, las listas y las tuplas son estructuras de datos que permiten almacenar múltiples elementos en una sola variable.
+
+## Listas
+
+Las listas en Python se definen utilizando corchetes **[ ]** y los elementos de la lista se separan por comas **,**. A continuación se muestra un ejemplo de una lista con números enteros:
+
+``` python
+# Declaración de una lista
+numeros = [1, 2, 3, 4, 5]
+```
+
+Para acceder a un elemento de la lista se utiliza el índice del elemento. Los índices en Python empiezan en **0**. A continuación se muestra un ejemplo de cómo acceder al primer elemento de la lista:
+
+``` python
+# Acceso a un elemento de la lista
+primer_elemento = numeros[0]
+print(primer_elemento)
+```
+
+Para agregar un elemento a la lista se utiliza el método **append()**. A continuación se muestra un ejemplo de cómo agregar un elemento a la lista:
+
+``` python
+# Agregar un elemento a la lista
+numeros.append(6)
+print(numeros)
+```
+
+Para eliminar un elemento de la lista se utiliza el método **remove()**. A continuación se muestra un ejemplo de cómo eliminar un elemento de la lista:
+
+``` python
+# Eliminar un elemento de la lista
+numeros.remove(3)
+print(numeros)
+```
+
+## Tuplas
+
+Las tuplas en Python se definen utilizando paréntesis **( )** y los elementos de la tupla se separan por comas **,**. A continuación se muestra un ejemplo de una tupla con números enteros:
+
+``` python
+# Declaración de una tupla
+numeros = (1, 2, 3, 4, 5)
+```
+
+Para acceder a un elemento de la tupla se utiliza el índice del elemento. Los índices en Python empiezan en **0**. A continuación se muestra un ejemplo de cómo acceder al primer elemento de la tupla:
+
+``` python
+# Acceso a un elemento de la tupla
+primer_elemento = numeros[0]
+print(primer_elemento)
+```
+
+Las tuplas son inmutables, lo que significa que una vez que se crea una tupla no se pueden modificar los elementos de la tupla. A continuación se muestra un ejemplo de cómo intentar modificar un elemento de la tupla:
+
+``` python
+# Intentar modificar un elemento de la tupla
+numeros[0] = 10
+```
+
+En FastAPI es posible utilizar listas y tuplas para definir los parámetros de una función. Cuando analicemos FastAPI veremos cómo utilizar listas y tuplas para definir los parámetros de una función.
+
+En este capítulo de la unidad, aprendimos acerca de las listas y las tuplas en Python.
+:::

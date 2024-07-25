@@ -1,1 +1,138 @@
+:::{.justify}
 # Variables y Control de flujo
+
+::: {.center}
+![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+:::
+
+En python las variables se pueden declarar sin necesidad de especificar el tipo de dato, por lo que se puede asignar cualquier tipo de dato a una variable, sin embargo en FastAPI es necesario especificar el tipo de dato de las variables.
+
+```python
+# Declaración de variables
+a = 5
+b = 3.14
+c = "Hola Mundo"
+```
+
+Para imprimir el valor de una variable se utiliza la función **print()**.
+
+```python
+print(a)
+print(b)
+print(c)
+```
+
+Para especìficar el tipo de dato de una variable se utiliza la siguiente sintaxis:
+
+```python
+# Declaración de variables con tipo de dato
+a: int = 5
+b: float = 3.14
+c: str = "Hola Mundo"
+```
+
+Para realizar operaciones aritméticas se utilizan los siguientes operadores:
+
+- Suma: +
+- Resta: -
+- Multiplicación: *
+- División: /
+- Módulo: %
+- Exponente: **
+- División entera: //
+
+```python
+# Operaciones aritméticas
+suma = a + b
+resta = a - b
+multiplicacion = a * b
+division = a / b
+modulo = a % b
+exponente = a ** b
+division_entera = a // b
+
+print(suma)
+print(resta)
+print(multiplicacion)
+print(division)
+print(modulo)
+print(exponente)
+print(division_entera)
+```
+
+Para realizar comparaciones se utilizan los siguientes operadores:
+
+- Igual que: ==
+- Diferente de: !=
+- Mayor que: >
+- Menor que: <
+- Mayor o igual que: >=
+- Menor o igual que: <=
+
+```python
+# Comparaciones
+igual = a == b
+diferente =
+```
+
+Para realizar operaciones lógicas se utilizan los siguientes operadores:
+
+- AND: and
+- OR: or
+- NOT: not
+
+```python
+# Operaciones lógicas
+and = True and False
+or = True or False
+not = not True
+```
+
+Para realizar estructuras de control de flujo se utilizan las siguientes estructuras:
+
+- if
+- elif
+- else
+
+```python
+# Estructuras de control de flujo
+if a > b:
+    print("a es mayor que b")
+elif a < b:
+    print("a es menor que b")
+else:
+    print("a es igual a b")
+```
+
+Tambien existen otras estructuras de control de flujo como:
+
+- for
+- while
+
+```python
+# Estructuras de control de flujo
+for i in range(5):
+    print(i)
+    
+i = 0
+while i < 5:
+    print(i)
+    i += 1
+```
+
+En FastAPI se pueden declarar variables en las rutas y se pueden especificar el tipo de dato de las variables.
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items/{item_id}")
+async def read_item(item_id: int):
+    return {"item_id": item_id}
+```
+
+En el ejemplo anterior se declara una ruta con una variable llamada **item_id** de tipo entero, cuando analicemos FastAPI en sus primeros capítulos se explicará con más detalle.
+
+En este capítulo de la unidad, aprendimos a declarar variables, realizar operaciones aritméticas, comparaciones, operaciones lógicas y estructuras de control de flujo en python.
+:::
