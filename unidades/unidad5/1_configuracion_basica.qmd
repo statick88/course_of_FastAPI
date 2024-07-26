@@ -1,6 +1,6 @@
-# Configuraciòn y Estructura
+# Configuración y Estructura
 
-::: center
+:::{.center}
 ![FastAPI](../../images/logo-fastapi.png){width="200px"}
 :::
 

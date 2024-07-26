@@ -1,0 +1,241 @@
+:::{.justify}
+# APIs RESTful con FastAPI
+
+En el capítulo anterior aprendimos acerca de la creación de Rutas y Validaciones en FastAPI. En este capítulo veremos cómo crear una API RESTful utilizando FastAPI.
+
+## Creación de una API RESTful
+
+Una API RESTful es una API que sigue los principios de REST (Representational State Transfer). REST es un estilo de arquitectura de software que define un conjunto de restricciones para el diseño de servicios web. Las API RESTful son fáciles de entender, escalables y flexibles.
+
+En FastAPI se pueden crear APIs RESTful utilizando rutas y modelos. A continuación se muestra un ejemplo de API RESTful para una Fundación de Adopción Animal, definiremos las adopciones, los animales y las personas que adoptan a los animales:
+
+El proyecto tendrá la siguiente estructura:
+
+``` plaintext
+proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+|   |── models.py
+|   |── routes.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt
+```
+
+En el directorio **app/** se encuentra el archivo **routes.py** que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una Fundación de Adopción Animal. A continuación se muestra el contenido del archivo **models**:
+
+``` python
+from pydantic import BaseModel
+
+class Adoption(BaseModel):
+    id: int
+    animal_id: int
+    person_id: int
+    date: str
+    status: str
+
+class Animal(BaseModel):
+    id: int
+    name: str
+    species: str
+    breed: str
+
+class Person(BaseModel):
+    id: int
+    name: str
+    email: str
+    phone: str
+```
+
+En el ejemplo anterior se definen los modelos **Adoption**, **Animal** y **Person** que heredan de la clase **BaseModel** de Pydantic. Cada modelo tiene sus propios campos que representan los datos de las adopciones, los animales y las personas.
+
+## Creación de las Rutas
+
+A continuación se muestra el contenido del archivo **routes.py** que contiene la definición de las rutas de la API:
+
+``` python
+from fastapi import APIRouter, HTTPException
+from .models import Adoption, Animal, Person
+
+router = APIRouter()
+
+adoptions = []
+animals = []
+persons = []
+
+@router.post("/adoptions/")
+def create_adoption(adoption: Adoption):
+    adoptions.append(adoption)
+    return adoption
+
+@router.get("/adoptions/")
+def read_adoptions():
+    return adoptions
+
+@router.get("/adoptions/{adoption_id}")
+def read_adoption(adoption_id: int):
+    for adoption in adoptions:
+        if adoption.id == adoption_id:
+            return adoption
+
+@router.post("/animals/")
+def create_animal(animal: Animal):
+    animals.append(animal)
+    return animal
+
+@router.get("/animals/")
+def read_animals():
+    return animals
+
+@router.get("/animals/{animal_id}")
+def read_animal(animal_id: int):
+    for animal in animals:
+        if animal.id == animal_id:
+            return animal
+
+@router.post("/persons/")
+def create_person(person: Person):
+    persons.append(person)
+    return person
+
+@router.get("/persons/")
+def read_persons():
+    return persons
+
+@router.get("/persons/{person_id}")
+def read_person(person_id: int):
+    for person in persons:
+        if person.id == person_id:
+            return person
+```
+
+En el ejemplo anterior se definen las rutas para las adopciones, los animales y las personas. Cada ruta tiene un método HTTP asociado (POST, GET) y una función que se ejecuta cuando se accede a la ruta. Las rutas de la API permiten crear, leer, actualizar y eliminar datos de las adopciones, los animales y las personas.
+
+## Uso de las Rutas en FastAPI
+
+Para utilizar las rutas definidas en FastAPI, se deben importar las rutas en el archivo principal de la aplicación. A continuación se muestra un ejemplo de cómo importar las rutas en el archivo **main.py**:
+
+``` python
+from fastapi import FastAPI
+from .routes import router
+
+app = FastAPI()
+
+app.include_router(router)
+```
+
+En el ejemplo anterior se importa el objeto **router** que contiene las rutas definidas en el archivo **routes.py**. Luego, se utiliza el método **include_router()** para incluir las rutas en la aplicación FastAPI.
+
+# Probar las Rutas en FastAPI
+
+Podemos correr el servidor de pruebas de FastAPI con el siguiente comando:
+
+``` bash
+uvicorn app.main:app --reload
+```
+
+A continuación vamos a observar cómo funcionan las rutas de la API a traves de Thunder Client en Visual Studio Code.
+
+## Crear una Adopción
+
+Para crear una adopción, se debe enviar una petición POST a la ruta `/adoptions/` con los datos de la adopción en el cuerpo de la petición. A continuación se muestra un ejemplo de cómo crear una adopción:
+
+``` json
+{
+    "id": 1,
+    "animal_id": 1,
+    "person_id": 1,
+    "date": "2022-10-10",
+    "status": "pending"
+}
+```
+
+:::{.center}
+![](images/paste-43.png)
+:::
+
+## Obtener las Adopciones
+
+Para obtener todas las adopciones, se debe enviar una petición GET a la ruta `/adoptions/`. A continuación se muestra un ejemplo de cómo obtener todas las adopciones:
+
+:::{.center}
+![](images/paste-44.png)
+:::
+
+## Obtener una Adopción
+
+Para obtener una adopción específica, se debe enviar una petición GET a la ruta `/adoptions/{adoption_id}` con el ID de la adopción en la URL. A continuación se muestra un ejemplo de cómo obtener una adopción específica:
+
+:::{.center}
+![](images/paste-45.png)
+:::
+
+## Crear un Animal
+
+Para crear un animal, se debe enviar una petición POST a la ruta `/animals/` con los datos del animal en el cuerpo de la petición. A continuación se muestra un ejemplo de cómo crear un animal:
+
+``` json
+{
+    "id": 1,
+    "name": "Luna",
+    "species": "Dog",
+    "breed": "Labrador"
+}
+```
+:::{.center}
+![](images/paste-46.png)
+:::
+
+## Obtener los Animales
+
+Para obtener todos los animales, se debe enviar una petición GET a la ruta `/animals/`. A continuación se muestra un ejemplo de cómo obtener todos los animales:
+
+:::{.center}
+![](images/paste-47.png)
+::::
+## Obtener un Animal
+
+Para obtener un animal específico, se debe enviar una petición GET a la ruta `/animals/{animal_id}` con el ID del animal en la URL. A continuación se muestra un ejemplo de cómo obtener un animal específico:
+
+:::{.center}
+![](images/paste-48.png)
+:::
+
+## Crear una Persona
+
+Para crear una persona, se debe enviar una petición POST a la ruta `/persons/` con los datos de la persona en el cuerpo de la petición. A continuación se muestra un ejemplo de cómo crear una persona:
+
+``` json
+{
+    "id": 1,
+    "name": "John Doe",
+    "email": "example@email.com",
+    "phone": "1234567890"
+}
+```
+:::{.center}
+![](images/paste-49.png)
+:::
+## Obtener las Personas
+
+Para obtener todas las personas, se debe enviar una petición GET a la ruta `/persons/`. A continuación se muestra un ejemplo de cómo obtener todas las personas:
+
+:::{.center}
+![](images/paste-50.png)
+:::
+
+## Obtener una Persona
+
+Para obtener una persona específica, se debe enviar una petición GET a la ruta `/persons/{person_id}` con el ID de la persona en la URL. A continuación se muestra un ejemplo de cómo obtener una persona específica:
+
+:::{.center}
+![](images/paste-51.png)
+:::
+
+En el ejemplo anterior se envía una petición GET a la ruta **/persons/{person_id}** para obtener una persona específica. La API responde con un objeto JSON que representa la persona con el ID especificado en la URL.
+
+Como podemos observar, hemos creado una API RESTful utilizando FastAPI. En el siguiente capítulo veremos cómo realizar pruebas unitarias en FastAPI.
+:::

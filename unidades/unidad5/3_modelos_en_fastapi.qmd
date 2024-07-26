@@ -1,1 +1,80 @@
+:::{.justify}
 # Modelos en FastAPI
+
+:::{.center}
+![FastAPI](../../images/logo-fastapi.png){width="200px"}
+:::
+
+En el capítulo anterior aprendimos acerca de Pydantic y cómo se puede utilizar para validar y serializar datos en Python. En este capítulo veremos cómo utilizar Pydantic para definir modelos en FastAPI.
+
+## Definición de modelos en FastAPI
+
+En FastAPI se pueden definir modelos utilizando Pydantic. Un modelo en FastAPI es una clase que hereda de la clase **BaseModel** de Pydantic y define los campos que componen el modelo. A continuación se muestra un ejemplo de un modelo en FastAPI, para este ejemplo vamos a crear una tienda de vehiculos:
+
+El proyecto tendrá la siguiente estructura:
+
+``` plaintext
+proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── models.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt
+```
+
+En el directorio **app/** se encuentra el archivo **models.py** que contiene la definición del modelo **Vehicle**. A continuación se muestra el contenido del archivo **models.py**:
+
+``` python
+from pydantic import BaseModel
+
+class Vehicle(BaseModel):
+    make: str
+    model: str
+    year: int
+    price: float
+```
+
+En el ejemplo anterior se define un modelo llamado **Vehicle** que hereda de la clase **BaseModel** de Pydantic. El modelo **Vehicle** tiene los siguientes campos:
+
+- **make**: Campo de tipo **str** que representa la marca del vehículo.
+- **model**: Campo de tipo **str** que representa el modelo del vehículo.
+- **year**: Campo de tipo **int** que representa el año del vehículo.
+- **price**: Campo de tipo **float** que representa el precio del vehículo.
+
+## Uso de modelos en FastAPI
+
+Una vez que se ha definido un modelo en FastAPI, se puede utilizar el modelo en las rutas de la API para validar y serializar datos. A continuación se muestra un ejemplo de cómo utilizar el modelo **Vehicle** en una ruta de la API:
+
+``` python
+from fastapi import FastAPI
+from .models import Vehicle
+
+app = FastAPI()
+
+@app.post("/vehicles/")
+def create_vehicle(vehicle: Vehicle):
+    return vehicle
+
+@app.get("/vehicles/{vehicle_id}")
+def read_vehicle(vehicle_id: int):
+    return {"vehicle_id": vehicle_id}
+
+@app.put("/vehicles/{vehicle_id}")
+def update_vehicle(vehicle_id: int, vehicle: Vehicle):
+    return {"vehicle_id": vehicle_id, "vehicle": vehicle}
+
+@app.delete("/vehicles/{vehicle_id}")
+def delete_vehicle(vehicle_id: int):
+    return {"vehicle_id": vehicle_id}
+```
+
+En el ejemplo anterior se importa la clase **Vehicle** del archivo **models.py** y se define una ruta de la API que recibe un objeto de tipo **Vehicle** en el cuerpo de la petición. La ruta de la API utiliza el decorador \@app.post**()** para indicar que se trata de una petición de tipo POST. La operación **create_vehicle()** recibe un objeto de tipo **Vehicle** y retorna el mismo objeto.
+
+En el ejemplo anterior también se definen otras rutas de la API que utilizan el modelo **Vehicle** para validar y serializar datos. En la ruta de la API que recibe un parámetro de tipo **int** se utiliza el modelo **Vehicle** para serializar el objeto de tipo **Vehicle** y retornar el objeto serializado.
+
+En este capítulo aprendimos acerca de los modelos en FastAPI y cómo se pueden utilizar para validar y serializar datos en una API. En el próximo capítulo veremos cómo utilizar rutas y validaciones en FastAPI.
+:::

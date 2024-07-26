@@ -57,30 +57,27 @@ book:
         - unidades/unidad5/1_configuracion_basica.qmd
         - unidades/unidad5/2_pydantic.qmd
         - unidades/unidad5/3_modelos_en_fastapi.qmd
+        - unidades/unidad5/4_rutas_y_validaciones_en_fastapi.qmd
+        - unidades/unidad5/5_apis_restful_con_fastapi.qmd
+        - unidades/unidad5/6_pruebas_unitarias_en_fastapi.qmd
+        - unidades/unidad5/7_optimizacion_y_rendimiento.qmd
+        - unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.qmd
 
-    - part: "Unidad 6: Desarrollo Avanzado en FastAPI"
+    - part: "Unidad 6: Consumo API con FastAPI"
       chapters: 
-        - unidades/unidad6/1_rutas_y_validaciones_en_fastapi.qmd
-        - unidades/unidad6/2_apis_restful_con_fastapi.qmd
-        - unidades/unidad6/3_pruebas_unitarias_en_fastapi.qmd
-        - unidades/unidad6/4_optimizacion_y_rendimiento.qmd
-        - unidades/unidad6/5_creacion_de_una_api_de_gestion_de_tareas.qmd
+        - unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.qmd
+        - unidades/unidad6/2_integracion_de_apis_de_terceros_con_fastapi.qmd
 
-    - part: "Unidad 7: Consumo API con FastAPI"
+    - part: "Unidad 7: Desarrollo Avanzado"
       chapters: 
-        - unidades/unidad7/1_configuracion_y_uso_fastapi_para_consumir_api.qmd
-        - unidades/unidad7/2_integracion_de_apis_de_terceros_con_fastapi.qmd
+        - unidades/unidad7/1_manejo_de_estado.qmd
+        - unidades/unidad7/2_navegacion_fast_api.qmd
+        - unidades/unidad7/3_consumo_api_terceros.qmd
 
-    - part: "Unidad 8: Desarrollo Avanzado"
+    - part: "Unidad 8: Prácticas Avanadas de Programación"
       chapters: 
-        - unidades/unidad8/1_manejo_de_estado.qmd
-        - unidades/unidad8/2_navegacion_fast_api.qmd
-        - unidades/unidad8/3_consumo_api_terceros.qmd
-
-    - part: "Unidad 9: Prácticas Avanadas de Programación"
-      chapters: 
-        - unidades/unidad9/1_patrones_de_diseno.qmd
-        - unidades/unidad9/2_arquitectura_de_software_y_diseno_modular.qmd
+        - unidades/unidad8/1_patrones_de_diseno.qmd
+        - unidades/unidad8/2_arquitectura_de_software_y_diseno_modular.qmd
 
     - part: "Proyecto Final"
       chapters: 
