@@ -8,7 +8,7 @@
 
 <meta name="description" content="Curso de FastAPI">
 
-<title>Modelos en FastAPI – Curso de FastAPI</title>
+<title>Rutas y Validaciones en FastAPI – Curso de FastAPI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html" rel="next">
-<link href="../../unidades/unidad5/2_pydantic.html" rel="prev">
+<link href="../../unidades/unidad5/5_apis_restful_con_fastapi.html" rel="next">
+<link href="../../unidades/unidad5/3_modelos_en_fastapi.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad5/1_configuracion_basica.html">Unidad 5: Introducción a FastAPI</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad5/3_modelos_en_fastapi.html"><span class="chapter-title">Modelos en FastAPI</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad5/1_configuracion_basica.html">Unidad 5: Introducción a FastAPI</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html"><span class="chapter-title">Rutas y Validaciones en FastAPI</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -295,12 +295,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../unidades/unidad5/3_modelos_en_fastapi.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Modelos en FastAPI</span></a>
+  <a href="../../unidades/unidad5/3_modelos_en_fastapi.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Modelos en FastAPI</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Rutas y Validaciones en FastAPI</span></a>
+  <a href="../../unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Rutas y Validaciones en FastAPI</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -440,15 +440,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#definición-de-rutas-en-fastapi" id="toc-definición-de-rutas-en-fastapi" class="nav-link active" data-scroll-target="#definición-de-rutas-en-fastapi">Definición de rutas en FastAPI</a></li>
+  <li><a href="#creación-de-las-rutas" id="toc-creación-de-las-rutas" class="nav-link" data-scroll-target="#creación-de-las-rutas">Creación de las Rutas</a></li>
+  <li><a href="#uso-de-las-rutas-en-fastapi" id="toc-uso-de-las-rutas-en-fastapi" class="nav-link" data-scroll-target="#uso-de-las-rutas-en-fastapi">Uso de las Rutas en FastAPI</a></li>
+  <li><a href="#probar-las-rutas-en-fastapi" id="toc-probar-las-rutas-en-fastapi" class="nav-link" data-scroll-target="#probar-las-rutas-en-fastapi">Probar las Rutas en FastAPI</a></li>
+  <li><a href="#validaciones-en-fastapi" id="toc-validaciones-en-fastapi" class="nav-link" data-scroll-target="#validaciones-en-fastapi">Validaciones en FastAPI</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad5/1_configuracion_basica.html">Unidad 5: Introducción a FastAPI</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad5/3_modelos_en_fastapi.html"><span class="chapter-title">Modelos en FastAPI</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad5/1_configuracion_basica.html">Unidad 5: Introducción a FastAPI</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html"><span class="chapter-title">Rutas y Validaciones en FastAPI</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Modelos en FastAPI</span></h1>
+<h1 class="title"><span class="chapter-title">Rutas y Validaciones en FastAPI</span></h1>
 </div>
 
 
@@ -465,76 +475,178 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="justify">
-<div class="center">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/logo-fastapi.png" class="img-fluid figure-img" width="200"></p>
-<figcaption>FastAPI</figcaption>
-</figure>
-</div>
-</div>
-<p>En el capítulo anterior aprendimos acerca de Pydantic y cómo se puede utilizar para validar y serializar datos en Python. En este capítulo veremos cómo utilizar Pydantic para definir modelos en FastAPI.</p>
-<section id="definición-de-modelos-en-fastapi" class="level2">
-<h2 class="anchored" data-anchor-id="definición-de-modelos-en-fastapi">Definición de modelos en FastAPI</h2>
-<p>En FastAPI se pueden definir modelos utilizando Pydantic. Un modelo en FastAPI es una clase que hereda de la clase <strong>BaseModel</strong> de Pydantic y define los campos que componen el modelo. A continuación se muestra un ejemplo de un modelo en FastAPI, para este ejemplo vamos a crear una tienda de vehiculos:</p>
+<p>En el capítulo anterior aprendimos acerca de la creación de modelos en FastAPI utilizando Pydantic. En este capítulo veremos cómo definir rutas y validaciones en FastAPI.</p>
+<section id="definición-de-rutas-en-fastapi" class="level2">
+<h2 class="anchored" data-anchor-id="definición-de-rutas-en-fastapi">Definición de rutas en FastAPI</h2>
+<p>En FastAPI se pueden definir rutas utilizando decoradores. <strong>Un decorador es una función que toma otra función y extiende su funcionalidad sin modificarla</strong>. En FastAPI, los decoradores se utilizan para <strong>definir rutas en la API</strong>. A continuación se muestra un ejemplo de un Sistema de Inventario para aprender cómo definir una ruta en FastAPI:</p>
 <p>El proyecto tendrá la siguiente estructura:</p>
 <pre class="plaintext"><code>proyecto/
 │
 ├── app/
 │   ├── __init__.py
 │   ├── main.py
-│   ├── models.py
+|   |── models.py
+|   |── routes.py
 │
 ├── .gitignore
 ├── README.md
 ├── requirements.txt</code></pre>
-<p>En el directorio <strong>app/</strong> se encuentra el archivo <strong>models.py</strong> que contiene la definición del modelo <strong>Vehicle</strong>. A continuación se muestra el contenido del archivo <strong>models.py</strong>:</p>
+<p>En el directorio <strong>app/</strong> se encuentra el archivo <strong>routes.py</strong> que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para un Sistema de Inventario. A continuación se muestra el contenido del archivo <strong>models</strong>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Vehicle(BaseModel):</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    make: <span class="bu">str</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    model: <span class="bu">str</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    year: <span class="bu">int</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    price: <span class="bu">float</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>En el ejemplo anterior se define un modelo llamado <strong>Vehicle</strong> que hereda de la clase <strong>BaseModel</strong> de Pydantic. El modelo <strong>Vehicle</strong> tiene los siguientes campos:</p>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Item(BaseModel):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    description: <span class="bu">str</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    price: <span class="bu">float</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    tax: <span class="bu">float</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el ejemplo anterior se define un modelo llamado <strong>Item</strong> que hereda de la clase <strong>BaseModel</strong> de Pydantic. El modelo <strong>Item</strong> tiene los siguientes campos:</p>
 <ul>
-<li><strong>make</strong>: Campo de tipo <strong>str</strong> que representa la marca del vehículo.</li>
-<li><strong>model</strong>: Campo de tipo <strong>str</strong> que representa el modelo del vehículo.</li>
-<li><strong>year</strong>: Campo de tipo <strong>int</strong> que representa el año del vehículo.</li>
-<li><strong>price</strong>: Campo de tipo <strong>float</strong> que representa el precio del vehículo.</li>
+<li><strong>id</strong>: Campo de tipo <strong>int</strong> que representa el identificador del artículo.</li>
+<li><strong>name</strong>: Campo de tipo <strong>str</strong> que representa el nombre del artículo.</li>
+<li><strong>description</strong>: Campo de tipo <strong>str</strong> que representa la descripción del artículo.</li>
+<li><strong>price</strong>: Campo de tipo <strong>float</strong> que representa el precio del artículo.</li>
+<li><strong>tax</strong>: Campo de tipo <strong>float</strong> que representa el impuesto del artículo.</li>
 </ul>
 </section>
-<section id="uso-de-modelos-en-fastapi" class="level2">
-<h2 class="anchored" data-anchor-id="uso-de-modelos-en-fastapi">Uso de modelos en FastAPI</h2>
-<p>Una vez que se ha definido un modelo en FastAPI, se puede utilizar el modelo en las rutas de la API para validar y serializar datos. A continuación se muestra un ejemplo de cómo utilizar el modelo <strong>Vehicle</strong> en una ruta de la API:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .models <span class="im">import</span> Vehicle</span>
+<section id="creación-de-las-rutas" class="level2">
+<h2 class="anchored" data-anchor-id="creación-de-las-rutas">Creación de las Rutas</h2>
+<p>En este proyecto tambien crearemos un CRUD para el modelo <strong>Item</strong>. A continuación se muestra el contenido del archivo <strong>routes.py</strong> que contiene la definición de las rutas de la API:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> APIRouter, HTTPException</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .models <span class="im">import</span> Item</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>router <span class="op">=</span> APIRouter()</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">@app.post</span>(<span class="st">"/vehicles/"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_vehicle(vehicle: Vehicle):</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> vehicle</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/vehicles/</span><span class="sc">{vehicle_id}</span><span class="st">"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_vehicle(vehicle_id: <span class="bu">int</span>):</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"vehicle_id"</span>: vehicle_id}</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">@app.put</span>(<span class="st">"/vehicles/</span><span class="sc">{vehicle_id}</span><span class="st">"</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_vehicle(vehicle_id: <span class="bu">int</span>, vehicle: Vehicle):</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"vehicle_id"</span>: vehicle_id, <span class="st">"vehicle"</span>: vehicle}</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="at">@app.delete</span>(<span class="st">"/vehicles/</span><span class="sc">{vehicle_id}</span><span class="st">"</span>)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> delete_vehicle(vehicle_id: <span class="bu">int</span>):</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"vehicle_id"</span>: vehicle_id}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>En el ejemplo anterior se importa la clase <strong>Vehicle</strong> del archivo <strong>models.py</strong> y se define una ruta de la API que recibe un objeto de tipo <strong>Vehicle</strong> en el cuerpo de la petición. La ruta de la API utiliza el decorador @app.post<strong>()</strong> para indicar que se trata de una petición de tipo POST. La operación <strong>create_vehicle()</strong> recibe un objeto de tipo <strong>Vehicle</strong> y retorna el mismo objeto.</p>
-<p>En el ejemplo anterior también se definen otras rutas de la API que utilizan el modelo <strong>Vehicle</strong> para validar y serializar datos. En la ruta de la API que recibe un parámetro de tipo <strong>int</strong> se utiliza el modelo <strong>Vehicle</strong> para serializar el objeto de tipo <strong>Vehicle</strong> y retornar el objeto serializado.</p>
-<p>En este capítulo aprendimos acerca de los modelos en FastAPI y cómo se pueden utilizar para validar y serializar datos en una API. En el próximo capítulo veremos cómo utilizar rutas y validaciones en FastAPI.</p>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>inventory <span class="op">=</span> []</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">@router.post</span>(<span class="st">"/items/"</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_item(item: Item):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    inventory.append(item)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> item</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">@router.get</span>(<span class="st">"/items/"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_items():</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> inventory</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="at">@router.get</span>(<span class="st">"/items/</span><span class="sc">{item_id}</span><span class="st">"</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_item(item_id: <span class="bu">int</span>):</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> inventory:</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> item.<span class="bu">id</span> <span class="op">==</span> item_id:</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> item</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">404</span>, detail<span class="op">=</span><span class="st">"Item not found"</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="at">@router.put</span>(<span class="st">"/items/</span><span class="sc">{item_id}</span><span class="st">"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_item(item_id: <span class="bu">int</span>, item: Item):</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(inventory)):</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> inventory[i].<span class="bu">id</span> <span class="op">==</span> item_id:</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            inventory[i] <span class="op">=</span> item</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> item</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">404</span>, detail<span class="op">=</span><span class="st">"Item not found"</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="at">@router.delete</span>(<span class="st">"/items/</span><span class="sc">{item_id}</span><span class="st">"</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> delete_item(item_id: <span class="bu">int</span>):</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(inventory)):</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> inventory[i].<span class="bu">id</span> <span class="op">==</span> item_id:</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>            item <span class="op">=</span> inventory.pop(i)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> item</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">404</span>, detail<span class="op">=</span><span class="st">"Item not found"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el ejemplo anterior se definen las siguientes rutas:</p>
+<ul>
+<li><strong>POST /items/</strong>: Ruta para crear un nuevo artículo en el inventario.</li>
+<li><strong>GET /items/</strong>: Ruta para obtener todos los artículos del inventario.</li>
+<li><strong>GET /items/{item_id}</strong>: Ruta para obtener un artículo específico del inventario.</li>
+<li><strong>PUT /items/{item_id}</strong>: Ruta para actualizar un artículo específico del inventario.</li>
+<li><strong>DELETE /items/{item_id}</strong>: Ruta para eliminar un artículo específico del inventario.</li>
+</ul>
 </section>
+<section id="uso-de-las-rutas-en-fastapi" class="level2">
+<h2 class="anchored" data-anchor-id="uso-de-las-rutas-en-fastapi">Uso de las Rutas en FastAPI</h2>
+<p>Para utilizar las rutas definidas en FastAPI, se deben importar las rutas en el archivo principal de la aplicación. A continuación se muestra un ejemplo de cómo importar las rutas en el archivo <strong>main.py</strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .routes <span class="im">import</span> router</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>app.include_router(router)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el ejemplo anterior se importa el objeto <strong>router</strong> que contiene las rutas definidas en el archivo <strong>routes.py</strong>. Luego, se utiliza el método <strong>include_router()</strong> para incluir las rutas en la aplicación FastAPI.</p>
+</section>
+<section id="probar-las-rutas-en-fastapi" class="level2">
+<h2 class="anchored" data-anchor-id="probar-las-rutas-en-fastapi">Probar las Rutas en FastAPI</h2>
+<p>Para ejecutar la aplicación, se debe utilizar el comando <strong>uvicorn</strong> en la terminal.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvicorn</span> app.main:app <span class="at">--reload</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para probar las rutas definidas en FastAPI, se puede utilizar la interfaz de usuario de Swagger que se genera automáticamente al ejecutar la aplicación. Para acceder a la interfaz de usuario de Swagger, se debe abrir un navegador web y visitar la URL <a href="http://localhost:8000/docs" class="uri"><strong>http://localhost:8000/docs</strong></a>.</p>
+<div class="center">
+<p><img src="images/paste-26.png" class="img-fluid"></p>
 </div>
+<p>En la interfaz de usuario de Swagger se pueden probar las rutas de la API enviando peticiones HTTP y visualizando las respuestas. Por ejemplo, se puede probar la ruta <strong>POST /items/</strong> para crear un nuevo artículo en el inventario enviando un objeto JSON con los datos del artículo.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Laptop"</span><span class="fu">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Dell Inspiron 15"</span><span class="fu">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"price"</span><span class="fu">:</span> <span class="fl">500.0</span><span class="fu">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"tax"</span><span class="fu">:</span> <span class="dv">0</span><span class="er">.</span><span class="dv">1</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="center">
+<p><img src="images/paste-32.png" class="img-fluid"></p>
+<p><img src="images/paste-33.png" class="img-fluid"></p>
+</div>
+<p>En el ejemplo anterior se envía una petición POST a la ruta <strong>/items/</strong> con un objeto JSON que representa un artículo. La API responde con el mismo objeto JSON que se envió en la petición. Tambien podemos probar las demás rutas de la API.</p>
+<p>Para probar la ruta <strong>GET /items/</strong> se puede enviar una petición GET a la ruta <strong>/items/</strong> para obtener todos los artículos del inventario.</p>
+<div class="center">
+<p><img src="images/paste-34.png" class="img-fluid"></p>
+<p><img src="images/paste-35.png" class="img-fluid"></p>
+</div>
+<p>Para probar la ruta <strong>GET /items/{item_id}</strong> se puede enviar una petición GET a la ruta <strong>/items/{item_id}</strong> para obtener un artículo específico del inventario.</p>
+<div class="center">
+<p><img src="images/paste-36.png" class="img-fluid"></p>
+<p><img src="images/paste-37.png" class="img-fluid"></p>
+</div>
+<p>Para probar la ruta <strong>PUT /items/{item_id}</strong> se puede enviar una petición PUT a la ruta <strong>/items/{item_id}</strong> con un objeto JSON que representa un artículo para actualizar un artículo específico del inventario.</p>
+<p>Actualizaremos body por el siguiente JSON</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Laptop"</span><span class="fu">,</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Lenovo Thinkpad"</span><span class="fu">,</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"price"</span><span class="fu">:</span> <span class="dv">350</span><span class="fu">,</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"tax"</span><span class="fu">:</span> <span class="dv">0</span><span class="er">.</span><span class="dv">1</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="center">
+<p><img src="images/paste-38.png" class="img-fluid"></p>
+<p><img src="images/paste-39.png" class="img-fluid"></p>
+</div>
+<p>Para probar la ruta <strong>DELETE /items/{item_id}</strong> se puede enviar una petición DELETE a la ruta <strong>/items/{item_id}</strong> para eliminar un artículo específico del inventario.</p>
+<div class="center">
+<p><img src="images/paste-41.png" class="img-fluid"></p>
+</div>
+<p>De esta forma se pueden probar las rutas definidas en FastAPI utilizando la interfaz de usuario de Swagger.</p>
+</section>
+<section id="validaciones-en-fastapi" class="level2">
+<h2 class="anchored" data-anchor-id="validaciones-en-fastapi">Validaciones en FastAPI</h2>
+<p>En FastAPI se pueden realizar validaciones de datos utilizando los modelos definidos con Pydantic. Los modelos de Pydantic permiten definir tipos de datos, valores por defecto, validaciones y documentación para los campos de un modelo. En el ejemplo anterior se definió un modelo <strong>Item</strong> con los campos <strong>id</strong>, <strong>name</strong>, <strong>description</strong>, <strong>price</strong> y <strong>tax</strong>. A continuación se muestran algunas validaciones que se pueden realizar con Pydantic:</p>
+<ul>
+<li><p><strong>Tipos de datos</strong>: Se pueden definir los tipos de datos de los campos de un modelo. Por ejemplo, el campo <strong>id</strong> es de tipo <strong>int</strong> y el campo <strong>name</strong> es de tipo <strong>str</strong>.</p></li>
+<li><p><strong>Valores por defecto</strong>: Se pueden definir valores por defecto para los campos de un modelo. Por ejemplo, el campo <strong>tax</strong> tiene un valor por defecto de <strong>0.0</strong>.</p></li>
+<li><p><strong>Validaciones</strong>: Se pueden definir validaciones para los campos de un modelo. Por ejemplo, se puede definir una validación para el campo <strong>price</strong> que requiera que el valor sea mayor que cero.</p></li>
+<li><p><strong>Documentación</strong>: Se puede añadir documentación a los campos de un modelo utilizando la anotación <strong>Field</strong> de Pydantic. Por ejemplo, se puede añadir una descripción al campo <strong>name</strong> utilizando la anotación <strong>Field</strong>.</p></li>
+</ul>
+<p>En el ejemplo anterior se utilizó el modelo <strong>Item</strong> para validar los datos de los artículos en el inventario. Al enviar una petición a la ruta <strong>POST /items/</strong> con un objeto JSON que no cumpla con las validaciones del modelo <strong>Item</strong>, la API responde con un error indicando que los datos no son válidos.</p>
+<p>Por ejemplo si enviarmos un peticion post con el siguiente JSON</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Laptop"</span><span class="fu">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Dell Inspiron 15"</span><span class="fu">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">"tax"</span><span class="fu">:</span> <span class="dv">0</span><span class="er">.</span><span class="dv">1</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La API responderá con un error indicando que el campo <strong>price</strong> es requerido.</p>
+<div class="center">
+<p><img src="images/paste-42.png" class="img-fluid"></p>
+</div>
+<p>De esta forma se pueden realizar validaciones de datos en FastAPI utilizando los modelos definidos con Pydantic.</p>
+<p>En este capítulo aprendimos acerca de cómo definir rutas en FastAPI utilizando decoradores y cómo realizar validaciones de datos utilizando los modelos definidos con Pydantic. En el próximo capítulo veremos cómo realizar API RESTful en FastAPI.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1110,13 +1222,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../unidades/unidad5/2_pydantic.html" class="pagination-link" aria-label="Pydantic en FastAPI">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Pydantic en FastAPI</span></span>
+      <a href="../../unidades/unidad5/3_modelos_en_fastapi.html" class="pagination-link" aria-label="Modelos en FastAPI">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Modelos en FastAPI</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html" class="pagination-link" aria-label="Rutas y Validaciones en FastAPI">
-        <span class="nav-page-text"><span class="chapter-title">Rutas y Validaciones en FastAPI</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../unidades/unidad5/5_apis_restful_con_fastapi.html" class="pagination-link" aria-label="APIs RESTful con FastAPI">
+        <span class="nav-page-text"><span class="chapter-title">APIs RESTful con FastAPI</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
