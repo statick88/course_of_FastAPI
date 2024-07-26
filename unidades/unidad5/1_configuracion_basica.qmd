@@ -1,7 +1,7 @@
 # Configuraciòn y Estructura
 
 ::: center
-![FastAPI](https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png){width="200px"}
+![FastAPI](../../images/logo-fastapi.png){width="200px"}
 :::
 
 Despues de conocer algunos conceptos fundamentales de Python, es momento de conocer FastAPI, un framework web moderno y rápido para crear APIs con Python 3.6+ basado en estándares abiertos y estándares de tipo Python (PEP 484).

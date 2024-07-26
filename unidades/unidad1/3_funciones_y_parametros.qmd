@@ -2,7 +2,7 @@
 # Funciones y Parámetros
 
 ::: {.center}
-![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+![Python](../../images/logo-python.png){width="200px"}
 :::
 
 En Python las funciones se definen con la palabra clave **def** seguida del nombre de la función y los parámetros entre paréntesis. A continuación se muestra un ejemplo de una función que suma dos números:

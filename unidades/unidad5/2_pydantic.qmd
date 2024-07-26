@@ -2,7 +2,7 @@
 # Pydantic en FastAPI
 
 :::{.center}
-![Pydantic](https://pbs.twimg.com/profile_images/1668281675774664705/EEzdj0tm_400x400.jpg){width="200px"}
+![Pydantic](../../images/logo-pydantic.jpg){width="200px"}
 :::
 
 ## ¿Qué es Pydantic?

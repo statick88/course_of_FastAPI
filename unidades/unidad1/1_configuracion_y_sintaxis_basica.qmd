@@ -2,7 +2,7 @@
 # Configuración y Sintaxis básica
 
 ::: {.center}
-![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+![Python](../../images/logo-python.png){width="200px"}
 :::
 
 Para empezar a trabajar con python es necesario tener instalado el interprete de python en tu computadora. Para ello puedes descargarlo desde la página oficial de python <https://www.python.org/>.

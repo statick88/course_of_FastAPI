@@ -2,7 +2,7 @@
 # Diccionarios y Conjuntos
 
 ::: {.center}
-![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+![Python](../../images/logo-python.png){width="200px"}
 :::
 
 En este capítulo vamos a aprender acerca de los diccionarios y los conjuntos en Python.

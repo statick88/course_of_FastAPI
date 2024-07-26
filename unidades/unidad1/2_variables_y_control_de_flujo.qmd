@@ -2,7 +2,7 @@
 # Variables y Control de flujo
 
 ::: {.center}
-![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png){width="200px"}
+![Python](../../images/logo-python.png){width="200px"}
 :::
 
 En python las variables se pueden declarar sin necesidad de especificar el tipo de dato, por lo que se puede asignar cualquier tipo de dato a una variable, sin embargo en FastAPI es necesario especificar el tipo de dato de las variables.
