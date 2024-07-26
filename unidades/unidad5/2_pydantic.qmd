@@ -1,4 +1,4 @@
-:::{.justify}
+::::: justify
 # Pydantic en FastAPI
 
 :::{.center}
@@ -56,6 +56,7 @@ Para utilizar el modelo de datos **Item** en una operación de la API se importa
 
 ``` python
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -101,5 +102,147 @@ En este ejemplo se ha utilizado Pydantic para definir un modelo de datos **Item*
 
 Para comprobar que todo funciona correctamente, se puede probar la operación **create_item()** con **Tunder Client** o **Postman** y verificar que se retorna un diccionario con los campos **name** y **price** del objeto **item**.
 
-En este capítulo se ha mostrado cómo utilizar Pydantic en FastAPI para definir modelos de datos y validar los datos que se reciben en las solicitudes. Pydantic es una librería que permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.
-::::
+# Otro Ejemplo
+
+En este nuevo ejemplo se va a definir un modelo de datos **User** con Pydantic y se va a utilizar un CRUD para la generación de la API. A continuación se muestra el código del ejemplo:
+
+La estructura del proyecto de esta unidad es la siguiente:
+
+``` plaintext
+proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt
+```
+
+El código de la API (main.py) es el siguiente:
+
+``` python
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class User(BaseModel):
+    id: int
+    name: str
+    email: str
+
+users = []
+
+@app.post("/users/")
+async def create_user(user: User):
+    users.append(user)
+    return user
+
+@app.get("/users/")
+async def read_users():
+    return users
+
+@app.get("/users/{user_id}")
+async def read_user(user_id: int):
+    for user in users:
+        if user.id == user_id:
+            return user
+    return {"message": "User not found"}
+
+@app.put("/users/{user_id}")
+async def update_user(user_id: int, user: User):
+    for i, u in enumerate(users):
+        if u.id == user_id:
+            users[i] = user
+            return user
+    return {"message": "User not found"}
+
+@app.delete("/users/{user_id}")
+async def delete_user(user_id: int):
+    for i, user in enumerate(users):
+        if user.id == user_id:
+            del users[i]
+            return {"message": "User deleted"}
+    return {"message": "User not found"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)
+```
+
+En el ejemplo anterior se define un modelo de datos **User** con tres campos: **id**, **name** y **email**. Se define una lista **users** para almacenar los usuarios y se definen las operaciones **create_user()**, **read_users()**, **read_user()**, **update_user()** y **delete_user()** para realizar las operaciones CRUD sobre los usuarios.
+
+Para probar el ejemplo se ejecuta el servidor web con el siguiente comando:
+
+``` bash
+uvicorn app.main:app --reload
+```
+
+Para probar las operaciones CRUD sobre los usuarios se puede utilizar una herramienta como **Tunder Client** o **Postman**. A continuación se muestra un ejemplo de cómo probar las operaciones CRUD sobre los usuarios con **Tunder Client**:
+
+Para crear un usuario se realiza una solicitud **POST** a la ruta **/users/** con un objeto **user**:
+
+``` plaintext
+POST /users/
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "user1",
+    "email": "dmsaavedra@espe.edu.ec"
+}
+```
+:::{.center}
+![](images/paste-21.png)
+:::
+
+Para obtener todos los usuarios se realiza una solicitud **GET** a la ruta **/users/**:
+
+``` plaintext
+GET /users/
+```
+:::{.center}
+![](images/paste-22.png)
+:::
+
+Para obtener un usuario se realiza una solicitud **GET** a la ruta **/users/{user_id}** con el **id** del usuario:
+
+``` plaintext
+GET /users/1
+```
+:::{.center}
+![](images/paste-23.png)
+:::
+
+Para actualizar un usuario se realiza una solicitud **PUT** a la ruta **/users/{user_id}** con el **id** del usuario y un objeto **user**:
+
+``` plaintext
+PUT /users/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "user2",
+    "email": "dmsaavedra@espe.edu.ec"
+}
+```
+:::{.center}
+![](images/paste-24.png)
+:::
+
+Para eliminar un usuario se realiza una solicitud **DELETE** a la ruta **/users/{user_id}** con el **id** del usuario:
+
+``` plaintext
+DELETE /users/1
+```
+
+:::{.center}
+![](images/paste-25.png)
+:::
+
+En este ejemplo se ha utilizado Pydantic para definir un modelo de datos **User** y validar los datos que se reciben en las solicitudes. Pydantic permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.
+
+En este capítulo se ha mostrado cómo utilizar Pydantic en FastAPI para definir modelos de datos y validar los datos que se reciben en las solicitudes. Pydantic es una librería de Python que permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.
+:::

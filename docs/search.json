@@ -194,184 +194,6 @@
     ]
   },
   {
-    "objectID": "unidades/laboratorios/lab1.html",
-    "href": "unidades/laboratorios/lab1.html",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "",
-    "text": "1. Configuración Inicial del Proyecto",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#configuración-inicial-del-proyecto",
-    "href": "unidades/laboratorios/lab1.html#configuración-inicial-del-proyecto",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "",
-    "text": "1.1. Crear un Proyecto Django\nAbre tu terminal y ejecuta los siguientes comandos para crear un nuevo proyecto Django:\npython -m venv env\nsource env/bin/activate\npip install django==4.2\ndjango-admin startproject ecommerce_project .\ncd ecommerce_project\n\n\n1.2 Crear una Aplicación Django\nDentro del directorio del proyecto, crea una aplicación para manejar el e-commerce:\npython manage.py startapp products\n\n\n1.3 Instalar Django Rest Framework\nInstala DRF usando pip:\npip install djangorestframework\n\n\n1.4 Configurar el Proyecto\nAñade ‘rest_framework’ y tu nueva aplicación ‘products’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:\nINSTALLED_APPS = [\n    # ... otras apps\n    'rest_framework',\n    'products',\n]",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#definir-el-modelo-de-datos",
-    "href": "unidades/laboratorios/lab1.html#definir-el-modelo-de-datos",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "2. Definir el Modelo de Datos",
-    "text": "2. Definir el Modelo de Datos\n\n2.1 Crear Modelos en products/models.py\nDefine los modelos para el e-commerce, como Product, Category, y Order:\nfrom django.db import models\n\nclass Category(models.Model):\n    name = models.CharField(max_length=100)\n\n    def __str__(self):\n        return self.name\n\nclass Product(models.Model):\n    name = models.CharField(max_length=100)\n    description = models.TextField()\n    price = models.DecimalField(max_digits=10, decimal_places=2)\n    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)\n    stock = models.PositiveIntegerField()\n\n    def __str__(self):\n        return self.name\n\nclass Order(models.Model):\n    product = models.ForeignKey(Product, related_name='orders', on_delete=models.CASCADE)\n    quantity = models.PositiveIntegerField()\n    total_price = models.DecimalField(max_digits=10, decimal_places=2)\n    order_date = models.DateTimeField(auto_now_add=True)\n\n    def __str__(self):\n        return f\"Order {self.id} - {self.product.name}\"\n\n\n2.2 Crear y Aplicar Migraciones\nGenera y aplica las migraciones para los modelos:\npython manage.py makemigrations\npython manage.py migrate",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#crear-serializers",
-    "href": "unidades/laboratorios/lab1.html#crear-serializers",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "3. Crear Serializers",
-    "text": "3. Crear Serializers\n\n3.1 Definir Serializers en products/serializers.py\nLos serializers se encargan de transformar los modelos en formatos JSON y viceversa:\nfrom rest_framework import serializers\nfrom .models import Category, Product, Order\n\nclass CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = '__all__'\n\nclass ProductSerializer(serializers.ModelSerializer):\n    category = CategorySerializer()\n\n    class Meta:\n        model = Product\n        fields = '__all__'\n\nclass OrderSerializer(serializers.ModelSerializer):\n    product = ProductSerializer()\n\n    class Meta:\n        model = Order\n        fields = '__all__'",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#crear-vistas-y-rutas",
-    "href": "unidades/laboratorios/lab1.html#crear-vistas-y-rutas",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "4. Crear Vistas y Rutas",
-    "text": "4. Crear Vistas y Rutas\n\n4.1 Definir Vistas en products/views.py\nUtiliza las vistas basadas en clases de DRF para crear y manejar las operaciones CRUD:\nfrom rest_framework import generics\nfrom .models import Category, Product, Order\nfrom .serializers import CategorySerializer, ProductSerializer, OrderSerializer\n\nclass CategoryListCreate(generics.ListCreateAPIView):\n    queryset = Category.objects.all()\n    serializer_class = CategorySerializer\n\nclass CategoryDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Category.objects.all()\n    serializer_class = CategorySerializer\n\nclass ProductListCreate(generics.ListCreateAPIView):\n    queryset = Product.objects.all()\n    serializer_class = ProductSerializer\n\nclass ProductDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Product.objects.all()\n    serializer_class = ProductSerializer\n\nclass OrderListCreate(generics.ListCreateAPIView):\n    queryset = Order.objects.all()\n    serializer_class = OrderSerializer\n\nclass OrderDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Order.objects.all()\n    serializer_class = OrderSerializer",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#configurar-rutas-en-productsurls.py",
-    "href": "unidades/laboratorios/lab1.html#configurar-rutas-en-productsurls.py",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "4.2 Configurar Rutas en products/urls.py",
-    "text": "4.2 Configurar Rutas en products/urls.py\nDefine las rutas para acceder a las vistas:\nfrom django.urls import path\nfrom . import views\n\nurlpatterns = [\n    path('categories/', views.CategoryListCreate.as_view(), name='category-list-create'),\n    path('categories/&lt;int:pk&gt;/', views.CategoryDetail.as_view(), name='category-detail'),\n    path('products/', views.ProductListCreate.as_view(), name='product-list-create'),\n    path('products/&lt;int:pk&gt;/', views.ProductDetail.as_view(), name='product-detail'),\n    path('orders/', views.OrderListCreate.as_view(), name='order-list-create'),\n    path('orders/&lt;int:pk&gt;/', views.OrderDetail.as_view(), name='order-detail'),\n]",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#incluir-las-urls-en-ecommerce_projecturls.py",
-    "href": "unidades/laboratorios/lab1.html#incluir-las-urls-en-ecommerce_projecturls.py",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "4.3 Incluir las URLs en ecommerce_project/urls.py",
-    "text": "4.3 Incluir las URLs en ecommerce_project/urls.py\nAñade las URLs de la aplicación al archivo principal de URLs del proyecto:\nfrom django.contrib import admin\nfrom django.urls import path, include\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('products.urls')),\n]",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#probar-la-api",
-    "href": "unidades/laboratorios/lab1.html#probar-la-api",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "5. Probar la API",
-    "text": "5. Probar la API\n\n5.1 Ejecutar el Servidor de Desarrollo\nInicia el servidor de desarrollo de Django:\npython manage.py runserver",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#probar-los-endpoints",
-    "href": "unidades/laboratorios/lab1.html#probar-los-endpoints",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "5.2 Probar los Endpoints",
-    "text": "5.2 Probar los Endpoints\nUtiliza herramientas como Postman o cURL para probar los endpoints:\n\nListar categorías: GET /api/categories/\nCrear categoría: POST /api/categories/\nObtener categoría específica: GET /api/categories/{id}/\nActualizar categoría: PUT /api/categories/{id}/\nEliminar categoría: DELETE /api/categories/{id}/\n\nY lo mismo para productos y pedidos.\n\nListar productos: GET /api/products/\nCrear producto: POST /api/products/\nObtener producto específico: GET /api/products/{id}/\nActualizar producto: PUT /api/products/{id}/\nEliminar producto: DELETE /api/products/{id}/",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#instalar-django-rest-swagger",
-    "href": "unidades/laboratorios/lab1.html#instalar-django-rest-swagger",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "1. Instalar Django Rest Swagger",
-    "text": "1. Instalar Django Rest Swagger\nInstala Django Rest Swagger usando pip:\npip install drf-yasg",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#configurar-django-rest-swagger",
-    "href": "unidades/laboratorios/lab1.html#configurar-django-rest-swagger",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "2. Configurar Django Rest Swagger",
-    "text": "2. Configurar Django Rest Swagger\nAñade ‘rest_framework_swagger’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:\nfrom django.contrib import admin\nfrom django.urls import path, include\nfrom rest_framework import permissions\nfrom drf_yasg.views import get_schema_view\nfrom drf_yasg import openapi\n\nschema_view = get_schema_view(\n    openapi.Info(\n        title=\"E-commerce API\",\n        default_version='v1',\n        description=\"API documentation for the E-commerce project\",\n        terms_of_service=\"https://www.google.com/policies/terms/\",\n        contact=openapi.Contact(email=\"contact@ecommerce.local\"),\n        license=openapi.License(name=\"BSD License\"),\n    ),\n    public=True,\n    permission_classes=(permissions.AllowAny,),\n)\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('products.urls')),\n    path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n]",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#configurar-las-urls",
-    "href": "unidades/laboratorios/lab1.html#configurar-las-urls",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "3. Configurar las URLs",
-    "text": "3. Configurar las URLs\nAñade las URLs de Swagger al archivo principal de URLs del proyecto:\n´´´\nfrom rest_framework_swagger.views import get_swagger_view\n\nschema_view = get_swagger_view(title='E-Commerce API')\n\nurlpatterns = [\n    ´´´\n    path('docs/', schema_view),\n]\n\n\n\n\n\n\nTip\n\n\n\nPara evitar un error común es necesario instalr setuptools con el siguiente comando:\npip install setuptools\n\n\nFinalmente es necesario agregar el siguiente código al final del archivo settings.py\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'drf_yasg',\n    'rest_framework',\n    'products',\n]\n\n´´´\nREST_FRAMEWORK = {\n    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'\n}\n\nCORS_ALLOWED_ORIGINS = [\n    \"http://localhost:8000\",\n    \"http://127.0.0.1:8000\",\n    # Añade otros orígenes permitidos aquí\n]",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#probar-la-documentación",
-    "href": "unidades/laboratorios/lab1.html#probar-la-documentación",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "4. Probar la Documentación",
-    "text": "4. Probar la Documentación",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Acerca de mi",
-    "section": "",
-    "text": "¡Hola! Soy Diego Saavedra, un experto en desarrollo avanzado de software e investigación. Mi amplia experiencia abarca diversas tecnologías, incluyendo Python (Django, Flask, Fast API) y JavaScript (Express, Next, React, Nestjs), así como también tengo conocimientos sólidos en bases de datos, arquitecturas de software y liderazgo ágil.\nMi pasión por la innovación, el desarrollo y la educación me ha llevado a destacarme como un profesional versátil e invaluable. Estoy constantemente listo para enfrentar desafíos técnicos y liderar proyectos de vanguardia.\nMi formación académica incluye el ser estudiante de Doctorado centrado en la inteligencia artificial, estoy enfocando mi investigación en la detección de TDA+H y Asperger mediante Visión Artificial a traves de algoritmos de Inteligencia Artificial. Además, poseo una Maestría en Ciencias de la Computación, con un enfoque en el Deep Learning (Convolutional Neural Network) y la Atención.\nCon esta sólida base académica y experiencia profesional, estoy preparado para aportar soluciones innovadoras y liderar equipos hacia el éxito en cualquier proyecto tecnológico que se me presente.\nAdemás, tengo experiencia en el desarrollo móvil utilizando Flutter y en la implementación de soluciones backend utilizando servicios Backend as a Service (BaaS) como Firebase y Supabase.\nEn el ámbito de la educación, he sido docente de programación en institutos y universidades, actualmente soy parte del Departamento de Ciencias de la Computación en la Universidad de las Fuerzas Armadas ESPE, donde he impartido asignaturas de desarrollo de Software Web con tecnologías como JavaScript, Java y C# asi como sus respectivos frameworks.\nMi experiencia en el desarrollo de software y la investigación me ha permitido adquirir habilidades de liderazgo, trabajo en equipo y comunicación efectiva. Estoy seguro de que mi experiencia y habilidades serán de gran valor para cualquier proyecto tecnológico que se me presente.\nEn este curso aprenderás a desarrollar aplicaciones web con Python y Django, una de las tecnologías más populares y poderosas para el desarrollo de aplicaciones web. A lo largo del curso, aprenderás a crear aplicaciones web desde cero, utilizando Django y Python, y a implementar funcionalidades avanzadas como integración con APIs externas y mucho más.\nTambien veremos tecnologías como Git, Github, Docker, Python, Django, Django Rest Framework, Html5, Css3, JavaScript, Nodejs, Npm y React.\n\n\n¡Estoy emocionado de compartir contigo mi conocimiento y experiencia en el desarrollo de aplicaciones web con Python y Django!"
-  },
-  {
-    "objectID": "license.html",
-    "href": "license.html",
-    "title": "Licencia",
-    "section": "",
-    "text": "Uso Permitido\nPuedes utilizar el contenido de este curso con fines educativos y personales. Puedes modificar los ejemplos y el código proporcionado para tus propias necesidades de aprendizaje."
-  },
-  {
-    "objectID": "license.html#restricciones",
-    "href": "license.html#restricciones",
-    "title": "Licencia",
-    "section": "Restricciones",
-    "text": "Restricciones\nNo tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de [Nombre de la Compañía]. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio."
-  },
-  {
-    "objectID": "license.html#atribución",
-    "href": "license.html#atribución",
-    "title": "Licencia",
-    "section": "Atribución",
-    "text": "Atribución\nSi compartes los ejemplos, los fragmentos de código o el contenido de este curso en línea, te pedimos que proporciones la atribución adecuada a [Nombre de la Compañía]."
-  },
-  {
-    "objectID": "license.html#cambios-en-la-licencia",
-    "href": "license.html#cambios-en-la-licencia",
-    "title": "Licencia",
-    "section": "Cambios en la Licencia",
-    "text": "Cambios en la Licencia\n[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.\nGracias por respetar nuestros derechos de autor y por tu comprensión."
-  },
-  {
     "objectID": "unidades/unidad5/1_configuracion_basica.html",
     "href": "unidades/unidad5/1_configuracion_basica.html",
     "title": "Configuraciòn y Estructura",
@@ -427,25 +249,192 @@
     ]
   },
   {
-    "objectID": "unidades/unidad5/2_pydantic.html",
-    "href": "unidades/unidad5/2_pydantic.html",
+    "objectID": "unidades/unidad5/2_pydantic.html#qué-es-pydantic",
+    "href": "unidades/unidad5/2_pydantic.html#qué-es-pydantic",
     "title": "Pydantic en FastAPI",
-    "section": "",
-    "text": "Pydantic\n\n\n\nEn FastAPI se utiliza Pydantic para definir los modelos de datos que se utilizan en la API. Pydantic es una librería que permite definir esquemas de datos y validarlos. A continuación se muestra un ejemplo de cómo definir un modelo de datos con Pydantic:\nfrom pydantic import BaseModel\n\nclass Item(BaseModel):\n    name: str\n    price: float\n    is_offer: bool = None\nEn el ejemplo anterior se define un modelo de datos Item que contiene tres campos: name, price e is_offer. El campo name es de tipo str, el campo price es de tipo float y el campo is_offer es de tipo bool con un valor por defecto de None.\nPara utilizar el modelo de datos Item en una operación de la API se importa la clase Item y se utiliza como tipo de parámetro en la operación. A continuación se muestra un ejemplo de cómo utilizar el modelo de datos Item en una operación de la API:\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n    is_offer: bool = None\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    return {\"name\": item.name, \"price\": item.price}\nEn el ejemplo anterior se importa la clase Item y se define una operación create_item() que recibe un parámetro item de tipo Item. En la operación se retorna un diccionario con los campos name y price del objeto item.\nPara probar la operación create_item() se puede utilizar una herramienta como curl o Postman para enviar una solicitud POST con un objeto item en formato JSON. A continuación se muestra un ejemplo de cómo enviar una solicitud POST con un objeto item en formato JSON utilizando curl:\ncurl -X POST \"http://localhost:8000/items/\" -H \"Content-Type: application/json\" -d '{\"name\": \"item1\", \"price\": 10.5}'\nEn el ejemplo anterior se envía una solicitud POST a la URL http://localhost:8000/items/ con un objeto item en formato JSON que contiene los campos name y price. Al enviar la solicitud se obtiene como respuesta un diccionario con los campos name y price del objeto item.\nEn resumen, en FastAPI se utiliza Pydantic para definir los modelos de datos que se utilizan en la API. Los modelos de datos definidos con Pydantic se utilizan como tipos de parámetros en las operaciones de la API y permiten validar los datos que se reciben en las solicitudes.",
+    "section": "¿Qué es Pydantic?",
+    "text": "¿Qué es Pydantic?\nPydantic es una librería de Python que permite definir esquemas de datos y validarlos. Pydantic se utiliza en FastAPI para definir los modelos de datos que se utilizan en la API y validar los datos que se reciben en las solicitudes.\nEn FastAPI se utiliza Pydantic para definir los modelos de datos que se utilizan en la API. Pydantic es una librería que permite definir esquemas de datos y validarlos.\nLa estructura del proyecto de esta unidad es la siguiente:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nA continuación se muestra un ejemplo de cómo definir un modelo de datos con Pydantic:\nEs necesario instalar Pydantic para poder utilizarlo en FastAPI. Para instalar Pydantic se utiliza el siguiente comando:\npip install pydantic\nSin olvidar nuestro framework FastAPI:\npip install fastapi uvicorn\nAhora se puede definir un modelo de datos con Pydantic. A continuación se muestra un ejemplo de cómo definir un modelo de datos con Pydantic:\nfrom pydantic import BaseModel\n\nclass Item(BaseModel):\n    name: str\n    price: float\n    is_offer: bool = None\nEn el ejemplo anterior se define un modelo de datos Item que contiene tres campos: name, price e is_offer. El campo name es de tipo str, el campo price es de tipo float y el campo is_offer es de tipo bool con un valor por defecto de None.\nPara utilizar el modelo de datos Item en una operación de la API se importa la clase Item y se utiliza como tipo de parámetro en la operación. A continuación se muestra un ejemplo de cómo utilizar el modelo de datos Item en una operación de la API:\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n    is_offer: bool = None\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    return {\"name\": item.name, \"price\": item.price}\nEn el ejemplo anterior se importa la clase Item y se define una operación create_item() que recibe un parámetro item de tipo Item. En la operación se retorna un diccionario con los campos name y price del objeto item.\nEs necesario probar nuestro código, para ello se ejecuta el servidor web con el siguiente comando:\nuvicorn app.main:app --reload\nPara probar la operación create_item() se puede utilizar una herramienta como Tunder Client o Postman. A continuación se muestra un ejemplo de cómo probar la operación create_item() con Tunder Client:\nPara realizar una solicitud POST a la ruta /items/ con un objeto item se utiliza la siguiente solicitud:\nPOST /items/\nContent-Type: application/json\n\n{\n    \"name\": \"item1\",\n    \"price\": 10.5\n}\nEn la solicitud anterior se envía un objeto item con los campos name y price. La operación create_item() recibe el objeto item y retorna un diccionario con los campos name y price del objeto item.\n\n\n\nEn este ejemplo se ha utilizado Pydantic para definir un modelo de datos Item y validar los datos que se reciben en la solicitud. Pydantic permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.\nPara comprobar que todo funciona correctamente, se puede probar la operación create_item() con Tunder Client o Postman y verificar que se retorna un diccionario con los campos name y price del objeto item.",
     "crumbs": [
       "Unidad 5: Introducción a FastAPI",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Pydantic en FastAPI</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad5/2_pydantic.html#qué-es-pydantic",
-    "href": "unidades/unidad5/2_pydantic.html#qué-es-pydantic",
-    "title": "Pydantic en FastAPI",
-    "section": "¿Qué es Pydantic?",
-    "text": "¿Qué es Pydantic?\nPydantic es una librería de Python que permite definir esquemas de datos y validarlos. Pydantic se utiliza en FastAPI para definir los modelos de datos que se utilizan en la API y validar los datos que se reciben en las solicitudes.\nEn FastAPI se utiliza Pydantic para definir los modelos de datos que se utilizan en la API. Pydantic es una librería que permite definir esquemas de datos y validarlos.\nLa estructura del proyecto de esta unidad es la siguiente:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nA continuación se muestra un ejemplo de cómo definir un modelo de datos con Pydantic:\nEs necesario instalar Pydantic para poder utilizarlo en FastAPI. Para instalar Pydantic se utiliza el siguiente comando:\npip install pydantic\nSin olvidar nuestro framework FastAPI:\npip install fastapi uvicorn\nAhora se puede definir un modelo de datos con Pydantic. A continuación se muestra un ejemplo de cómo definir un modelo de datos con Pydantic:\nfrom pydantic import BaseModel\n\nclass Item(BaseModel):\n    name: str\n    price: float\n    is_offer: bool = None\nEn el ejemplo anterior se define un modelo de datos Item que contiene tres campos: name, price e is_offer. El campo name es de tipo str, el campo price es de tipo float y el campo is_offer es de tipo bool con un valor por defecto de None.\nPara utilizar el modelo de datos Item en una operación de la API se importa la clase Item y se utiliza como tipo de parámetro en la operación. A continuación se muestra un ejemplo de cómo utilizar el modelo de datos Item en una operación de la API:\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n    is_offer: bool = None\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    return {\"name\": item.name, \"price\": item.price}\nEn el ejemplo anterior se importa la clase Item y se define una operación create_item() que recibe un parámetro item de tipo Item. En la operación se retorna un diccionario con los campos name y price del objeto item.\nEs necesario probar nuestro código, para ello se ejecuta el servidor web con el siguiente comando:\nuvicorn app.main:app --reload\nPara probar la operación create_item() se puede utilizar una herramienta como Tunder Client o Postman. A continuación se muestra un ejemplo de cómo probar la operación create_item() con Tunder Client:\nPara realizar una solicitud POST a la ruta /items/ con un objeto item se utiliza la siguiente solicitud:\nPOST /items/\nContent-Type: application/json\n\n{\n    \"name\": \"item1\",\n    \"price\": 10.5\n}\nEn la solicitud anterior se envía un objeto item con los campos name y price. La operación create_item() recibe el objeto item y retorna un diccionario con los campos name y price del objeto item.\n\n\n\nEn este ejemplo se ha utilizado Pydantic para definir un modelo de datos Item y validar los datos que se reciben en la solicitud. Pydantic permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.\nPara comprobar que todo funciona correctamente, se puede probar la operación create_item() con Tunder Client o Postman y verificar que se retorna un diccionario con los campos name y price del objeto item.\nEn este capítulo se ha mostrado cómo utilizar Pydantic en FastAPI para definir modelos de datos y validar los datos que se reciben en las solicitudes. Pydantic es una librería que permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.",
+    "objectID": "unidades/laboratorios/lab1.html",
+    "href": "unidades/laboratorios/lab1.html",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "",
+    "text": "1. Configuración Inicial del Proyecto",
     "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Pydantic en FastAPI</span>"
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
     ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#configuración-inicial-del-proyecto",
+    "href": "unidades/laboratorios/lab1.html#configuración-inicial-del-proyecto",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "",
+    "text": "1.1. Crear un Proyecto Django\nAbre tu terminal y ejecuta los siguientes comandos para crear un nuevo proyecto Django:\npython -m venv env\nsource env/bin/activate\npip install django==4.2\ndjango-admin startproject ecommerce_project .\ncd ecommerce_project\n\n\n1.2 Crear una Aplicación Django\nDentro del directorio del proyecto, crea una aplicación para manejar el e-commerce:\npython manage.py startapp products\n\n\n1.3 Instalar Django Rest Framework\nInstala DRF usando pip:\npip install djangorestframework\n\n\n1.4 Configurar el Proyecto\nAñade ‘rest_framework’ y tu nueva aplicación ‘products’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:\nINSTALLED_APPS = [\n    # ... otras apps\n    'rest_framework',\n    'products',\n]",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#definir-el-modelo-de-datos",
+    "href": "unidades/laboratorios/lab1.html#definir-el-modelo-de-datos",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "2. Definir el Modelo de Datos",
+    "text": "2. Definir el Modelo de Datos\n\n2.1 Crear Modelos en products/models.py\nDefine los modelos para el e-commerce, como Product, Category, y Order:\nfrom django.db import models\n\nclass Category(models.Model):\n    name = models.CharField(max_length=100)\n\n    def __str__(self):\n        return self.name\n\nclass Product(models.Model):\n    name = models.CharField(max_length=100)\n    description = models.TextField()\n    price = models.DecimalField(max_digits=10, decimal_places=2)\n    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)\n    stock = models.PositiveIntegerField()\n\n    def __str__(self):\n        return self.name\n\nclass Order(models.Model):\n    product = models.ForeignKey(Product, related_name='orders', on_delete=models.CASCADE)\n    quantity = models.PositiveIntegerField()\n    total_price = models.DecimalField(max_digits=10, decimal_places=2)\n    order_date = models.DateTimeField(auto_now_add=True)\n\n    def __str__(self):\n        return f\"Order {self.id} - {self.product.name}\"\n\n\n2.2 Crear y Aplicar Migraciones\nGenera y aplica las migraciones para los modelos:\npython manage.py makemigrations\npython manage.py migrate",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#crear-serializers",
+    "href": "unidades/laboratorios/lab1.html#crear-serializers",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "3. Crear Serializers",
+    "text": "3. Crear Serializers\n\n3.1 Definir Serializers en products/serializers.py\nLos serializers se encargan de transformar los modelos en formatos JSON y viceversa:\nfrom rest_framework import serializers\nfrom .models import Category, Product, Order\n\nclass CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = '__all__'\n\nclass ProductSerializer(serializers.ModelSerializer):\n    category = CategorySerializer()\n\n    class Meta:\n        model = Product\n        fields = '__all__'\n\nclass OrderSerializer(serializers.ModelSerializer):\n    product = ProductSerializer()\n\n    class Meta:\n        model = Order\n        fields = '__all__'",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#crear-vistas-y-rutas",
+    "href": "unidades/laboratorios/lab1.html#crear-vistas-y-rutas",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "4. Crear Vistas y Rutas",
+    "text": "4. Crear Vistas y Rutas\n\n4.1 Definir Vistas en products/views.py\nUtiliza las vistas basadas en clases de DRF para crear y manejar las operaciones CRUD:\nfrom rest_framework import generics\nfrom .models import Category, Product, Order\nfrom .serializers import CategorySerializer, ProductSerializer, OrderSerializer\n\nclass CategoryListCreate(generics.ListCreateAPIView):\n    queryset = Category.objects.all()\n    serializer_class = CategorySerializer\n\nclass CategoryDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Category.objects.all()\n    serializer_class = CategorySerializer\n\nclass ProductListCreate(generics.ListCreateAPIView):\n    queryset = Product.objects.all()\n    serializer_class = ProductSerializer\n\nclass ProductDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Product.objects.all()\n    serializer_class = ProductSerializer\n\nclass OrderListCreate(generics.ListCreateAPIView):\n    queryset = Order.objects.all()\n    serializer_class = OrderSerializer\n\nclass OrderDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Order.objects.all()\n    serializer_class = OrderSerializer",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#configurar-rutas-en-productsurls.py",
+    "href": "unidades/laboratorios/lab1.html#configurar-rutas-en-productsurls.py",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "4.2 Configurar Rutas en products/urls.py",
+    "text": "4.2 Configurar Rutas en products/urls.py\nDefine las rutas para acceder a las vistas:\nfrom django.urls import path\nfrom . import views\n\nurlpatterns = [\n    path('categories/', views.CategoryListCreate.as_view(), name='category-list-create'),\n    path('categories/&lt;int:pk&gt;/', views.CategoryDetail.as_view(), name='category-detail'),\n    path('products/', views.ProductListCreate.as_view(), name='product-list-create'),\n    path('products/&lt;int:pk&gt;/', views.ProductDetail.as_view(), name='product-detail'),\n    path('orders/', views.OrderListCreate.as_view(), name='order-list-create'),\n    path('orders/&lt;int:pk&gt;/', views.OrderDetail.as_view(), name='order-detail'),\n]",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#incluir-las-urls-en-ecommerce_projecturls.py",
+    "href": "unidades/laboratorios/lab1.html#incluir-las-urls-en-ecommerce_projecturls.py",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "4.3 Incluir las URLs en ecommerce_project/urls.py",
+    "text": "4.3 Incluir las URLs en ecommerce_project/urls.py\nAñade las URLs de la aplicación al archivo principal de URLs del proyecto:\nfrom django.contrib import admin\nfrom django.urls import path, include\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('products.urls')),\n]",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#probar-la-api",
+    "href": "unidades/laboratorios/lab1.html#probar-la-api",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "5. Probar la API",
+    "text": "5. Probar la API\n\n5.1 Ejecutar el Servidor de Desarrollo\nInicia el servidor de desarrollo de Django:\npython manage.py runserver",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#probar-los-endpoints",
+    "href": "unidades/laboratorios/lab1.html#probar-los-endpoints",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "5.2 Probar los Endpoints",
+    "text": "5.2 Probar los Endpoints\nUtiliza herramientas como Postman o cURL para probar los endpoints:\n\nListar categorías: GET /api/categories/\nCrear categoría: POST /api/categories/\nObtener categoría específica: GET /api/categories/{id}/\nActualizar categoría: PUT /api/categories/{id}/\nEliminar categoría: DELETE /api/categories/{id}/\n\nY lo mismo para productos y pedidos.\n\nListar productos: GET /api/products/\nCrear producto: POST /api/products/\nObtener producto específico: GET /api/products/{id}/\nActualizar producto: PUT /api/products/{id}/\nEliminar producto: DELETE /api/products/{id}/",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#instalar-django-rest-swagger",
+    "href": "unidades/laboratorios/lab1.html#instalar-django-rest-swagger",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "1. Instalar Django Rest Swagger",
+    "text": "1. Instalar Django Rest Swagger\nInstala Django Rest Swagger usando pip:\npip install drf-yasg",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#configurar-django-rest-swagger",
+    "href": "unidades/laboratorios/lab1.html#configurar-django-rest-swagger",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "2. Configurar Django Rest Swagger",
+    "text": "2. Configurar Django Rest Swagger\nAñade ‘rest_framework_swagger’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:\nfrom django.contrib import admin\nfrom django.urls import path, include\nfrom rest_framework import permissions\nfrom drf_yasg.views import get_schema_view\nfrom drf_yasg import openapi\n\nschema_view = get_schema_view(\n    openapi.Info(\n        title=\"E-commerce API\",\n        default_version='v1',\n        description=\"API documentation for the E-commerce project\",\n        terms_of_service=\"https://www.google.com/policies/terms/\",\n        contact=openapi.Contact(email=\"contact@ecommerce.local\"),\n        license=openapi.License(name=\"BSD License\"),\n    ),\n    public=True,\n    permission_classes=(permissions.AllowAny,),\n)\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('products.urls')),\n    path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n]",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#configurar-las-urls",
+    "href": "unidades/laboratorios/lab1.html#configurar-las-urls",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "3. Configurar las URLs",
+    "text": "3. Configurar las URLs\nAñade las URLs de Swagger al archivo principal de URLs del proyecto:\n´´´\nfrom rest_framework_swagger.views import get_swagger_view\n\nschema_view = get_swagger_view(title='E-Commerce API')\n\nurlpatterns = [\n    ´´´\n    path('docs/', schema_view),\n]\n\n\n\n\n\n\nTip\n\n\n\nPara evitar un error común es necesario instalr setuptools con el siguiente comando:\npip install setuptools\n\n\nFinalmente es necesario agregar el siguiente código al final del archivo settings.py\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'drf_yasg',\n    'rest_framework',\n    'products',\n]\n\n´´´\nREST_FRAMEWORK = {\n    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'\n}\n\nCORS_ALLOWED_ORIGINS = [\n    \"http://localhost:8000\",\n    \"http://127.0.0.1:8000\",\n    # Añade otros orígenes permitidos aquí\n]",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/lab1.html#probar-la-documentación",
+    "href": "unidades/laboratorios/lab1.html#probar-la-documentación",
+    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
+    "section": "4. Probar la Documentación",
+    "text": "4. Probar la Documentación",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Acerca de mi",
+    "section": "",
+    "text": "¡Hola! Soy Diego Saavedra, un experto en desarrollo avanzado de software e investigación. Mi amplia experiencia abarca diversas tecnologías, incluyendo Python (Django, Flask, Fast API) y JavaScript (Express, Next, React, Nestjs), así como también tengo conocimientos sólidos en bases de datos, arquitecturas de software y liderazgo ágil.\nMi pasión por la innovación, el desarrollo y la educación me ha llevado a destacarme como un profesional versátil e invaluable. Estoy constantemente listo para enfrentar desafíos técnicos y liderar proyectos de vanguardia.\nMi formación académica incluye el ser estudiante de Doctorado centrado en la inteligencia artificial, estoy enfocando mi investigación en la detección de TDA+H y Asperger mediante Visión Artificial a traves de algoritmos de Inteligencia Artificial. Además, poseo una Maestría en Ciencias de la Computación, con un enfoque en el Deep Learning (Convolutional Neural Network) y la Atención.\nCon esta sólida base académica y experiencia profesional, estoy preparado para aportar soluciones innovadoras y liderar equipos hacia el éxito en cualquier proyecto tecnológico que se me presente.\nAdemás, tengo experiencia en el desarrollo móvil utilizando Flutter y en la implementación de soluciones backend utilizando servicios Backend as a Service (BaaS) como Firebase y Supabase.\nEn el ámbito de la educación, he sido docente de programación en institutos y universidades, actualmente soy parte del Departamento de Ciencias de la Computación en la Universidad de las Fuerzas Armadas ESPE, donde he impartido asignaturas de desarrollo de Software Web con tecnologías como JavaScript, Java y C# asi como sus respectivos frameworks.\nMi experiencia en el desarrollo de software y la investigación me ha permitido adquirir habilidades de liderazgo, trabajo en equipo y comunicación efectiva. Estoy seguro de que mi experiencia y habilidades serán de gran valor para cualquier proyecto tecnológico que se me presente.\nEn este curso aprenderás a desarrollar aplicaciones web con Python y Django, una de las tecnologías más populares y poderosas para el desarrollo de aplicaciones web. A lo largo del curso, aprenderás a crear aplicaciones web desde cero, utilizando Django y Python, y a implementar funcionalidades avanzadas como integración con APIs externas y mucho más.\nTambien veremos tecnologías como Git, Github, Docker, Python, Django, Django Rest Framework, Html5, Css3, JavaScript, Nodejs, Npm y React.\n\n\n¡Estoy emocionado de compartir contigo mi conocimiento y experiencia en el desarrollo de aplicaciones web con Python y Django!"
+  },
+  {
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "Licencia",
+    "section": "",
+    "text": "Uso Permitido\nPuedes utilizar el contenido de este curso con fines educativos y personales. Puedes modificar los ejemplos y el código proporcionado para tus propias necesidades de aprendizaje."
+  },
+  {
+    "objectID": "license.html#restricciones",
+    "href": "license.html#restricciones",
+    "title": "Licencia",
+    "section": "Restricciones",
+    "text": "Restricciones\nNo tienes permitido redistribuir, vender o utilizar el contenido de este curso para fines comerciales sin el permiso explícito de [Nombre de la Compañía]. Además, no tienes permitido copiar o duplicar el contenido del curso y presentarlo como propio."
+  },
+  {
+    "objectID": "license.html#atribución",
+    "href": "license.html#atribución",
+    "title": "Licencia",
+    "section": "Atribución",
+    "text": "Atribución\nSi compartes los ejemplos, los fragmentos de código o el contenido de este curso en línea, te pedimos que proporciones la atribución adecuada a [Nombre de la Compañía]."
+  },
+  {
+    "objectID": "license.html#cambios-en-la-licencia",
+    "href": "license.html#cambios-en-la-licencia",
+    "title": "Licencia",
+    "section": "Cambios en la Licencia",
+    "text": "Cambios en la Licencia\n[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.\nGracias por respetar nuestros derechos de autor y por tu comprensión."
   }
 ]

@@ -514,17 +514,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>En el ejemplo anterior se define un modelo de datos <strong>Item</strong> que contiene tres campos: <strong>name</strong>, <strong>price</strong> e <strong>is_offer</strong>. El campo <strong>name</strong> es de tipo <strong>str</strong>, el campo <strong>price</strong> es de tipo <strong>float</strong> y el campo <strong>is_offer</strong> es de tipo <strong>bool</strong> con un valor por defecto de <strong>None</strong>.</p>
 <p>Para utilizar el modelo de datos <strong>Item</strong> en una operación de la API se importa la clase <strong>Item</strong> y se utiliza como tipo de parámetro en la operación. A continuación se muestra un ejemplo de cómo utilizar el modelo de datos <strong>Item</strong> en una operación de la API:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Item(BaseModel):</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    price: <span class="bu">float</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    is_offer: <span class="bu">bool</span> <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="at">@app.post</span>(<span class="st">"/items/"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> create_item(item: Item):</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"name"</span>: item.name, <span class="st">"price"</span>: item.price}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Item(BaseModel):</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    price: <span class="bu">float</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    is_offer: <span class="bu">bool</span> <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">@app.post</span>(<span class="st">"/items/"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> create_item(item: Item):</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"name"</span>: item.name, <span class="st">"price"</span>: item.price}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>En el ejemplo anterior se importa la clase <strong>Item</strong> y se define una operación <strong>create_item()</strong> que recibe un parámetro <strong>item</strong> de tipo <strong>Item</strong>. En la operación se retorna un diccionario con los campos <strong>name</strong> y <strong>price</strong> del objeto <strong>item</strong>.</p>
 <p>Es necesario probar nuestro código, para ello se ejecuta el servidor web con el siguiente comando:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvicorn</span> app.main:app <span class="at">--reload</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -543,7 +544,113 @@ Content-Type: application/json
 </div>
 <p>En este ejemplo se ha utilizado Pydantic para definir un modelo de datos <strong>Item</strong> y validar los datos que se reciben en la solicitud. Pydantic permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.</p>
 <p>Para comprobar que todo funciona correctamente, se puede probar la operación <strong>create_item()</strong> con <strong>Tunder Client</strong> o <strong>Postman</strong> y verificar que se retorna un diccionario con los campos <strong>name</strong> y <strong>price</strong> del objeto <strong>item</strong>.</p>
-<p>En este capítulo se ha mostrado cómo utilizar Pydantic en FastAPI para definir modelos de datos y validar los datos que se reciben en las solicitudes. Pydantic es una librería que permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.</p>
+</section>
+<section id="otro-ejemplo" class="level1">
+<h1>Otro Ejemplo</h1>
+<p>En este nuevo ejemplo se va a definir un modelo de datos <strong>User</strong> con Pydantic y se va a utilizar un CRUD para la generación de la API. A continuación se muestra el código del ejemplo:</p>
+<p>La estructura del proyecto de esta unidad es la siguiente:</p>
+<pre class="plaintext"><code>proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt</code></pre>
+<p>El código de la API (main.py) es el siguiente:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> User(BaseModel):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    email: <span class="bu">str</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>users <span class="op">=</span> []</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="at">@app.post</span>(<span class="st">"/users/"</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> create_user(user: User):</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    users.append(user)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> user</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/users/"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> read_users():</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> users</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/users/</span><span class="sc">{user_id}</span><span class="st">"</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> read_user(user_id: <span class="bu">int</span>):</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> user <span class="kw">in</span> users:</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> user.<span class="bu">id</span> <span class="op">==</span> user_id:</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> user</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"message"</span>: <span class="st">"User not found"</span>}</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="at">@app.put</span>(<span class="st">"/users/</span><span class="sc">{user_id}</span><span class="st">"</span>)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> update_user(user_id: <span class="bu">int</span>, user: User):</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, u <span class="kw">in</span> <span class="bu">enumerate</span>(users):</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> u.<span class="bu">id</span> <span class="op">==</span> user_id:</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>            users[i] <span class="op">=</span> user</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> user</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"message"</span>: <span class="st">"User not found"</span>}</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="at">@app.delete</span>(<span class="st">"/users/</span><span class="sc">{user_id}</span><span class="st">"</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> delete_user(user_id: <span class="bu">int</span>):</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, user <span class="kw">in</span> <span class="bu">enumerate</span>(users):</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> user.<span class="bu">id</span> <span class="op">==</span> user_id:</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>            <span class="kw">del</span> users[i]</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> {<span class="st">"message"</span>: <span class="st">"User deleted"</span>}</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"message"</span>: <span class="st">"User not found"</span>}</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> uvicorn</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    uvicorn.run(app, host<span class="op">=</span><span class="st">"localhost"</span>, port<span class="op">=</span><span class="dv">8000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el ejemplo anterior se define un modelo de datos <strong>User</strong> con tres campos: <strong>id</strong>, <strong>name</strong> y <strong>email</strong>. Se define una lista <strong>users</strong> para almacenar los usuarios y se definen las operaciones <strong>create_user()</strong>, <strong>read_users()</strong>, <strong>read_user()</strong>, <strong>update_user()</strong> y <strong>delete_user()</strong> para realizar las operaciones CRUD sobre los usuarios.</p>
+<p>Para probar el ejemplo se ejecuta el servidor web con el siguiente comando:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvicorn</span> app.main:app <span class="at">--reload</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para probar las operaciones CRUD sobre los usuarios se puede utilizar una herramienta como <strong>Tunder Client</strong> o <strong>Postman</strong>. A continuación se muestra un ejemplo de cómo probar las operaciones CRUD sobre los usuarios con <strong>Tunder Client</strong>:</p>
+<p>Para crear un usuario se realiza una solicitud <strong>POST</strong> a la ruta <strong>/users/</strong> con un objeto <strong>user</strong>:</p>
+<pre class="plaintext"><code>POST /users/
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "user1",
+    "email": "dmsaavedra@espe.edu.ec"
+}</code></pre>
+<div class="center">
+<p><img src="images/paste-21.png" class="img-fluid"></p>
+</div>
+<p>Para obtener todos los usuarios se realiza una solicitud <strong>GET</strong> a la ruta <strong>/users/</strong>:</p>
+<pre class="plaintext"><code>GET /users/</code></pre>
+<div class="center">
+<p><img src="images/paste-22.png" class="img-fluid"></p>
+</div>
+<p>Para obtener un usuario se realiza una solicitud <strong>GET</strong> a la ruta <strong>/users/{user_id}</strong> con el <strong>id</strong> del usuario:</p>
+<pre class="plaintext"><code>GET /users/1</code></pre>
+<div class="center">
+<p><img src="images/paste-23.png" class="img-fluid"></p>
+</div>
+<p>Para actualizar un usuario se realiza una solicitud <strong>PUT</strong> a la ruta <strong>/users/{user_id}</strong> con el <strong>id</strong> del usuario y un objeto <strong>user</strong>:</p>
+<pre class="plaintext"><code>PUT /users/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "user2",
+    "email": "dmsaavedra@espe.edu.ec"
+}</code></pre>
+<div class="center">
+<p><img src="images/paste-24.png" class="img-fluid"></p>
+</div>
+<p>Para eliminar un usuario se realiza una solicitud <strong>DELETE</strong> a la ruta <strong>/users/{user_id}</strong> con el <strong>id</strong> del usuario:</p>
+<pre class="plaintext"><code>DELETE /users/1</code></pre>
+<div class="center">
+<p><img src="images/paste-25.png" class="img-fluid"></p>
+</div>
+<p>En este ejemplo se ha utilizado Pydantic para definir un modelo de datos <strong>User</strong> y validar los datos que se reciben en las solicitudes. Pydantic permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.</p>
+<p>En este capítulo se ha mostrado cómo utilizar Pydantic en FastAPI para definir modelos de datos y validar los datos que se reciben en las solicitudes. Pydantic es una librería de Python que permite definir esquemas de datos y validarlos, lo que facilita la creación de APIs con FastAPI.</p>
 </section>
 </div>
 
