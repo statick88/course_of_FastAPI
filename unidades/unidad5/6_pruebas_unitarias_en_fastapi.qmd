@@ -1,1 +1,126 @@
+:::{.justify}
 # Pruebas Unitarias en FastAPI
+
+En el capítulo anterior se creó una API RESTful con FastAPI. En este capítulo se mostrará cómo realizar pruebas unitarias a las rutas de la API.
+
+## Pruebas Unitarias
+
+Las pruebas unitarias son una técnica de programación que consiste en verificar que una unidad de código (como una función o un método) funcione correctamente. En el caso de una API RESTful, las pruebas unitarias se utilizan para verificar que las rutas de la API devuelvan la respuesta esperada.
+
+## Pruebas Unitarias en FastAPI
+
+FastAPI proporciona una forma sencilla de realizar pruebas unitarias a las rutas de la API. Para ello, se utiliza la biblioteca **pytest** y el módulo **test_app.py** de FastAPI.
+
+``` bash
+pip install pytest httpx 
+```
+
+A continuación se muestra un ejemplo de cómo realizar pruebas unitarias a las rutas de la API creada en el capítulo anterior:
+
+``` python
+import pytest
+from fastapi.testclient import TestClient
+from app.main import app
+from app.models import Adoption, Animal, Person
+
+client = TestClient(app)
+
+def test_create_adoption():
+    response = client.post("/adoptions/", json={
+        "id": 1,
+        "animal_id": 1,
+        "person_id": 1,
+        "date": "2023-07-30",
+        "status": "pending"
+    })
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 1,
+        "animal_id": 1,
+        "person_id": 1,
+        "date": "2023-07-30",
+        "status": "pending"
+    }
+
+def test_read_adoptions():
+    response = client.get("/adoptions/")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
+
+def test_read_adoption():
+    test_create_adoption()
+    response = client.get("/adoptions/1")
+    assert response.status_code == 200
+    assert response.json()["id"] == 1
+
+def test_create_animal():
+    response = client.post("/animals/", json={
+        "id": 1,
+        "name": "Buddy",
+        "species": "Dog",
+        "breed": "Golden Retriever"
+    })
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 1,
+        "name": "Buddy",
+        "species": "Dog",
+        "breed": "Golden Retriever"
+    }
+
+def test_read_animals():
+    response = client.get("/animals/")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
+
+def test_read_animal():
+    test_create_animal()  # Ensure there's at least one animal
+    response = client.get("/animals/1")
+    assert response.status_code == 200
+    assert response.json()["id"] == 1
+
+def test_create_person():
+    response = client.post("/persons/", json={
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "1234567890"
+    })
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "1234567890"
+    }
+
+def test_read_persons():
+    response = client.get("/persons/")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
+
+def test_read_person():
+    test_create_person()  # Ensure there's at least one person
+    response = client.get("/persons/1")
+    assert response.status_code == 200
+    assert response.json()["id"] == 1
+```
+
+En el ejemplo anterior se importa la clase **TestClient** de FastAPI y se crea una instancia de **TestClient** con la aplicación FastAPI. Luego se definen dos pruebas unitarias: una para verificar que la ruta **/adoptions/** devuelva una lista vacía de adopciones y otra para verificar que la ruta **/adoptions/** cree una nueva adopción con los datos proporcionados.
+
+Para ejecutar las pruebas unitarias, se utiliza el comando **pytest** en la terminal:
+
+``` bash
+pytest
+```
+
+Al ejecutar las pruebas unitarias, se mostrará el resultado de las pruebas en la terminal. Si todas las pruebas pasan, se mostrará un mensaje indicando que todas las pruebas han pasado correctamente.
+
+:::{.center}
+![](images/paste-52.png)
+:::
+
+En resumen, en este capítulo se mostró cómo realizar pruebas unitarias a las rutas de una API RESTful creada con FastAPI. Las pruebas unitarias son una técnica de programación que permite verificar que una unidad de código funcione correctamente y que la API devuelva la respuesta esperada.
+
+En el siguiente capítulo se mostrará cómo mejorar la optimización y el rendimiento.
+:::

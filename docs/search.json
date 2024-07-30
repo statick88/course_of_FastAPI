@@ -260,6 +260,226 @@
     ]
   },
   {
+    "objectID": "unidades/unidad5/3_modelos_en_fastapi.html#definición-de-modelos-en-fastapi",
+    "href": "unidades/unidad5/3_modelos_en_fastapi.html#definición-de-modelos-en-fastapi",
+    "title": "Modelos en FastAPI",
+    "section": "Definición de modelos en FastAPI",
+    "text": "Definición de modelos en FastAPI\nEn FastAPI se pueden definir modelos utilizando Pydantic. Un modelo en FastAPI es una clase que hereda de la clase BaseModel de Pydantic y define los campos que componen el modelo. A continuación se muestra un ejemplo de un modelo en FastAPI, para este ejemplo vamos a crear una tienda de vehiculos:\nEl proyecto tendrá la siguiente estructura:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n│   ├── models.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nEn el directorio app/ se encuentra el archivo models.py que contiene la definición del modelo Vehicle. A continuación se muestra el contenido del archivo models.py:\nfrom pydantic import BaseModel\n\nclass Vehicle(BaseModel):\n    make: str\n    model: str\n    year: int\n    price: float\nEn el ejemplo anterior se define un modelo llamado Vehicle que hereda de la clase BaseModel de Pydantic. El modelo Vehicle tiene los siguientes campos:\n\nmake: Campo de tipo str que representa la marca del vehículo.\nmodel: Campo de tipo str que representa el modelo del vehículo.\nyear: Campo de tipo int que representa el año del vehículo.\nprice: Campo de tipo float que representa el precio del vehículo.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Modelos en FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/3_modelos_en_fastapi.html#uso-de-modelos-en-fastapi",
+    "href": "unidades/unidad5/3_modelos_en_fastapi.html#uso-de-modelos-en-fastapi",
+    "title": "Modelos en FastAPI",
+    "section": "Uso de modelos en FastAPI",
+    "text": "Uso de modelos en FastAPI\nUna vez que se ha definido un modelo en FastAPI, se puede utilizar el modelo en las rutas de la API para validar y serializar datos. A continuación se muestra un ejemplo de cómo utilizar el modelo Vehicle en una ruta de la API:\nfrom fastapi import FastAPI\nfrom .models import Vehicle\n\napp = FastAPI()\n\n@app.post(\"/vehicles/\")\ndef create_vehicle(vehicle: Vehicle):\n    return vehicle\n\n@app.get(\"/vehicles/{vehicle_id}\")\ndef read_vehicle(vehicle_id: int):\n    return {\"vehicle_id\": vehicle_id}\n\n@app.put(\"/vehicles/{vehicle_id}\")\ndef update_vehicle(vehicle_id: int, vehicle: Vehicle):\n    return {\"vehicle_id\": vehicle_id, \"vehicle\": vehicle}\n\n@app.delete(\"/vehicles/{vehicle_id}\")\ndef delete_vehicle(vehicle_id: int):\n    return {\"vehicle_id\": vehicle_id}\nEn el ejemplo anterior se importa la clase Vehicle del archivo models.py y se define una ruta de la API que recibe un objeto de tipo Vehicle en el cuerpo de la petición. La ruta de la API utiliza el decorador @app.post() para indicar que se trata de una petición de tipo POST. La operación create_vehicle() recibe un objeto de tipo Vehicle y retorna el mismo objeto.\nEn el ejemplo anterior también se definen otras rutas de la API que utilizan el modelo Vehicle para validar y serializar datos. En la ruta de la API que recibe un parámetro de tipo int se utiliza el modelo Vehicle para serializar el objeto de tipo Vehicle y retornar el objeto serializado.\nEn este capítulo aprendimos acerca de los modelos en FastAPI y cómo se pueden utilizar para validar y serializar datos en una API. En el próximo capítulo veremos cómo utilizar rutas y validaciones en FastAPI.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Modelos en FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html",
+    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html",
+    "title": "Rutas y Validaciones en FastAPI",
+    "section": "",
+    "text": "Definición de rutas en FastAPI\nEn FastAPI se pueden definir rutas utilizando decoradores. Un decorador es una función que toma otra función y extiende su funcionalidad sin modificarla. En FastAPI, los decoradores se utilizan para definir rutas en la API. A continuación se muestra un ejemplo de un Sistema de Inventario para aprender cómo definir una ruta en FastAPI:\nEl proyecto tendrá la siguiente estructura:\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para un Sistema de Inventario. A continuación se muestra el contenido del archivo models:\nEn el ejemplo anterior se define un modelo llamado Item que hereda de la clase BaseModel de Pydantic. El modelo Item tiene los siguientes campos:",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#definición-de-rutas-en-fastapi",
+    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#definición-de-rutas-en-fastapi",
+    "title": "Rutas y Validaciones en FastAPI",
+    "section": "",
+    "text": "proyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n|   |── models.py\n|   |── routes.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\n\nfrom pydantic import BaseModel\n\nclass Item(BaseModel):\n    id: int\n    name: str\n    description: str\n    price: float\n    tax: float\n\n\nid: Campo de tipo int que representa el identificador del artículo.\nname: Campo de tipo str que representa el nombre del artículo.\ndescription: Campo de tipo str que representa la descripción del artículo.\nprice: Campo de tipo float que representa el precio del artículo.\ntax: Campo de tipo float que representa el impuesto del artículo.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#creación-de-las-rutas",
+    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#creación-de-las-rutas",
+    "title": "Rutas y Validaciones en FastAPI",
+    "section": "Creación de las Rutas",
+    "text": "Creación de las Rutas\nEn este proyecto tambien crearemos un CRUD para el modelo Item. A continuación se muestra el contenido del archivo routes.py que contiene la definición de las rutas de la API:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Item\n\nrouter = APIRouter()\n\ninventory = []\n\n@router.post(\"/items/\")\ndef create_item(item: Item):\n    inventory.append(item)\n    return item\n\n@router.get(\"/items/\")\ndef read_items():\n    return inventory\n\n@router.get(\"/items/{item_id}\")\ndef read_item(item_id: int):\n    for item in inventory:\n        if item.id == item_id:\n            return item\n    raise HTTPException(status_code=404, detail=\"Item not found\")\n\n@router.put(\"/items/{item_id}\")\ndef update_item(item_id: int, item: Item):\n    for i in range(len(inventory)):\n        if inventory[i].id == item_id:\n            inventory[i] = item\n            return item\n    raise HTTPException(status_code=404, detail=\"Item not found\")\n\n@router.delete(\"/items/{item_id}\")\ndef delete_item(item_id: int):\n    for i in range(len(inventory)):\n        if inventory[i].id == item_id:\n            item = inventory.pop(i)\n            return item\n    raise HTTPException(status_code=404, detail=\"Item not found\")\nEn el ejemplo anterior se definen las siguientes rutas:\n\nPOST /items/: Ruta para crear un nuevo artículo en el inventario.\nGET /items/: Ruta para obtener todos los artículos del inventario.\nGET /items/{item_id}: Ruta para obtener un artículo específico del inventario.\nPUT /items/{item_id}: Ruta para actualizar un artículo específico del inventario.\nDELETE /items/{item_id}: Ruta para eliminar un artículo específico del inventario.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#uso-de-las-rutas-en-fastapi",
+    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#uso-de-las-rutas-en-fastapi",
+    "title": "Rutas y Validaciones en FastAPI",
+    "section": "Uso de las Rutas en FastAPI",
+    "text": "Uso de las Rutas en FastAPI\nPara utilizar las rutas definidas en FastAPI, se deben importar las rutas en el archivo principal de la aplicación. A continuación se muestra un ejemplo de cómo importar las rutas en el archivo main.py:\nfrom fastapi import FastAPI\nfrom .routes import router\n\napp = FastAPI()\n\napp.include_router(router)\nEn el ejemplo anterior se importa el objeto router que contiene las rutas definidas en el archivo routes.py. Luego, se utiliza el método include_router() para incluir las rutas en la aplicación FastAPI.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#probar-las-rutas-en-fastapi",
+    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#probar-las-rutas-en-fastapi",
+    "title": "Rutas y Validaciones en FastAPI",
+    "section": "Probar las Rutas en FastAPI",
+    "text": "Probar las Rutas en FastAPI\nPara ejecutar la aplicación, se debe utilizar el comando uvicorn en la terminal.\nuvicorn app.main:app --reload\nPara probar las rutas definidas en FastAPI, se puede utilizar la interfaz de usuario de Swagger que se genera automáticamente al ejecutar la aplicación. Para acceder a la interfaz de usuario de Swagger, se debe abrir un navegador web y visitar la URL http://localhost:8000/docs.\n\n\n\nEn la interfaz de usuario de Swagger se pueden probar las rutas de la API enviando peticiones HTTP y visualizando las respuestas. Por ejemplo, se puede probar la ruta POST /items/ para crear un nuevo artículo en el inventario enviando un objeto JSON con los datos del artículo.\nEjemplo:\n{\n    \"id\": 1,\n    \"name\": \"Laptop\",\n    \"description\": \"Dell Inspiron 15\",\n    \"price\": 500.0,\n    \"tax\": 0.1\n}\n\n\n\n\nEn el ejemplo anterior se envía una petición POST a la ruta /items/ con un objeto JSON que representa un artículo. La API responde con el mismo objeto JSON que se envió en la petición. Tambien podemos probar las demás rutas de la API.\nPara probar la ruta GET /items/ se puede enviar una petición GET a la ruta /items/ para obtener todos los artículos del inventario.\n\n\n\n\nPara probar la ruta GET /items/{item_id} se puede enviar una petición GET a la ruta /items/{item_id} para obtener un artículo específico del inventario.\n\n\n\n\nPara probar la ruta PUT /items/{item_id} se puede enviar una petición PUT a la ruta /items/{item_id} con un objeto JSON que representa un artículo para actualizar un artículo específico del inventario.\nActualizaremos body por el siguiente JSON\n{ \n    \"id\": 1, \n    \"name\": \"Laptop\", \n    \"description\": \"Lenovo Thinkpad\", \n    \"price\": 350, \n    \"tax\": 0.1 \n}\n\n\n\n\nPara probar la ruta DELETE /items/{item_id} se puede enviar una petición DELETE a la ruta /items/{item_id} para eliminar un artículo específico del inventario.\n\n\n\nDe esta forma se pueden probar las rutas definidas en FastAPI utilizando la interfaz de usuario de Swagger.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#validaciones-en-fastapi",
+    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#validaciones-en-fastapi",
+    "title": "Rutas y Validaciones en FastAPI",
+    "section": "Validaciones en FastAPI",
+    "text": "Validaciones en FastAPI\nEn FastAPI se pueden realizar validaciones de datos utilizando los modelos definidos con Pydantic. Los modelos de Pydantic permiten definir tipos de datos, valores por defecto, validaciones y documentación para los campos de un modelo. En el ejemplo anterior se definió un modelo Item con los campos id, name, description, price y tax. A continuación se muestran algunas validaciones que se pueden realizar con Pydantic:\n\nTipos de datos: Se pueden definir los tipos de datos de los campos de un modelo. Por ejemplo, el campo id es de tipo int y el campo name es de tipo str.\nValores por defecto: Se pueden definir valores por defecto para los campos de un modelo. Por ejemplo, el campo tax tiene un valor por defecto de 0.0.\nValidaciones: Se pueden definir validaciones para los campos de un modelo. Por ejemplo, se puede definir una validación para el campo price que requiera que el valor sea mayor que cero.\nDocumentación: Se puede añadir documentación a los campos de un modelo utilizando la anotación Field de Pydantic. Por ejemplo, se puede añadir una descripción al campo name utilizando la anotación Field.\n\nEn el ejemplo anterior se utilizó el modelo Item para validar los datos de los artículos en el inventario. Al enviar una petición a la ruta POST /items/ con un objeto JSON que no cumpla con las validaciones del modelo Item, la API responde con un error indicando que los datos no son válidos.\nPor ejemplo si enviarmos un peticion post con el siguiente JSON\n{\n\"id\": 1,\n\"name\": \"Laptop\",\n\"description\": \"Dell Inspiron 15\",\n\"tax\": 0.1\n}\nLa API responderá con un error indicando que el campo price es requerido.\n\n\n\nDe esta forma se pueden realizar validaciones de datos en FastAPI utilizando los modelos definidos con Pydantic.\nEn este capítulo aprendimos acerca de cómo definir rutas en FastAPI utilizando decoradores y cómo realizar validaciones de datos utilizando los modelos definidos con Pydantic. En el próximo capítulo veremos cómo realizar API RESTful en FastAPI.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#creación-de-una-api-restful",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#creación-de-una-api-restful",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Creación de una API RESTful",
+    "text": "Creación de una API RESTful\nUna API RESTful es una API que sigue los principios de REST (Representational State Transfer). REST es un estilo de arquitectura de software que define un conjunto de restricciones para el diseño de servicios web. Las API RESTful son fáciles de entender, escalables y flexibles.\nEn FastAPI se pueden crear APIs RESTful utilizando rutas y modelos. A continuación se muestra un ejemplo de API RESTful para una Fundación de Adopción Animal, definiremos las adopciones, los animales y las personas que adoptan a los animales:\nEl proyecto tendrá la siguiente estructura:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n|   |── models.py\n|   |── routes.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una Fundación de Adopción Animal. A continuación se muestra el contenido del archivo models:\nfrom pydantic import BaseModel\n\nclass Adoption(BaseModel):\n    id: int\n    animal_id: int\n    person_id: int\n    date: str\n    status: str\n\nclass Animal(BaseModel):\n    id: int\n    name: str\n    species: str\n    breed: str\n\nclass Person(BaseModel):\n    id: int\n    name: str\n    email: str\n    phone: str\nEn el ejemplo anterior se definen los modelos Adoption, Animal y Person que heredan de la clase BaseModel de Pydantic. Cada modelo tiene sus propios campos que representan los datos de las adopciones, los animales y las personas.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#creación-de-las-rutas",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#creación-de-las-rutas",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Creación de las Rutas",
+    "text": "Creación de las Rutas\nA continuación se muestra el contenido del archivo routes.py que contiene la definición de las rutas de la API:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Adoption, Animal, Person\n\nrouter = APIRouter()\n\nadoptions = []\nanimals = []\npersons = []\n\n@router.post(\"/adoptions/\")\ndef create_adoption(adoption: Adoption):\n    adoptions.append(adoption)\n    return adoption\n\n@router.get(\"/adoptions/\")\ndef read_adoptions():\n    return adoptions\n\n@router.get(\"/adoptions/{adoption_id}\")\ndef read_adoption(adoption_id: int):\n    for adoption in adoptions:\n        if adoption.id == adoption_id:\n            return adoption\n\n@router.post(\"/animals/\")\ndef create_animal(animal: Animal):\n    animals.append(animal)\n    return animal\n\n@router.get(\"/animals/\")\ndef read_animals():\n    return animals\n\n@router.get(\"/animals/{animal_id}\")\ndef read_animal(animal_id: int):\n    for animal in animals:\n        if animal.id == animal_id:\n            return animal\n\n@router.post(\"/persons/\")\ndef create_person(person: Person):\n    persons.append(person)\n    return person\n\n@router.get(\"/persons/\")\ndef read_persons():\n    return persons\n\n@router.get(\"/persons/{person_id}\")\ndef read_person(person_id: int):\n    for person in persons:\n        if person.id == person_id:\n            return person\nEn el ejemplo anterior se definen las rutas para las adopciones, los animales y las personas. Cada ruta tiene un método HTTP asociado (POST, GET) y una función que se ejecuta cuando se accede a la ruta. Las rutas de la API permiten crear, leer, actualizar y eliminar datos de las adopciones, los animales y las personas.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#uso-de-las-rutas-en-fastapi",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#uso-de-las-rutas-en-fastapi",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Uso de las Rutas en FastAPI",
+    "text": "Uso de las Rutas en FastAPI\nPara utilizar las rutas definidas en FastAPI, se deben importar las rutas en el archivo principal de la aplicación. A continuación se muestra un ejemplo de cómo importar las rutas en el archivo main.py:\nfrom fastapi import FastAPI\nfrom .routes import router\n\napp = FastAPI()\n\napp.include_router(router)\nEn el ejemplo anterior se importa el objeto router que contiene las rutas definidas en el archivo routes.py. Luego, se utiliza el método include_router() para incluir las rutas en la aplicación FastAPI.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-una-adopción",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-una-adopción",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Crear una Adopción",
+    "text": "Crear una Adopción\nPara crear una adopción, se debe enviar una petición POST a la ruta /adoptions/ con los datos de la adopción en el cuerpo de la petición. A continuación se muestra un ejemplo de cómo crear una adopción:\n{\n    \"id\": 1,\n    \"animal_id\": 1,\n    \"person_id\": 1,\n    \"date\": \"2022-10-10\",\n    \"status\": \"pending\"\n}",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-las-adopciones",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-las-adopciones",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Obtener las Adopciones",
+    "text": "Obtener las Adopciones\nPara obtener todas las adopciones, se debe enviar una petición GET a la ruta /adoptions/. A continuación se muestra un ejemplo de cómo obtener todas las adopciones:",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-una-adopción",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-una-adopción",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Obtener una Adopción",
+    "text": "Obtener una Adopción\nPara obtener una adopción específica, se debe enviar una petición GET a la ruta /adoptions/{adoption_id} con el ID de la adopción en la URL. A continuación se muestra un ejemplo de cómo obtener una adopción específica:",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-un-animal",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-un-animal",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Crear un Animal",
+    "text": "Crear un Animal\nPara crear un animal, se debe enviar una petición POST a la ruta /animals/ con los datos del animal en el cuerpo de la petición. A continuación se muestra un ejemplo de cómo crear un animal:\n{\n    \"id\": 1,\n    \"name\": \"Luna\",\n    \"species\": \"Dog\",\n    \"breed\": \"Labrador\"\n}",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-los-animales",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-los-animales",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Obtener los Animales",
+    "text": "Obtener los Animales\nPara obtener todos los animales, se debe enviar una petición GET a la ruta /animals/. A continuación se muestra un ejemplo de cómo obtener todos los animales:",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-un-animal",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-un-animal",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Obtener un Animal",
+    "text": "Obtener un Animal\nPara obtener un animal específico, se debe enviar una petición GET a la ruta /animals/{animal_id} con el ID del animal en la URL. A continuación se muestra un ejemplo de cómo obtener un animal específico:",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-una-persona",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-una-persona",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Crear una Persona",
+    "text": "Crear una Persona\nPara crear una persona, se debe enviar una petición POST a la ruta /persons/ con los datos de la persona en el cuerpo de la petición. A continuación se muestra un ejemplo de cómo crear una persona:\n{\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"example@email.com\",\n    \"phone\": \"1234567890\"\n}",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-las-personas",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-las-personas",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Obtener las Personas",
+    "text": "Obtener las Personas\nPara obtener todas las personas, se debe enviar una petición GET a la ruta /persons/. A continuación se muestra un ejemplo de cómo obtener todas las personas:",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-una-persona",
+    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-una-persona",
+    "title": "APIs RESTful con FastAPI",
+    "section": "Obtener una Persona",
+    "text": "Obtener una Persona\nPara obtener una persona específica, se debe enviar una petición GET a la ruta /persons/{person_id} con el ID de la persona en la URL. A continuación se muestra un ejemplo de cómo obtener una persona específica:\n\n\n\nEn el ejemplo anterior se envía una petición GET a la ruta /persons/{person_id} para obtener una persona específica. La API responde con un objeto JSON que representa la persona con el ID especificado en la URL.\nComo podemos observar, hemos creado una API RESTful utilizando FastAPI. En el siguiente capítulo veremos cómo realizar pruebas unitarias en FastAPI.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+    ]
+  },
+  {
     "objectID": "unidades/laboratorios/lab1.html",
     "href": "unidades/laboratorios/lab1.html",
     "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
@@ -438,245 +658,124 @@
     "text": "Cambios en la Licencia\n[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.\nGracias por respetar nuestros derechos de autor y por tu comprensión."
   },
   {
-    "objectID": "unidades/unidad5/3_modelos_en_fastapi.html",
-    "href": "unidades/unidad5/3_modelos_en_fastapi.html",
-    "title": "Modelos en FastAPI",
+    "objectID": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html",
+    "href": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html",
+    "title": "Pruebas Unitarias en FastAPI",
     "section": "",
-    "text": "Definición de modelos en FastAPI\nEn FastAPI se pueden definir modelos utilizando Pydantic. Un modelo en FastAPI es una clase que hereda de la clase BaseModel de Pydantic y define los campos que componen el modelo. A continuación se muestra un ejemplo de un modelo en FastAPI, para este ejemplo vamos a crear una tienda de vehiculos:\nEl proyecto tendrá la siguiente estructura:\nEn el directorio app/ se encuentra el archivo models.py que contiene la definición del modelo Vehicle. A continuación se muestra el contenido del archivo models.py:\nEn el ejemplo anterior se define un modelo llamado Vehicle que hereda de la clase BaseModel de Pydantic. El modelo Vehicle tiene los siguientes campos:",
+    "text": "Pruebas Unitarias\nLas pruebas unitarias son una técnica de programación que consiste en verificar que una unidad de código (como una función o un método) funcione correctamente. En el caso de una API RESTful, las pruebas unitarias se utilizan para verificar que las rutas de la API devuelvan la respuesta esperada.",
     "crumbs": [
       "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Modelos en FastAPI</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Pruebas Unitarias en FastAPI</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad5/3_modelos_en_fastapi.html#definición-de-modelos-en-fastapi",
-    "href": "unidades/unidad5/3_modelos_en_fastapi.html#definición-de-modelos-en-fastapi",
-    "title": "Modelos en FastAPI",
-    "section": "Definición de modelos en FastAPI",
-    "text": "Definición de modelos en FastAPI\nEn FastAPI se pueden definir modelos utilizando Pydantic. Un modelo en FastAPI es una clase que hereda de la clase BaseModel de Pydantic y define los campos que componen el modelo. A continuación se muestra un ejemplo de un modelo en FastAPI, para este ejemplo vamos a crear una tienda de vehiculos:\nEl proyecto tendrá la siguiente estructura:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n│   ├── models.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nEn el directorio app/ se encuentra el archivo models.py que contiene la definición del modelo Vehicle. A continuación se muestra el contenido del archivo models.py:\nfrom pydantic import BaseModel\n\nclass Vehicle(BaseModel):\n    make: str\n    model: str\n    year: int\n    price: float\nEn el ejemplo anterior se define un modelo llamado Vehicle que hereda de la clase BaseModel de Pydantic. El modelo Vehicle tiene los siguientes campos:\n\nmake: Campo de tipo str que representa la marca del vehículo.\nmodel: Campo de tipo str que representa el modelo del vehículo.\nyear: Campo de tipo int que representa el año del vehículo.\nprice: Campo de tipo float que representa el precio del vehículo.",
+    "objectID": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias-en-fastapi",
+    "href": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias-en-fastapi",
+    "title": "Pruebas Unitarias en FastAPI",
+    "section": "Pruebas Unitarias en FastAPI",
+    "text": "Pruebas Unitarias en FastAPI\nFastAPI proporciona una forma sencilla de realizar pruebas unitarias a las rutas de la API. Para ello, se utiliza la biblioteca pytest y el módulo test_app.py de FastAPI.\npip install pytest httpx \nA continuación se muestra un ejemplo de cómo realizar pruebas unitarias a las rutas de la API creada en el capítulo anterior:\nimport pytest\nfrom fastapi.testclient import TestClient\nfrom app.main import app\nfrom app.models import Adoption, Animal, Person\n\nclient = TestClient(app)\n\ndef test_create_adoption():\n    response = client.post(\"/adoptions/\", json={\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    }\n\ndef test_read_adoptions():\n    response = client.get(\"/adoptions/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_adoption():\n    test_create_adoption()\n    response = client.get(\"/adoptions/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_animal():\n    response = client.post(\"/animals/\", json={\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    }\n\ndef test_read_animals():\n    response = client.get(\"/animals/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_animal():\n    test_create_animal()  # Ensure there's at least one animal\n    response = client.get(\"/animals/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_person():\n    response = client.post(\"/persons/\", json={\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    }\n\ndef test_read_persons():\n    response = client.get(\"/persons/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_person():\n    test_create_person()  # Ensure there's at least one person\n    response = client.get(\"/persons/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\nEn el ejemplo anterior se importa la clase TestClient de FastAPI y se crea una instancia de TestClient con la aplicación FastAPI. Luego se definen dos pruebas unitarias: una para verificar que la ruta /adoptions/ devuelva una lista vacía de adopciones y otra para verificar que la ruta /adoptions/ cree una nueva adopción con los datos proporcionados.\nPara ejecutar las pruebas unitarias, se utiliza el comando pytest en la terminal:\npytest\nAl ejecutar las pruebas unitarias, se mostrará el resultado de las pruebas en la terminal. Si todas las pruebas pasan, se mostrará un mensaje indicando que todas las pruebas han pasado correctamente.\n\n\n\nEn resumen, en este capítulo se mostró cómo realizar pruebas unitarias a las rutas de una API RESTful creada con FastAPI. Las pruebas unitarias son una técnica de programación que permite verificar que una unidad de código funcione correctamente y que la API devuelva la respuesta esperada.\nEn el siguiente capítulo se mostrará cómo mejorar la optimización y el rendimiento.",
     "crumbs": [
       "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Modelos en FastAPI</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Pruebas Unitarias en FastAPI</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad5/3_modelos_en_fastapi.html#uso-de-modelos-en-fastapi",
-    "href": "unidades/unidad5/3_modelos_en_fastapi.html#uso-de-modelos-en-fastapi",
-    "title": "Modelos en FastAPI",
-    "section": "Uso de modelos en FastAPI",
-    "text": "Uso de modelos en FastAPI\nUna vez que se ha definido un modelo en FastAPI, se puede utilizar el modelo en las rutas de la API para validar y serializar datos. A continuación se muestra un ejemplo de cómo utilizar el modelo Vehicle en una ruta de la API:\nfrom fastapi import FastAPI\nfrom .models import Vehicle\n\napp = FastAPI()\n\n@app.post(\"/vehicles/\")\ndef create_vehicle(vehicle: Vehicle):\n    return vehicle\n\n@app.get(\"/vehicles/{vehicle_id}\")\ndef read_vehicle(vehicle_id: int):\n    return {\"vehicle_id\": vehicle_id}\n\n@app.put(\"/vehicles/{vehicle_id}\")\ndef update_vehicle(vehicle_id: int, vehicle: Vehicle):\n    return {\"vehicle_id\": vehicle_id, \"vehicle\": vehicle}\n\n@app.delete(\"/vehicles/{vehicle_id}\")\ndef delete_vehicle(vehicle_id: int):\n    return {\"vehicle_id\": vehicle_id}\nEn el ejemplo anterior se importa la clase Vehicle del archivo models.py y se define una ruta de la API que recibe un objeto de tipo Vehicle en el cuerpo de la petición. La ruta de la API utiliza el decorador @app.post() para indicar que se trata de una petición de tipo POST. La operación create_vehicle() recibe un objeto de tipo Vehicle y retorna el mismo objeto.\nEn el ejemplo anterior también se definen otras rutas de la API que utilizan el modelo Vehicle para validar y serializar datos. En la ruta de la API que recibe un parámetro de tipo int se utiliza el modelo Vehicle para serializar el objeto de tipo Vehicle y retornar el objeto serializado.\nEn este capítulo aprendimos acerca de los modelos en FastAPI y cómo se pueden utilizar para validar y serializar datos en una API. En el próximo capítulo veremos cómo utilizar rutas y validaciones en FastAPI.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Modelos en FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html",
-    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html",
-    "title": "Rutas y Validaciones en FastAPI",
+    "objectID": "unidades/unidad5/7_optimizacion_y_rendimiento.html",
+    "href": "unidades/unidad5/7_optimizacion_y_rendimiento.html",
+    "title": "Optimización y Rendimiento",
     "section": "",
-    "text": "Definición de rutas en FastAPI\nEn FastAPI se pueden definir rutas utilizando decoradores. Un decorador es una función que toma otra función y extiende su funcionalidad sin modificarla. En FastAPI, los decoradores se utilizan para definir rutas en la API. A continuación se muestra un ejemplo de un Sistema de Inventario para aprender cómo definir una ruta en FastAPI:\nEl proyecto tendrá la siguiente estructura:\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para un Sistema de Inventario. A continuación se muestra el contenido del archivo models:\nEn el ejemplo anterior se define un modelo llamado Item que hereda de la clase BaseModel de Pydantic. El modelo Item tiene los siguientes campos:",
+    "text": "Caché\nLa caché es una técnica que se utiliza para almacenar temporalmente los resultados de operaciones costosas en memoria o en disco, de modo que puedan ser reutilizados en futuras solicitudes. La caché mejora el rendimiento de una API al reducir el tiempo de respuesta de las solicitudes.\nFastAPI proporciona soporte para la caché a través de la biblioteca cachetools. A continuación se muestra un ejemplo de cómo implementar la caché en una ruta de la API:\nEn el ejemplo anterior se define una caché con un tamaño máximo de 100 elementos y un tiempo de vida de 300 segundos. La función read_items() se decora con el decorador @cached(cache) para almacenar en caché el resultado de la función y reutilizarlo en futuras solicitudes.",
     "crumbs": [
       "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Optimización y Rendimiento</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#definición-de-rutas-en-fastapi",
-    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#definición-de-rutas-en-fastapi",
-    "title": "Rutas y Validaciones en FastAPI",
+    "objectID": "unidades/unidad5/7_optimizacion_y_rendimiento.html#caché",
+    "href": "unidades/unidad5/7_optimizacion_y_rendimiento.html#caché",
+    "title": "Optimización y Rendimiento",
+    "section": "Caché",
+    "text": "Caché\nLa caché es una técnica que se utiliza para almacenar temporalmente los resultados de operaciones costosas en memoria o en disco, de modo que puedan ser reutilizados en futuras solicitudes. La caché mejora el rendimiento de una API al reducir el tiempo de respuesta de las solicitudes.\nFastAPI proporciona soporte para la caché a través de la biblioteca cachetools. A continuación se muestra un ejemplo de cómo implementar la caché, lo primero que haremos será instalar la librería cachetools:\npip install cachetools\nAhora modificamos el archivo routes.py para implementar la caché en la ruta de lectura de animales:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Adoption, Animal, Person\nfrom cachetools import TTLCache, cached\n\nrouter = APIRouter()\n\nadoptions = []\nanimals = []\npersons = []\n\n# Define TTL caches for each resource\nadoptions_cache = TTLCache(maxsize=100, ttl=300)\nanimals_cache = TTLCache(maxsize=100, ttl=300)\npersons_cache = TTLCache(maxsize=100, ttl=300)\n\n@router.post(\"/adoptions/\")\ndef create_adoption(adoption: Adoption):\n    adoptions.append(adoption)\n    adoptions_cache.clear()  # Clear cache when new data is added\n    return adoption\n\n@router.get(\"/adoptions/\")\n@cached(adoptions_cache)\ndef read_adoptions():\n    return adoptions\n\n@router.get(\"/adoptions/{adoption_id}\")\ndef read_adoption(adoption_id: int):\n    for adoption in adoptions:\n        if adoption.id == adoption_id:\n            return adoption\n\n@router.post(\"/animals/\")\ndef create_animal(animal: Animal):\n    animals.append(animal)\n    animals_cache.clear()  # Clear cache when new data is added\n    return animal\n\n@router.get(\"/animals/\")\n@cached(animals_cache)\ndef read_animals():\n    return animals\n\n@router.get(\"/animals/{animal_id}\")\ndef read_animal(animal_id: int):\n    for animal in animals:\n        if animal.id == animal_id:\n            return animal\n\n@router.post(\"/persons/\")\ndef create_person(person: Person):\n    persons.append(person)\n    persons_cache.clear()  # Clear cache when new data is added\n    return person\n\n@router.get(\"/persons/\")\n@cached(persons_cache)\ndef read_persons():\n    return persons\n\n@router.get(\"/persons/{person_id}\")\ndef read_person(person_id: int):\n    for person in persons:\n        if person.id == person_id:\n            return person\nEn el ejemplo anterior, se crearon tres cachés TTL (Time-To-Live) para almacenar los resultados de las operaciones de lectura de adopciones, animales y personas. La caché se activa mediante el decorador @cached, que toma como argumento la caché a utilizar. La caché se limpia cuando se añaden nuevos datos a la lista correspondiente.\nAhora modificamos el archivo test_app.py para probar la caché en la ruta de lectura de animales:\nimport pytest\nfrom fastapi.testclient import TestClient\nfrom app.main import app\n\nclient = TestClient(app)\n\ndef test_create_adoption():\n    response = client.post(\"/adoptions/\", json={\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    }\n\ndef test_read_adoptions():\n    response = client.get(\"/adoptions/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_adoption():\n    response = client.post(\"/adoptions/\", json={\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    })\n    response = client.get(\"/adoptions/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_animal():\n    response = client.post(\"/animals/\", json={\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    }\n\ndef test_read_animals():\n    response = client.get(\"/animals/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_animal():\n    response = client.post(\"/animals/\", json={\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    })\n    response = client.get(\"/animals/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_person():\n    response = client.post(\"/persons/\", json={\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    }\n\ndef test_read_persons():\n    response = client.get(\"/persons/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_person():\n    response = client.post(\"/persons/\", json={\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    })\n    response = client.get(\"/persons/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\nEn el ejemplo anterior, se añadieron pruebas unitarias para probar la caché en la ruta de lectura de animales. Se crearon pruebas para las operaciones de creación y lectura de animales, y se verificó que los resultados de las operaciones de lectura se almacenan en caché.\nFinalmente ejecutarmos las pruebas unitarias:\npytest",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Optimización y Rendimiento</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/7_optimizacion_y_rendimiento.html#compresión-de-respuestas",
+    "href": "unidades/unidad5/7_optimizacion_y_rendimiento.html#compresión-de-respuestas",
+    "title": "Optimización y Rendimiento",
+    "section": "Compresión de Respuestas",
+    "text": "Compresión de Respuestas\nLa compresión de respuestas es una técnica que se utiliza para reducir el tamaño de las respuestas de una API, lo que mejora el rendimiento de la API al reducir el tiempo de transferencia de datos. FastAPI proporciona soporte para la compresión de respuestas a través de la biblioteca starlette. A continuación se muestra un ejemplo de cómo habilitar la compresión de respuestas en una aplicación FastAPI:\nfrom fastapi import FastAPI\nfrom starlette.middleware.gzip import GZipMiddleware\n\napp = FastAPI()\n\napp.add_middleware(GZipMiddleware, minimum_size=1000)\nEn el ejemplo anterior se agrega el middleware GZipMiddleware a la aplicación FastAPI con un tamaño mínimo de 1000 bytes. La compresión de respuestas se activará automáticamente cuando el tamaño de la respuesta sea mayor que el tamaño mínimo especificado.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Optimización y Rendimiento</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/7_optimizacion_y_rendimiento.html#configuración-de-la-api-para-producción",
+    "href": "unidades/unidad5/7_optimizacion_y_rendimiento.html#configuración-de-la-api-para-producción",
+    "title": "Optimización y Rendimiento",
+    "section": "Configuración de la API para Producción",
+    "text": "Configuración de la API para Producción\nPara configurar una API FastAPI para producción, se recomienda utilizar un servidor ASGI como uvicorn y un servidor de aplicaciones como gunicorn. A continuación se muestra un ejemplo de cómo ejecutar una aplicación FastAPI con uvicorn y gunicorn:\nuvicorn app.main:app --host\nEn el ejemplo anterior se ejecuta la aplicación FastAPI con uvicorn en el puerto 8000. Luego, se puede utilizar gunicorn para ejecutar la aplicación en un entorno de producción:\ngunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app\nEn el ejemplo anterior se ejecuta la aplicación FastAPI con gunicorn en un entorno de producción con 4 workers y el worker UvicornWorker.\nEn este capítulo se abordaron temas relacionados con la optimización y el rendimiento de una API, como la implementación de caché, la compresión de respuestas y la configuración de la API para producción. Estos temas son fundamentales para garantizar que una API sea eficiente y escalable en entornos de producción.\nEn el siguiente capítulo crearemos una API de Gestión de Tareas con FastAPI",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Optimización y Rendimiento</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias",
+    "href": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias",
+    "title": "Pruebas Unitarias en FastAPI",
+    "section": "Pruebas Unitarias",
+    "text": "Pruebas Unitarias\nLas pruebas unitarias son una técnica de programación que consiste en verificar que una unidad de código (como una función o un método) funcione correctamente. En el caso de una API RESTful, las pruebas unitarias se utilizan para verificar que las rutas de la API devuelvan la respuesta esperada.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Pruebas Unitarias en FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html",
+    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html",
+    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
     "section": "",
-    "text": "proyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n|   |── models.py\n|   |── routes.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\n\nfrom pydantic import BaseModel\n\nclass Item(BaseModel):\n    id: int\n    name: str\n    description: str\n    price: float\n    tax: float\n\n\nid: Campo de tipo int que representa el identificador del artículo.\nname: Campo de tipo str que representa el nombre del artículo.\ndescription: Campo de tipo str que representa la descripción del artículo.\nprice: Campo de tipo float que representa el precio del artículo.\ntax: Campo de tipo float que representa el impuesto del artículo.",
+    "text": "Creación de una API de gestión de tareas\nEmpezamos por la creación de un entorno virtual y la instalación de FastAPI y Uvicorn:\nEl proyecto tendrá la siguiente estructura:\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una API de gestión de tareas. A continuación se muestra el contenido del archivo models:\nEn el ejemplo anterior se define el modelo Task que hereda de la clase BaseModel de Pydantic. El modelo tiene los campos id, title, description y status que representan los datos de las tareas.",
     "crumbs": [
       "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#creación-de-las-rutas",
-    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#creación-de-las-rutas",
-    "title": "Rutas y Validaciones en FastAPI",
+    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-una-api-de-gestión-de-tareas",
+    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-una-api-de-gestión-de-tareas",
+    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
+    "section": "Creación de una API de gestión de tareas",
+    "text": "Creación de una API de gestión de tareas\nEmpezamos por la creación de un entorno virtual y la instalación de FastAPI, Uvicorn y pydantic:\npip install fastapi uvicorn pydantic\nEl proyecto tendrá la siguiente estructura:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n│   ├── models.py\n│   ├── routes.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una API de gestión de tareas. A continuación se muestra el contenido del archivo models:\nfrom pydantic import BaseModel\n\nclass Task(BaseModel):\n    id: int\n    title: str\n    description: str\n    status: str\nEn el ejemplo anterior se define el modelo Task que hereda de la clase BaseModel de Pydantic. El modelo tiene los campos id, title, description y status que representan los datos de las tareas.",
+    "crumbs": [
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-las-rutas",
+    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-las-rutas",
+    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
     "section": "Creación de las Rutas",
-    "text": "Creación de las Rutas\nEn este proyecto tambien crearemos un CRUD para el modelo Item. A continuación se muestra el contenido del archivo routes.py que contiene la definición de las rutas de la API:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Item\n\nrouter = APIRouter()\n\ninventory = []\n\n@router.post(\"/items/\")\ndef create_item(item: Item):\n    inventory.append(item)\n    return item\n\n@router.get(\"/items/\")\ndef read_items():\n    return inventory\n\n@router.get(\"/items/{item_id}\")\ndef read_item(item_id: int):\n    for item in inventory:\n        if item.id == item_id:\n            return item\n    raise HTTPException(status_code=404, detail=\"Item not found\")\n\n@router.put(\"/items/{item_id}\")\ndef update_item(item_id: int, item: Item):\n    for i in range(len(inventory)):\n        if inventory[i].id == item_id:\n            inventory[i] = item\n            return item\n    raise HTTPException(status_code=404, detail=\"Item not found\")\n\n@router.delete(\"/items/{item_id}\")\ndef delete_item(item_id: int):\n    for i in range(len(inventory)):\n        if inventory[i].id == item_id:\n            item = inventory.pop(i)\n            return item\n    raise HTTPException(status_code=404, detail=\"Item not found\")\nEn el ejemplo anterior se definen las siguientes rutas:\n\nPOST /items/: Ruta para crear un nuevo artículo en el inventario.\nGET /items/: Ruta para obtener todos los artículos del inventario.\nGET /items/{item_id}: Ruta para obtener un artículo específico del inventario.\nPUT /items/{item_id}: Ruta para actualizar un artículo específico del inventario.\nDELETE /items/{item_id}: Ruta para eliminar un artículo específico del inventario.",
+    "text": "Creación de las Rutas\nA continuación se muestra el contenido del archivo routes.py que contiene la definición de las rutas de la API:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Task\n\nrouter = APIRouter()\n\ntasks = []\n\n@router.post(\"/tasks/\")\ndef create_task(task: Task):\n    tasks.append(task)\n    return task\n\n@router.get(\"/tasks/\")\ndef read_tasks():\n    return tasks\n\n@router.get(\"/tasks/{task_id}\")\ndef read_task(task_id: int):\n    for task in tasks:\n        if task.id == task_id:\n            return task\n\n@router.put(\"/tasks/{task_id}\")\ndef update_task(task_id: int, task: Task):\n    for t in tasks:\n        if t.id == task_id:\n            t.title = task.title\n            t.description = task.description\n            t.status = task.status\n            return t\n\n@router.delete(\"/tasks/{task_id}\")\ndef delete_task(task_id: int):\n    for i, task in enumerate(tasks):\n        if task.id == task_id:\n            del tasks[i]\n            return task\nEn el ejemplo anterior se definen las rutas para crear, leer, actualizar y eliminar tareas. La ruta POST /tasks/ permite crear una nueva tarea, la ruta GET /tasks/ permite leer todas las tareas, la ruta GET /tasks/{task_id} permite leer una tarea específica, la ruta PUT /tasks/{task_id} permite actualizar una tarea y la ruta DELETE /tasks/{task_id} permite eliminar una tarea.\nFinalmente, en el archivo main.py se importan las rutas y se crea la aplicación FastAPI:\nfrom fastapi import FastAPI\nfrom .routes import router\n\napp = FastAPI()\n\napp.include_router(router)",
     "crumbs": [
       "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#uso-de-las-rutas-en-fastapi",
-    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#uso-de-las-rutas-en-fastapi",
-    "title": "Rutas y Validaciones en FastAPI",
-    "section": "Uso de las Rutas en FastAPI",
-    "text": "Uso de las Rutas en FastAPI\nPara utilizar las rutas definidas en FastAPI, se deben importar las rutas en el archivo principal de la aplicación. A continuación se muestra un ejemplo de cómo importar las rutas en el archivo main.py:\nfrom fastapi import FastAPI\nfrom .routes import router\n\napp = FastAPI()\n\napp.include_router(router)\nEn el ejemplo anterior se importa el objeto router que contiene las rutas definidas en el archivo routes.py. Luego, se utiliza el método include_router() para incluir las rutas en la aplicación FastAPI.",
+    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#ejecución-de-la-api",
+    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#ejecución-de-la-api",
+    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
+    "section": "Ejecución de la API",
+    "text": "Ejecución de la API\nPara ejecutar la API, se utiliza el siguiente comando:\nuvicorn app.main:app --reload\nLa API estará disponible en la dirección http://127.0.0.1:8000. Se pueden probar las rutas utilizando un cliente Thunder Client en Visual Studio Code o Postman. Tambien visitando en el navegador http://127.0.0.1:8000/docs se puede acceder a la documentación interactiva de la API.\n\n\n\n\n\n\nEn este capítulo se vio cómo crear una API de gestión de tareas utilizando FastAPI. En el próximo capítulo se verá cómo realizar pruebas unitarias a las rutas de la API.",
     "crumbs": [
       "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#probar-las-rutas-en-fastapi",
-    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#probar-las-rutas-en-fastapi",
-    "title": "Rutas y Validaciones en FastAPI",
-    "section": "Probar las Rutas en FastAPI",
-    "text": "Probar las Rutas en FastAPI\nPara ejecutar la aplicación, se debe utilizar el comando uvicorn en la terminal.\nuvicorn app.main:app --reload\nPara probar las rutas definidas en FastAPI, se puede utilizar la interfaz de usuario de Swagger que se genera automáticamente al ejecutar la aplicación. Para acceder a la interfaz de usuario de Swagger, se debe abrir un navegador web y visitar la URL http://localhost:8000/docs.\n\n\n\nEn la interfaz de usuario de Swagger se pueden probar las rutas de la API enviando peticiones HTTP y visualizando las respuestas. Por ejemplo, se puede probar la ruta POST /items/ para crear un nuevo artículo en el inventario enviando un objeto JSON con los datos del artículo.\nEjemplo:\n{\n    \"id\": 1,\n    \"name\": \"Laptop\",\n    \"description\": \"Dell Inspiron 15\",\n    \"price\": 500.0,\n    \"tax\": 0.1\n}\n\n\n\n\nEn el ejemplo anterior se envía una petición POST a la ruta /items/ con un objeto JSON que representa un artículo. La API responde con el mismo objeto JSON que se envió en la petición. Tambien podemos probar las demás rutas de la API.\nPara probar la ruta GET /items/ se puede enviar una petición GET a la ruta /items/ para obtener todos los artículos del inventario.\n\n\n\n\nPara probar la ruta GET /items/{item_id} se puede enviar una petición GET a la ruta /items/{item_id} para obtener un artículo específico del inventario.\n\n\n\n\nPara probar la ruta PUT /items/{item_id} se puede enviar una petición PUT a la ruta /items/{item_id} con un objeto JSON que representa un artículo para actualizar un artículo específico del inventario.\nActualizaremos body por el siguiente JSON\n{ \n    \"id\": 1, \n    \"name\": \"Laptop\", \n    \"description\": \"Lenovo Thinkpad\", \n    \"price\": 350, \n    \"tax\": 0.1 \n}\n\n\n\n\nPara probar la ruta DELETE /items/{item_id} se puede enviar una petición DELETE a la ruta /items/{item_id} para eliminar un artículo específico del inventario.\n\n\n\nDe esta forma se pueden probar las rutas definidas en FastAPI utilizando la interfaz de usuario de Swagger.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#validaciones-en-fastapi",
-    "href": "unidades/unidad5/4_rutas_y_validaciones_en_fastapi.html#validaciones-en-fastapi",
-    "title": "Rutas y Validaciones en FastAPI",
-    "section": "Validaciones en FastAPI",
-    "text": "Validaciones en FastAPI\nEn FastAPI se pueden realizar validaciones de datos utilizando los modelos definidos con Pydantic. Los modelos de Pydantic permiten definir tipos de datos, valores por defecto, validaciones y documentación para los campos de un modelo. En el ejemplo anterior se definió un modelo Item con los campos id, name, description, price y tax. A continuación se muestran algunas validaciones que se pueden realizar con Pydantic:\n\nTipos de datos: Se pueden definir los tipos de datos de los campos de un modelo. Por ejemplo, el campo id es de tipo int y el campo name es de tipo str.\nValores por defecto: Se pueden definir valores por defecto para los campos de un modelo. Por ejemplo, el campo tax tiene un valor por defecto de 0.0.\nValidaciones: Se pueden definir validaciones para los campos de un modelo. Por ejemplo, se puede definir una validación para el campo price que requiera que el valor sea mayor que cero.\nDocumentación: Se puede añadir documentación a los campos de un modelo utilizando la anotación Field de Pydantic. Por ejemplo, se puede añadir una descripción al campo name utilizando la anotación Field.\n\nEn el ejemplo anterior se utilizó el modelo Item para validar los datos de los artículos en el inventario. Al enviar una petición a la ruta POST /items/ con un objeto JSON que no cumpla con las validaciones del modelo Item, la API responde con un error indicando que los datos no son válidos.\nPor ejemplo si enviarmos un peticion post con el siguiente JSON\n{\n\"id\": 1,\n\"name\": \"Laptop\",\n\"description\": \"Dell Inspiron 15\",\n\"tax\": 0.1\n}\nLa API responderá con un error indicando que el campo price es requerido.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Rutas y Validaciones en FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html",
-    "title": "APIs RESTful con FastAPI",
-    "section": "",
-    "text": "Creación de una API RESTful\nUna API RESTful es una API que sigue los principios de REST (Representational State Transfer). REST es un estilo de arquitectura de software que define un conjunto de restricciones para el diseño de servicios web. Las API RESTful son fáciles de entender, escalables y flexibles.\nEn FastAPI se pueden crear APIs RESTful utilizando rutas y modelos. A continuación se muestra un ejemplo de API RESTful para una Fundación de Adopción Animal, definiremos las adopciones, los animales y las personas que adoptan a los animales:\nEl proyecto tendrá la siguiente estructura:\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una Fundación de Adopción Animal. A continuación se muestra el contenido del archivo models:\nEn el ejemplo anterior se definen los modelos Adoption, Animal y Person que heredan de la clase BaseModel de Pydantic. Cada modelo tiene sus propios campos que representan los datos de las adopciones, los animales y las personas.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#creación-de-una-api-restful",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#creación-de-una-api-restful",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Creación de una API RESTful",
-    "text": "Creación de una API RESTful\nUna API RESTful es una API que sigue los principios de REST (Representational State Transfer). REST es un estilo de arquitectura de software que define un conjunto de restricciones para el diseño de servicios web. Las API RESTful son fáciles de entender, escalables y flexibles.\nEn FastAPI se pueden crear APIs RESTful utilizando rutas y modelos. A continuación se muestra un ejemplo de API RESTful para una Fundación de Adopción Animal, definiremos las adopciones, los animales y las personas que adoptan a los animales:\nEl proyecto tendrá la siguiente estructura:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n|   |── models.py\n|   |── routes.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una Fundación de Adopción Animal. A continuación se muestra el contenido del archivo models:\nfrom pydantic import BaseModel\n\nclass Adoption(BaseModel):\n    id: int\n    animal_id: int\n    person_id: int\n    date: str\n    status: str\n\nclass Animal(BaseModel):\n    id: int\n    name: str\n    species: str\n    breed: str\n\nclass Person(BaseModel):\n    id: int\n    name: str\n    email: str\n    phone: str\nEn el ejemplo anterior se definen los modelos Adoption, Animal y Person que heredan de la clase BaseModel de Pydantic. Cada modelo tiene sus propios campos que representan los datos de las adopciones, los animales y las personas.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#creación-de-las-rutas",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#creación-de-las-rutas",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Creación de las Rutas",
-    "text": "Creación de las Rutas\nA continuación se muestra el contenido del archivo routes.py que contiene la definición de las rutas de la API:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Adoption, Animal, Person\n\nrouter = APIRouter()\n\nadoptions = []\nanimals = []\npersons = []\n\n@router.post(\"/adoptions/\")\ndef create_adoption(adoption: Adoption):\n    adoptions.append(adoption)\n    return adoption\n\n@router.get(\"/adoptions/\")\ndef read_adoptions():\n    return adoptions\n\n@router.get(\"/adoptions/{adoption_id}\")\ndef read_adoption(adoption_id: int):\n    for adoption in adoptions:\n        if adoption.id == adoption_id:\n            return adoption\n\n@router.post(\"/animals/\")\ndef create_animal(animal: Animal):\n    animals.append(animal)\n    return animal\n\n@router.get(\"/animals/\")\ndef read_animals():\n    return animals\n\n@router.get(\"/animals/{animal_id}\")\ndef read_animal(animal_id: int):\n    for animal in animals:\n        if animal.id == animal_id:\n            return animal\n\n@router.post(\"/persons/\")\ndef create_person(person: Person):\n    persons.append(person)\n    return person\n\n@router.get(\"/persons/\")\ndef read_persons():\n    return persons\n\n@router.get(\"/persons/{person_id}\")\ndef read_person(person_id: int):\n    for person in persons:\n        if person.id == person_id:\n            return person\nEn el ejemplo anterior se definen las rutas para las adopciones, los animales y las personas. Cada ruta tiene un método HTTP asociado (POST, GET) y una función que se ejecuta cuando se accede a la ruta. Las rutas de la API permiten crear, leer, actualizar y eliminar datos de las adopciones, los animales y las personas.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#uso-de-las-rutas-en-fastapi",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#uso-de-las-rutas-en-fastapi",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Uso de las Rutas en FastAPI",
-    "text": "Uso de las Rutas en FastAPI\nPara utilizar las rutas definidas en FastAPI, se deben importar las rutas en el archivo principal de la aplicación. A continuación se muestra un ejemplo de cómo importar las rutas en el archivo main.py:\nfrom fastapi import FastAPI\nfrom .routes import router\n\napp = FastAPI()\n\napp.include_router(router)\nEn el ejemplo anterior se importa el objeto router que contiene las rutas definidas en el archivo routes.py. Luego, se utiliza el método include_router() para incluir las rutas en la aplicación FastAPI.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-una-adopción",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-una-adopción",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Crear una Adopción",
-    "text": "Crear una Adopción\nPara crear una adopción, se debe enviar una petición POST a la ruta /adoptions/ con los datos de la adopción en el cuerpo de la petición. A continuación se muestra un ejemplo de cómo crear una adopción:\n{\n    \"id\": 1,\n    \"animal_id\": 1,\n    \"person_id\": 1,\n    \"date\": \"2022-10-10\",\n    \"status\": \"pending\"\n}",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-las-adopciones",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-las-adopciones",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Obtener las Adopciones",
-    "text": "Obtener las Adopciones\nPara obtener todas las adopciones, se debe enviar una petición GET a la ruta /adoptions/. A continuación se muestra un ejemplo de cómo obtener todas las adopciones:",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-una-adopción",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-una-adopción",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Obtener una Adopción",
-    "text": "Obtener una Adopción\nPara obtener una adopción específica, se debe enviar una petición GET a la ruta /adoptions/{adoption_id} con el ID de la adopción en la URL. A continuación se muestra un ejemplo de cómo obtener una adopción específica:",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-un-animal",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-un-animal",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Crear un Animal",
-    "text": "Crear un Animal\nPara crear un animal, se debe enviar una petición POST a la ruta /animals/ con los datos del animal en el cuerpo de la petición. A continuación se muestra un ejemplo de cómo crear un animal:\n{\n    \"id\": 1,\n    \"name\": \"Luna\",\n    \"species\": \"Dog\",\n    \"breed\": \"Labrador\"\n}",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-los-animales",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-los-animales",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Obtener los Animales",
-    "text": "Obtener los Animales\nPara obtener todos los animales, se debe enviar una petición GET a la ruta /animals/. A continuación se muestra un ejemplo de cómo obtener todos los animales:",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-un-animal",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-un-animal",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Obtener un Animal",
-    "text": "Obtener un Animal\nPara obtener un animal específico, se debe enviar una petición GET a la ruta /animals/{animal_id} con el ID del animal en la URL. A continuación se muestra un ejemplo de cómo obtener un animal específico:",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-una-persona",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#crear-una-persona",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Crear una Persona",
-    "text": "Crear una Persona\nPara crear una persona, se debe enviar una petición POST a la ruta /persons/ con los datos de la persona en el cuerpo de la petición. A continuación se muestra un ejemplo de cómo crear una persona:\n{\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"example@email.com\",\n    \"phone\": \"1234567890\"\n}",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-las-personas",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-las-personas",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Obtener las Personas",
-    "text": "Obtener las Personas\nPara obtener todas las personas, se debe enviar una petición GET a la ruta /persons/. A continuación se muestra un ejemplo de cómo obtener todas las personas:",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-una-persona",
-    "href": "unidades/unidad5/5_apis_restful_con_fastapi.html#obtener-una-persona",
-    "title": "APIs RESTful con FastAPI",
-    "section": "Obtener una Persona",
-    "text": "Obtener una Persona\nPara obtener una persona específica, se debe enviar una petición GET a la ruta /persons/{person_id} con el ID de la persona en la URL. A continuación se muestra un ejemplo de cómo obtener una persona específica:\n\n\n\nEn el ejemplo anterior se envía una petición GET a la ruta /persons/{person_id} para obtener una persona específica. La API responde con un objeto JSON que representa la persona con el ID especificado en la URL.\nComo podemos observar, hemos creado una API RESTful utilizando FastAPI. En el siguiente capítulo veremos cómo realizar pruebas unitarias en FastAPI.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>APIs RESTful con FastAPI</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
     ]
   }
 ]

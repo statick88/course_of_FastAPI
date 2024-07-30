@@ -1,1 +1,126 @@
+::: justify
 # Creación de una API de gestión de tareas utilizando FastAPI
+
+:::{.center}
+![](images/paste-58.png)
+:::
+
+En el capítulo anterior se vio cómo optimizar y mejorar el rendimiento de una API utilizando caché. En este capítulo se verá cómo crear una API de gestión de tareas utilizando FastAPI.
+
+## Creación de una API de gestión de tareas
+
+Empezamos por la creación de un entorno virtual y la instalación de FastAPI, Uvicorn y pydantic:
+
+``` bash
+pip install fastapi uvicorn pydantic
+```
+
+El proyecto tendrá la siguiente estructura:
+
+``` plaintext
+proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── models.py
+│   ├── routes.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt
+```
+
+En el directorio **app/** se encuentra el archivo **routes.py** que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una API de gestión de tareas. A continuación se muestra el contenido del archivo **models**:
+
+``` python
+from pydantic import BaseModel
+
+class Task(BaseModel):
+    id: int
+    title: str
+    description: str
+    status: str
+```
+
+En el ejemplo anterior se define el modelo **Task** que hereda de la clase **BaseModel** de Pydantic. El modelo tiene los campos **id**, **title**, **description** y **status** que representan los datos de las tareas.
+
+## Creación de las Rutas
+
+A continuación se muestra el contenido del archivo **routes.py** que contiene la definición de las rutas de la API:
+
+``` python
+from fastapi import APIRouter, HTTPException
+from .models import Task
+
+router = APIRouter()
+
+tasks = []
+
+@router.post("/tasks/")
+def create_task(task: Task):
+    tasks.append(task)
+    return task
+
+@router.get("/tasks/")
+def read_tasks():
+    return tasks
+
+@router.get("/tasks/{task_id}")
+def read_task(task_id: int):
+    for task in tasks:
+        if task.id == task_id:
+            return task
+
+@router.put("/tasks/{task_id}")
+def update_task(task_id: int, task: Task):
+    for t in tasks:
+        if t.id == task_id:
+            t.title = task.title
+            t.description = task.description
+            t.status = task.status
+            return t
+
+@router.delete("/tasks/{task_id}")
+def delete_task(task_id: int):
+    for i, task in enumerate(tasks):
+        if task.id == task_id:
+            del tasks[i]
+            return task
+```
+
+En el ejemplo anterior se definen las rutas para crear, leer, actualizar y eliminar tareas. La ruta **POST** **/tasks/** permite crear una nueva tarea, la ruta **GET** **/tasks/** permite leer todas las tareas, la ruta **GET** **/tasks/{task_id}** permite leer una tarea específica, la ruta **PUT** **/tasks/{task_id}** permite actualizar una tarea y la ruta **DELETE** **/tasks/{task_id}** permite eliminar una tarea.
+
+Finalmente, en el archivo **main.py** se importan las rutas y se crea la aplicación FastAPI:
+
+``` python
+from fastapi import FastAPI
+from .routes import router
+
+app = FastAPI()
+
+app.include_router(router)
+```
+
+## Ejecución de la API
+
+Para ejecutar la API, se utiliza el siguiente comando:
+
+``` bash
+uvicorn app.main:app --reload
+```
+
+La API estará disponible en la dirección <http://127.0.0.1:8000>. Se pueden probar las rutas utilizando un cliente Thunder Client en Visual Studio Code o Postman. Tambien visitando en el navegador <http://127.0.0.1:8000/docs> se puede acceder a la documentación interactiva de la API.
+
+:::{.center}
+![](images/paste-54.png)
+
+![](images/paste-55.png)
+
+![](images/paste-56.png)
+
+![](images/paste-57.png)
+:::
+
+En este capítulo se vio cómo crear una API de gestión de tareas utilizando FastAPI. En el próximo capítulo se verá cómo realizar pruebas unitarias a las rutas de la API.
+:::

@@ -85,9 +85,9 @@ book:
         - unidades/proyecto_final/2_desarrollo_e_implementacion.qmd
         - unidades/proyecto_final/3_presentacion_y_evaluacion.qmd
 
-    - part: "Laboratorios"
-      chapters: 
-        - unidades/laboratorios/lab1.qmd
+    # - part: "Laboratorios"
+    #   chapters: 
+    #     - unidades/laboratorios/lab1.qmd
 
 bibliography: references.bib
 biblio-style: "apalike"

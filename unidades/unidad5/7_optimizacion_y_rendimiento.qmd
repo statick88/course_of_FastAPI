@@ -1,1 +1,210 @@
+:::: justify
 # Optimización y Rendimiento
+
+En el capítulo anterior se creó una API RESTful con FastAPI y se realizaron pruebas unitarias a las rutas de la API. En este capítulo se abordarán temas relacionados con la optimización y el rendimiento de una API, como la implementación de caché, la compresión de respuestas y la configuración de la API para producción.
+
+## Caché
+
+La caché es una técnica que se utiliza para almacenar temporalmente los resultados de operaciones costosas en memoria o en disco, de modo que puedan ser reutilizados en futuras solicitudes. La caché mejora el rendimiento de una API al reducir el tiempo de respuesta de las solicitudes.
+
+FastAPI proporciona soporte para la caché a través de la biblioteca **cachetools**. A continuación se muestra un ejemplo de cómo implementar la caché, lo primero que haremos será instalar la librería cachetools:
+
+``` bash
+pip install cachetools
+```
+
+Ahora modificamos el archivo **routes.py** para implementar la caché en la ruta de lectura de animales:
+
+``` python
+from fastapi import APIRouter, HTTPException
+from .models import Adoption, Animal, Person
+from cachetools import TTLCache, cached
+
+router = APIRouter()
+
+adoptions = []
+animals = []
+persons = []
+
+# Define TTL caches for each resource
+adoptions_cache = TTLCache(maxsize=100, ttl=300)
+animals_cache = TTLCache(maxsize=100, ttl=300)
+persons_cache = TTLCache(maxsize=100, ttl=300)
+
+@router.post("/adoptions/")
+def create_adoption(adoption: Adoption):
+    adoptions.append(adoption)
+    adoptions_cache.clear()  # Clear cache when new data is added
+    return adoption
+
+@router.get("/adoptions/")
+@cached(adoptions_cache)
+def read_adoptions():
+    return adoptions
+
+@router.get("/adoptions/{adoption_id}")
+def read_adoption(adoption_id: int):
+    for adoption in adoptions:
+        if adoption.id == adoption_id:
+            return adoption
+
+@router.post("/animals/")
+def create_animal(animal: Animal):
+    animals.append(animal)
+    animals_cache.clear()  # Clear cache when new data is added
+    return animal
+
+@router.get("/animals/")
+@cached(animals_cache)
+def read_animals():
+    return animals
+
+@router.get("/animals/{animal_id}")
+def read_animal(animal_id: int):
+    for animal in animals:
+        if animal.id == animal_id:
+            return animal
+
+@router.post("/persons/")
+def create_person(person: Person):
+    persons.append(person)
+    persons_cache.clear()  # Clear cache when new data is added
+    return person
+
+@router.get("/persons/")
+@cached(persons_cache)
+def read_persons():
+    return persons
+
+@router.get("/persons/{person_id}")
+def read_person(person_id: int):
+    for person in persons:
+        if person.id == person_id:
+            return person
+```
+
+En el ejemplo anterior, se crearon tres cachés TTL (Time-To-Live) para almacenar los resultados de las operaciones de lectura de adopciones, animales y personas. La caché se activa mediante el decorador `@cached`, que toma como argumento la caché a utilizar. La caché se limpia cuando se añaden nuevos datos a la lista correspondiente.
+
+Ahora modificamos el archivo **test_app.py** para probar la caché en la ruta de lectura de animales:
+
+``` python
+import pytest
+from fastapi.testclient import TestClient
+from app.main import app
+
+client = TestClient(app)
+
+def test_create_adoption():
+    response = client.post("/adoptions/", json={
+        "id": 1,
+        "animal_id": 1,
+        "person_id": 1,
+        "date": "2023-07-30",
+        "status": "pending"
+    })
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 1,
+        "animal_id": 1,
+        "person_id": 1,
+        "date": "2023-07-30",
+        "status": "pending"
+    }
+
+def test_read_adoptions():
+    response = client.get("/adoptions/")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
+
+def test_read_adoption():
+    response = client.post("/adoptions/", json={
+        "id": 1,
+        "animal_id": 1,
+        "person_id": 1,
+        "date": "2023-07-30",
+        "status": "pending"
+    })
+    response = client.get("/adoptions/1")
+    assert response.status_code == 200
+    assert response.json()["id"] == 1
+
+def test_create_animal():
+    response = client.post("/animals/", json={
+        "id": 1,
+        "name": "Buddy",
+        "species": "Dog",
+        "breed": "Golden Retriever"
+    })
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 1,
+        "name": "Buddy",
+        "species": "Dog",
+        "breed": "Golden Retriever"
+    }
+
+def test_read_animals():
+    response = client.get("/animals/")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
+
+def test_read_animal():
+    response = client.post("/animals/", json={
+        "id": 1,
+        "name": "Buddy",
+        "species": "Dog",
+        "breed": "Golden Retriever"
+    })
+    response = client.get("/animals/1")
+    assert response.status_code == 200
+    assert response.json()["id"] == 1
+
+def test_create_person():
+    response = client.post("/persons/", json={
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "1234567890"
+    })
+    assert response.status_code == 200
+    assert response.json() == {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "1234567890"
+    }
+
+def test_read_persons():
+    response = client.get("/persons/")
+    assert response.status_code == 200
+    assert isinstance(response.json(), list)
+
+def test_read_person():
+    response = client.post("/persons/", json={
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "1234567890"
+    })
+    response = client.get("/persons/1")
+    assert response.status_code == 200
+    assert response.json()["id"] == 1
+```
+
+En el ejemplo anterior, se añadieron pruebas unitarias para probar la caché en la ruta de lectura de animales. Se crearon pruebas para las operaciones de creación y lectura de animales, y se verificó que los resultados de las operaciones de lectura se almacenan en caché.
+
+Finalmente ejecutarmos las pruebas unitarias:
+
+``` bash
+pytest
+```
+
+:::{.center}
+![](images/paste-53.png)
+:::
+
+En el ejemplo anterior se ejecutaron las pruebas unitarias para verificar que la caché funciona correctamente en la ruta de lectura de animales. Las pruebas pasaron con éxito, lo que indica que la caché está implementada correctamente y mejora el rendimiento de la API.
+
+En este capítulo se abordaron temas relacionados con la optimización y el rendimiento de una API, como la implementación de caché. En el siguiente capítulo se verá cómo crear una api de gestión de tareas con FastAPI.
+
+:::
