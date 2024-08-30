@@ -8,7 +8,7 @@
 
 <meta name="description" content="Curso de FastAPI">
 
-<title>Manejo de Estado en FastAPI, Context API – Curso de FastAPI</title>
+<title>Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos) – Curso de FastAPI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../unidades/unidad7/2_navegacion_fast_api.html" rel="next">
-<link href="../../unidades/unidad6/2_integracion_de_apis_de_terceros_con_fastapi.html" rel="prev">
+<link href="../../unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html" rel="next">
+<link href="../../unidades/proyecto_final/3_presentacion_y_evaluacion.html" rel="prev">
 <link href="../../logo.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -86,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad7/1_manejo_de_estado.html">Unidad 7: Desarrollo Avanzado</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad7/1_manejo_de_estado.html"><span class="chapter-title">Manejo de Estado en FastAPI, Context API</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/laboratorios/taller_practico_cnn.html">Laboratorios</a></li><li class="breadcrumb-item"><a href="../../unidades/laboratorios/taller_practico_cnn.html"><span class="chapter-title">Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -314,16 +348,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text">Unidad 7: Desarrollo Avanzado</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../unidades/unidad7/1_manejo_de_estado.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Manejo de Estado en FastAPI, Context API</span></a>
+  <a href="../../unidades/unidad7/1_manejo_de_estado.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Manejo de Estado en FastAPI, Context API</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -387,16 +421,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text">Laboratorios</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../unidades/laboratorios/taller_practico_cnn.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span></a>
+  <a href="../../unidades/laboratorios/taller_practico_cnn.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -417,9 +451,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/unidad7/1_manejo_de_estado.html">Unidad 7: Desarrollo Avanzado</a></li><li class="breadcrumb-item"><a href="../../unidades/unidad7/1_manejo_de_estado.html"><span class="chapter-title">Manejo de Estado en FastAPI, Context API</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../unidades/laboratorios/taller_practico_cnn.html">Laboratorios</a></li><li class="breadcrumb-item"><a href="../../unidades/laboratorios/taller_practico_cnn.html"><span class="chapter-title">Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Manejo de Estado en FastAPI, Context API</span></h1>
+<h1 class="title"><span class="chapter-title">Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span></h1>
 </div>
 
 
@@ -436,6 +470,225 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="justify">
+<section id="objetivo" class="level2">
+<h2 class="anchored" data-anchor-id="objetivo">Objetivo</h2>
+<p>En este taller, los estudiantes aprenderán a implementar una Red Neuronal Convolucional (CNN) básica para realizar tareas de reconocimiento de imágenes utilizando la librería TensorFlow y Keras. Trabajarán con un conjunto de datos preexistente y observarán cómo se entrenan las redes neuronales para clasificar imágenes. Además, se explorarán técnicas de preprocesamiento de datos y se analizará el rendimiento del modelo mediante la evaluación de la precisión en los datos de prueba. Al finalizar el taller, los estudiantes estarán familiarizados con los conceptos básicos de las CNN y podrán aplicarlos en proyectos de visión por computadora.</p>
+</section>
+<section id="requisitos-previos" class="level2">
+<h2 class="anchored" data-anchor-id="requisitos-previos">Requisitos Previos</h2>
+<ul>
+<li>Conocimientos básicos de Python.</li>
+<li>Familiaridad con conceptos de redes neuronales.</li>
+<li>TensorFlow y Keras instalados (si no están instalados, usar el siguiente comando):</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install tensorflow matplotlib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="materiales" class="level2">
+<h2 class="anchored" data-anchor-id="materiales">Materiales</h2>
+<ul>
+<li>Computadora con acceso a Internet.</li>
+<li>IDE o editor de código (como Jupyter Notebook, VSCode, o Google Colab).</li>
+<li>Conjunto de datos CIFAR-10 (disponible en https://www.cs.toronto.edu/~kriz/cifar.html).</li>
+<li>TensorFlow y Keras instalados (si no están instalados, usar el siguiente comando):</li>
+</ul>
+</section>
+<section id="pasos-del-taller" class="level2">
+<h2 class="anchored" data-anchor-id="pasos-del-taller">Pasos del Taller</h2>
+<ol start="0" type="1">
+<li>Crear el Entorno de Desarrollo</li>
+</ol>
+<ul>
+<li><p>Crear el archivo creado con jupyter notebook se llame <strong>cnn_taller.ipynb</strong>.</p></li>
+<li><p>Si usamos Google Colab, creamos un nuevo cuaderno le damos el nombre <strong>cnn_taller.ipynb</strong>.</p></li>
+</ul>
+<ol type="1">
+<li>Configuración del Entorno</li>
+</ol>
+<p>Importar las Librerías Necesarias.</p>
+<p>Abre tu entorno de desarrollo y ejecuta el siguiente código para importar las librerías:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importamos las librerias necesarias</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> datasets, layers, models</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Como podemos observer en el código anterior importamos las librerías necesarias para trabajar con TensorFlow y Keras, así como Matplotlib para visualizar las imágenes.</p>
+<ol start="2" type="1">
+<li>Cargar y Preprocesar el Conjunto de Datos</li>
+</ol>
+</section>
+<section id="cargar-el-conjunto-de-datos-cifar-10" class="level1">
+<h1>Cargar el Conjunto de Datos CIFAR-10</h1>
+<p>CIFAR-10 es un conjunto de datos popular que contiene 60,000 imágenes de 10 clases diferentes (como aviones, automóviles, pájaros, gatos, etc.). Carga y divide el conjunto en datos de entrenamiento y prueba:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el conjunto de datos CIFAR-10</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> datasets.cifar10.load_data()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train_images, test_images <span class="op">=</span> train_images <span class="op">/</span> <span class="fl">255.0</span>, test_images <span class="op">/</span> <span class="fl">255.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código anterior carga el conjunto de datos CIFAR-10 y normaliza los valores de píxeles de las imágenes para que estén en el rango [0, 1].</p>
+<p>Visualizar Algunas Imágenes de Entrenamiento Para familiarizarse con el conjunto de datos, visualiza algunas imágenes de entrenamiento:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombres de las clases en español</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'avión'</span>, <span class="st">'automóvil'</span>, <span class="st">'pájaro'</span>, <span class="st">'gato'</span>, <span class="st">'ciervo'</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">'perro'</span>, <span class="st">'rana'</span>, <span class="st">'caballo'</span>, <span class="st">'barco'</span>, <span class="st">'camión'</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar las primeras 16 imágenes del conjunto de entrenamiento</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">10</span>))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">16</span>):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">4</span>,<span class="dv">4</span>,i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    plt.xticks([])</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    plt.yticks([])</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">False</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    plt.imshow(train_images[i], cmap<span class="op">=</span>plt.cm.binary)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(class_names[train_labels[i][<span class="dv">0</span>]])</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código anterio muestra las primeras 16 imágenes del conjunto de entrenamiento con sus respectivas etiquetas. Cada imagen está asociada con una de las 10 clases en CIFAR-10.</p>
+<ol start="3" type="1">
+<li>Construir la CNN</li>
+</ol>
+<p>Definir la Arquitectura de la CNN Implementa una red neuronal convolucional básica con capas convolucionales, de agrupamiento (pooling), y densamente conectadas (fully connected):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir la arquitectura mejorada de la CNN</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> models.Sequential([</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>, padding<span class="op">=</span><span class="st">'same'</span>, input_shape<span class="op">=</span>(<span class="dv">32</span>, <span class="dv">32</span>, <span class="dv">3</span>)),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>)),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    layers.Conv2D(<span class="dv">64</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>)),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    layers.Conv2D(<span class="dv">128</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>)),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    layers.Flatten(),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)  <span class="co"># Asumiendo que hay 10 clases</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código anterior es muy importante ya que define la arquitectura de la CNN. La red consta de varias capas convolucionales y de agrupamiento, seguidas de capas densamente conectadas. La última capa utiliza una función de activación softmax para clasificar las imágenes en una de las 10 clases posibles.</p>
+<p>Los conceptos que necesitamos recordar son:</p>
+<ul>
+<li><p><strong>Capa Convolucional (Conv2D)</strong>: Aplica un conjunto de filtros a la imagen de entrada para extraer características.</p></li>
+<li><p><strong>Capa de Agrupamiento (MaxPooling2D)</strong>: Reduce la dimensionalidad de las características extraídas para mejorar la eficiencia computacional.</p></li>
+<li><p><strong>Capa Densa (Dense)</strong>: Conecta todas las neuronas de la capa anterior con las de la capa actual.</p></li>
+<li><p><strong>Función de Activación (ReLU, Softmax)</strong>: Introduce no linealidades en la red para aprender patrones complejos y realizar clasificaciones.</p></li>
+</ul>
+<p>Ahora nos vamos a compilar el Modelo Define la función de pérdida, el optimizador, y las métricas que se usarán para entrenar el modelo:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span><span class="st">'sparse_categorical_crossentropy'</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen del modelo</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código anterior compila el modelo con el optimizador Adam, la función de pérdida de entropía cruzada categórica escasa (sparse categorical crossentropy), y la métrica de precisión. También muestra un resumen de la arquitectura de la CNN.</p>
+<ol start="4" type="1">
+<li>Entrenar y Evaluar la CNN</li>
+</ol>
+<p>Entrenar el Modelo Entrena la CNN utilizando los datos de entrenamiento:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir callbacks</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>callbacks <span class="op">=</span> [</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    tf.keras.callbacks.EarlyStopping(patience<span class="op">=</span><span class="dv">3</span>, monitor<span class="op">=</span><span class="st">'val_loss'</span>, restore_best_weights<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    tf.keras.callbacks.ModelCheckpoint(<span class="st">'best_model.keras'</span>, save_best_only<span class="op">=</span><span class="va">True</span>, monitor<span class="op">=</span><span class="st">'val_loss'</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    tf.keras.callbacks.ReduceLROnPlateau(monitor<span class="op">=</span><span class="st">'val_loss'</span>, factor<span class="op">=</span><span class="fl">0.5</span>, patience<span class="op">=</span><span class="dv">2</span>, min_lr<span class="op">=</span><span class="fl">1e-6</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrenar el modelo</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    train_images, train_labels, </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">30</span>,  <span class="co"># Aumentar el número de epochs para un mejor entrenamiento</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>(test_images, test_labels),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">64</span>,  <span class="co"># Ajustar el tamaño del lote para optimizar el uso de la GPU</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>callbacks</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código anterior entrena la CNN durante 30 épocas y utiliza un conjunto de validación para monitorear el rendimiento del modelo. También incluye callbacks para detener el entrenamiento temprano, guardar el mejor modelo, y ajustar la tasa de aprendizaje.</p>
+<p>Evaluar el Modelo Evalúa el rendimiento del modelo en los datos de prueba:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluar el modelo</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>test_loss, test_acc <span class="op">=</span> model.evaluate(test_images, test_labels, verbose<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Precisión en los datos de prueba: </span><span class="sc">{</span>test_acc<span class="sc">:.2%}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código anterior evalúa la precisión del modelo en los datos de prueba y muestra el resultado en porcentaje.</p>
+<ol start="5" type="1">
+<li>Análisis de Resultados</li>
+</ol>
+<p>Visualizar el Progreso del Entrenamiento Muestra cómo la precisión y la pérdida cambian durante el entrenamiento:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar la precisión durante el entrenamiento</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.plot(history.history[<span class="st">'accuracy'</span>], label<span class="op">=</span><span class="st">'Precisión en el entrenamiento'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.plot(history.history[<span class="st">'val_accuracy'</span>], label<span class="op">=</span><span class="st">'Precisión en la validación'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Época'</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Precisión'</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.ylim([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código anterior muestra cómo la precisión en el entrenamiento y la validación cambian a lo largo de las épocas. Idealmente, queremos que la precisión en el conjunto de validación aumente y se mantenga estable.</p>
+<p>Hacer Predicciones Utiliza el modelo para predecir las etiquetas de las imágenes de prueba:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hacer predicciones</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model.predict(test_images)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_image(i, predictions_array, true_label, img):</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    predictions_array <span class="op">=</span> np.array(predictions_array)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    true_label <span class="op">=</span> np.array(true_label)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    img <span class="op">=</span> np.array(img)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Asegúrate de que las entradas sean escalares</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    predictions_array, true_label, img <span class="op">=</span> predictions_array[i], true_label[i], img[i]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    true_label <span class="op">=</span> true_label.item()</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">False</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    plt.xticks([])</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    plt.yticks([])</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    plt.imshow(img, cmap<span class="op">=</span>plt.cm.binary)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    predicted_label <span class="op">=</span> np.argmax(predictions_array)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    predicted_label <span class="op">=</span> predicted_label.item()</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> <span class="st">'blue'</span> <span class="cf">if</span> predicted_label <span class="op">==</span> true_label <span class="cf">else</span> <span class="st">'red'</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="ss">f"</span><span class="sc">{</span>class_names[<span class="bu">int</span>(predicted_label)]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span><span class="dv">100</span><span class="op">*</span>np<span class="sc">.</span><span class="bu">max</span>(predictions_array)<span class="sc">:2.0f}</span><span class="ss">% (</span><span class="sc">{</span>class_names[<span class="bu">int</span>(true_label)]<span class="sc">}</span><span class="ss">)"</span>, color<span class="op">=</span>color)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_value_array(i, predictions_array, true_label):</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    predictions_array <span class="op">=</span> np.array(predictions_array)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    true_label <span class="op">=</span> np.array(true_label)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    predictions_array, true_label <span class="op">=</span> predictions_array[i], true_label[i]</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    true_label <span class="op">=</span> true_label.item()</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">False</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    plt.xticks(<span class="bu">range</span>(<span class="bu">len</span>(class_names)))</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    plt.yticks([])</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    thisplot <span class="op">=</span> plt.bar(<span class="bu">range</span>(<span class="bu">len</span>(class_names)), predictions_array, color<span class="op">=</span><span class="st">"#777777"</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    plt.ylim([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    predicted_label <span class="op">=</span> np.argmax(predictions_array)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    predicted_label <span class="op">=</span> predicted_label.item()</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    thisplot[<span class="bu">int</span>(predicted_label)].set_color(<span class="st">'red'</span>)</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    thisplot[<span class="bu">int</span>(true_label)].set_color(<span class="st">'blue'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El código anterior lo analizaremos paso a paso:</p>
+<ul>
+<li><p><strong>plot_image</strong>: Muestra una imagen con su predicción y etiqueta verdadera.</p></li>
+<li><p><strong>plot_value_array</strong>: Muestra un gráfico de barras con las probabilidades de predicción para cada clase.</p></li>
+</ul>
+<p>El mismo nos permite visualizar las predicciones del modelo en las imágenes de prueba.</p>
+<p>Ahora para visualizar una imagen con su predicción:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar predicciones para la primera imagen de prueba</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># Ajusta el tamaño de la figura si es necesario</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plot_image(i, predictions, test_labels, test_images)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plot_value_array(i, predictions, test_labels)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Podemos cambiar el valor de <code>i</code> para visualizar diferentes imágenes y sus predicciones.</p>
+<p>Por ejemplo si queremos visualizar la imagen 10:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar predicciones para la décima imagen de prueba</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># Ajusta el tamaño de la figura si es necesario</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plot_image(i, predictions, test_labels, test_images)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plot_value_array(i, predictions, test_labels)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reto" class="level1">
+<h1>Reto</h1>
+<ul>
+<li><p>Modifica la arquitectura de la CNN para mejorar la precisión en los datos de prueba.</p></li>
+<li><p>Experimenta con diferentes hiperparámetros (como el número de filtros, el tamaño del kernel, la tasa de aprendizaje, etc.) para optimizar el rendimiento del modelo.</p></li>
+<li><p>Prueba con diferentes técnicas de regularización (como la disminución de la tasa de aprendizaje, la regularización L2, la eliminación de neuronas, etc.) para evitar el sobreajuste.</p></li>
+<li><p>Implementa una red neuronal preentrenada (como VGG16, ResNet, etc.) y compara su rendimiento con la CNN básica.</p></li>
+</ul>
+<p>Conclusión</p>
+<p>En este taller, implementaste una CNN básica para el reconocimiento de imágenes y la evaluaste en el conjunto de datos CIFAR-10. Este es un primer paso hacia el uso de redes neuronales para aplicaciones más complejas en visión por computador.</p>
+</section>
+</div>
 
 
 
@@ -1013,13 +1266,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../unidades/unidad6/2_integracion_de_apis_de_terceros_con_fastapi.html" class="pagination-link" aria-label="Integración de APIs de terceros con FastAPI">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Integración de APIs de terceros con FastAPI</span></span>
+      <a href="../../unidades/proyecto_final/3_presentacion_y_evaluacion.html" class="pagination-link" aria-label="3_presentacion_y_evaluacion.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">3_presentacion_y_evaluacion.html</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../unidades/unidad7/2_navegacion_fast_api.html" class="pagination-link" aria-label="Navegación en FastAPI con FastRouter">
-        <span class="nav-page-text"><span class="chapter-title">Navegación en FastAPI con FastRouter</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html" class="pagination-link" aria-label="Laboratorio de CNN con FastAPI">
+        <span class="nav-page-text"><span class="chapter-title">Laboratorio de CNN con FastAPI</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

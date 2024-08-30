@@ -546,6 +546,138 @@
     ]
   },
   {
+    "objectID": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#creación-de-un-entorno-virtual",
+    "href": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#creación-de-un-entorno-virtual",
+    "title": "Configuración y Uso de FastAPI para consumir APIs",
+    "section": "Creación de un entorno virtual",
+    "text": "Creación de un entorno virtual\nPara empezar, se debe crear un entorno virtual e instalar FastAPI y Uvicorn. Para ello, se ejecutan los siguientes comandos:\npython3 -m venv env\nsource env/bin/activate\npip install fastapi uvicorn httpx pydantic\nNuestro proyecto tendrá la siguiente estructura:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n│   ├── models.py\n│   ├── routes.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para consumir la API de &lt;fakestoreapi.com&gt;. A continuación se muestra el contenido del archivo models:\nfrom pydantic import BaseModel\n\nclass Product(BaseModel):\n    id: int\n    title: str\n    price: float\n    description: str\n    category: str\n    image: str\nEn el ejemplo anterior se define el modelo Product que hereda de la clase BaseModel de Pydantic. El modelo tiene los campos id, title, price, description, category e image que representan los datos de los productos.",
+    "crumbs": [
+      "Unidad 6: Consumo API con FastAPI",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Configuración y Uso de FastAPI para consumir APIs</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#consumo-de-la-api",
+    "href": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#consumo-de-la-api",
+    "title": "Configuración y Uso de FastAPI para consumir APIs",
+    "section": "Consumo de la API",
+    "text": "Consumo de la API\nA continuación se muestra el contenido del archivo routes.py que contiene la definición de las rutas de la API:\nfrom fastapi import APIRouter, HTTPException\nfrom httpx import AsyncClient\nfrom .models import Product\n\nrouter = APIRouter()\n\n@router.get(\"/products/\")\nasync def read_products():\n    async with AsyncClient() as client:\n        response = await client.get(\"https://fakestoreapi.com/products\")\n        products = response.json()\n        return products\n\n@router.get(\"/products/{product_id}\")\nasync def read_product(product_id: int):\n    async with AsyncClient() as client:\n        response = await client.get(f\"https://fakestoreapi.com/products/{product_id}\")\n        product = response.json()\n        return product\n\n@router.post(\"/products/\")\nasync def create_product(product: Product):\n    async with AsyncClient() as client:\n        response = await client.post(\"https://fakestoreapi.com/products\", json=product.dict())\n        product = response.json()\n        return product\n\n@router.put(\"/products/{product_id}\")\nasync def update_product(product_id: int, product: Product):\n    async with AsyncClient() as client:\n        response = await client.put(f\"https://fakestoreapi.com/products/{product_id}\", json=product.dict())\n        product = response.json()\n        return product\n\n@router.delete(\"/products/{product_id}\")\nasync def delete_product(product_id: int):\n    async with AsyncClient() as client:\n        response = await client.delete(f\"https://fakestoreapi.com/products/{product_id}\")\n        product = response.json()\n        return product\nEn el ejemplo anterior se definen las rutas para consumir la API de &lt;fakestoreapi.com&gt;. Las rutas read_products y read_product permiten obtener la lista de productos y un producto en particular, respectivamente. Las rutas create_product, update_product y delete_product permiten crear, actualizar y eliminar un producto, respectivamente.",
+    "crumbs": [
+      "Unidad 6: Consumo API con FastAPI",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Configuración y Uso de FastAPI para consumir APIs</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#ejecución-de-la-api",
+    "href": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#ejecución-de-la-api",
+    "title": "Configuración y Uso de FastAPI para consumir APIs",
+    "section": "Ejecución de la API",
+    "text": "Ejecución de la API\nPara ejecutar la API, se debe crear un archivo main.py en el directorio app/ con el siguiente contenido:\nfrom fastapi import FastAPI\nfrom .routes import router\n\napp = FastAPI()\n\napp.include_router(router)\nPara ejecutar la API, se utiliza el siguiente comando:\nuvicorn app.main:app --reload\nUna vez que la API esté en ejecución, se pueden realizar peticiones a las rutas definidas en el archivo routes.py. Por ejemplo, para obtener la lista de productos se puede acceder a la URL http://127.0.0.1:8000/products/.",
+    "crumbs": [
+      "Unidad 6: Consumo API con FastAPI",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Configuración y Uso de FastAPI para consumir APIs</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#pruebas-de-la-api",
+    "href": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#pruebas-de-la-api",
+    "title": "Configuración y Uso de FastAPI para consumir APIs",
+    "section": "Pruebas de la API",
+    "text": "Pruebas de la API\nPara probar la API se puede utilizar un cliente HTTP como Thunder Client en Visual Studio Code o Postman. También se puede acceder a la documentación interactiva de la API en http://127.0.0.1:8000/docs para probar las rutas y ver los resultados de las peticiones.\n\n\n\n\n\n\nEn este apartado se mostró cómo configurar y utilizar FastAPI para consumir APIs. FastAPI facilita la creación de APIs RESTful y permite consumir APIs de forma sencilla y eficiente. En el siguiente apartado se mostrará cómo realizar pruebas unitarias a las rutas de la API creada en este apartado.\nEn este apartado se mostró cómo configurar y utilizar FastAPI para consumir APIs. FastAPI facilita la creación de APIs RESTful y permite consumir APIs de forma sencilla y eficiente. En el siguiente apartado se mostrará cómo realizar pruebas unitarias a las rutas de la API creada en este apartado.",
+    "crumbs": [
+      "Unidad 6: Consumo API con FastAPI",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Configuración y Uso de FastAPI para consumir APIs</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/taller_practico_cnn.html#objetivo",
+    "href": "unidades/laboratorios/taller_practico_cnn.html#objetivo",
+    "title": "Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
+    "section": "Objetivo",
+    "text": "Objetivo\nEn este taller, los estudiantes aprenderán a implementar una Red Neuronal Convolucional (CNN) básica para realizar tareas de reconocimiento de imágenes utilizando la librería TensorFlow y Keras. Trabajarán con un conjunto de datos preexistente y observarán cómo se entrenan las redes neuronales para clasificar imágenes. Además, se explorarán técnicas de preprocesamiento de datos y se analizará el rendimiento del modelo mediante la evaluación de la precisión en los datos de prueba. Al finalizar el taller, los estudiantes estarán familiarizados con los conceptos básicos de las CNN y podrán aplicarlos en proyectos de visión por computadora.",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/taller_practico_cnn.html#requisitos-previos",
+    "href": "unidades/laboratorios/taller_practico_cnn.html#requisitos-previos",
+    "title": "Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
+    "section": "Requisitos Previos",
+    "text": "Requisitos Previos\n\nConocimientos básicos de Python.\nFamiliaridad con conceptos de redes neuronales.\nTensorFlow y Keras instalados (si no están instalados, usar el siguiente comando):\n\npip install tensorflow matplotlib",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/taller_practico_cnn.html#materiales",
+    "href": "unidades/laboratorios/taller_practico_cnn.html#materiales",
+    "title": "Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
+    "section": "Materiales",
+    "text": "Materiales\n\nComputadora con acceso a Internet.\nIDE o editor de código (como Jupyter Notebook, VSCode, o Google Colab).\nConjunto de datos CIFAR-10 (disponible en https://www.cs.toronto.edu/~kriz/cifar.html).\nTensorFlow y Keras instalados (si no están instalados, usar el siguiente comando):",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/taller_practico_cnn.html#pasos-del-taller",
+    "href": "unidades/laboratorios/taller_practico_cnn.html#pasos-del-taller",
+    "title": "Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
+    "section": "Pasos del Taller",
+    "text": "Pasos del Taller\n\nCrear el Entorno de Desarrollo\n\n\nCrear el archivo creado con jupyter notebook se llame cnn_taller.ipynb.\nSi usamos Google Colab, creamos un nuevo cuaderno le damos el nombre cnn_taller.ipynb.\n\n\nConfiguración del Entorno\n\nImportar las Librerías Necesarias.\nAbre tu entorno de desarrollo y ejecuta el siguiente código para importar las librerías:\n# Importamos las librerias necesarias\nimport tensorflow as tf\nfrom tensorflow.keras import datasets, layers, models\nimport matplotlib.pyplot as plt\nComo podemos observer en el código anterior importamos las librerías necesarias para trabajar con TensorFlow y Keras, así como Matplotlib para visualizar las imágenes.\n\nCargar y Preprocesar el Conjunto de Datos",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html",
+    "href": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html",
+    "title": "Laboratorio de CNN con FastAPI",
+    "section": "",
+    "text": "1. Cargar el modelo creado en el laboratorio anterior\nCrear el archivo main,py con el siguiente contenido:",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Laboratorio de CNN con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#cargar-el-modelo-creado-en-el-laboratorio-anterior",
+    "href": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#cargar-el-modelo-creado-en-el-laboratorio-anterior",
+    "title": "Laboratorio de CNN con FastAPI",
+    "section": "",
+    "text": "from fastapi import FastAPI, File, UploadFile\nimport tensorflow as tf\nimport numpy as np\nfrom PIL import Image\nimport io\n\napp = FastAPI()\n\n# Cargar el modelo\nmodel = tf.keras.models.load_model('cifar10_model.keras')\n\n@app.post(\"/predict/\")\nasync def predict(file: UploadFile = File(...)):\n    try:\n        image = Image.open(io.BytesIO(await file.read()))\n        image = image.convert(\"RGB\")  # Asegúrate de que la imagen esté en formato RGB\n        image = image.resize((32, 32))  # Ajustar tamaño de imagen\n        image = np.array(image) / 255.0  # Normalizar\n        image = np.expand_dims(image, axis=0)  # Añadir dimensión del batch\n\n        predictions = model.predict(image)\n        class_idx = np.argmax(predictions, axis=1)[0]\n        return {\"class_idx\": int(class_idx), \"confidence\": float(np.max(predictions))}\n    except Exception as e:\n        return {\"error\": str(e)}\n\n@app.get(\"/\")\ndef read_root():\n    return {\"message\": \"Welcome to pyDay Piura 2024\"}",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Laboratorio de CNN con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#ejecutar-la-api",
+    "href": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#ejecutar-la-api",
+    "title": "Laboratorio de CNN con FastAPI",
+    "section": "2. Ejecutar la API",
+    "text": "2. Ejecutar la API\nPara ejecutar la API, ejecuta el siguiente comando:\nuvicorn main:app --reload",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Laboratorio de CNN con FastAPI</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#probar-la-api",
+    "href": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#probar-la-api",
+    "title": "Laboratorio de CNN con FastAPI",
+    "section": "3. Probar la API",
+    "text": "3. Probar la API\nPara probar la API vamos a utilizar la herramienta curl. Ejecuta el siguiente comando en una terminal:\ncurl -X POST \"http://127.0.0.1:8000/predict/\" -H \"accept: application/json\" -H \"Content-Type: multipart/form-data\" -F \"file=@&lt;ruta de la imagen&gt;\"\nPor ejemplo:\ncurl -X POST \"http://127.0.0.1:8000/predict/\" -F \"file=@/home/statick/workspaces/charlas/practica/img_example/aeroplano.jpg\"\nEn el caso de que la imagen sea un avión, deberías obtener una respuesta similar a la siguiente:\n{\"class_idx\": 0, \"confidence\": 0.9999998807907104}\n\n\n\n\n\n\nTip\n\n\n\nRecuerda la lista de clases de CIFAR-10:\n\nAvión\nAutomóvil\nPájaro\nGato\nCiervo\nPerro\nRana\nCaballo\nBarco\nCamión",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Laboratorio de CNN con FastAPI</span>"
+    ]
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Acerca de mi",
