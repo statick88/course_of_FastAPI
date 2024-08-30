@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -415,6 +449,112 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="justify">
+<div class="center">
+<p><img src="images/paste-5.png" class="img-fluid"></p>
+</div>
+<p>FastAPI se caracteriza por su facilidad de uso y su capacidad para crear APIs RESTful de forma rápida y sencilla. En este apartado se muestra cómo configurar y utilizar FastAPI para consumir APIs para este ejemplo consumiremos la API de <a href="https://fakestoreapi.com/" class="uri">https://fakestoreapi.com/</a>.</p>
+<section id="creación-de-un-entorno-virtual" class="level2">
+<h2 class="anchored" data-anchor-id="creación-de-un-entorno-virtual">Creación de un entorno virtual</h2>
+<p>Para empezar, se debe crear un entorno virtual e instalar FastAPI y Uvicorn. Para ello, se ejecutan los siguientes comandos:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv env</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> env/bin/activate</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install fastapi uvicorn httpx pydantic</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nuestro proyecto tendrá la siguiente estructura:</p>
+<pre class="plaintext"><code>proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── models.py
+│   ├── routes.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt</code></pre>
+<p>En el directorio <strong>app/</strong> se encuentra el archivo <strong>routes.py</strong> que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para consumir la API de &lt;fakestoreapi.com&gt;. A continuación se muestra el contenido del archivo <strong>models</strong>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Product(BaseModel):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">id</span>: <span class="bu">int</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    title: <span class="bu">str</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    price: <span class="bu">float</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    description: <span class="bu">str</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    category: <span class="bu">str</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    image: <span class="bu">str</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el ejemplo anterior se define el modelo <strong>Product</strong> que hereda de la clase <strong>BaseModel</strong> de Pydantic. El modelo tiene los campos <strong>id</strong>, <strong>title</strong>, <strong>price</strong>, <strong>description</strong>, <strong>category</strong> e <strong>image</strong> que representan los datos de los productos.</p>
+</section>
+<section id="consumo-de-la-api" class="level2">
+<h2 class="anchored" data-anchor-id="consumo-de-la-api">Consumo de la API</h2>
+<p>A continuación se muestra el contenido del archivo <strong>routes.py</strong> que contiene la definición de las rutas de la API:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> APIRouter, HTTPException</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> httpx <span class="im">import</span> AsyncClient</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .models <span class="im">import</span> Product</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>router <span class="op">=</span> APIRouter()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">@router.get</span>(<span class="st">"/products/"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> read_products():</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="cf">with</span> AsyncClient() <span class="im">as</span> client:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="cf">await</span> client.get(<span class="st">"https://fakestoreapi.com/products"</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        products <span class="op">=</span> response.json()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> products</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">@router.get</span>(<span class="st">"/products/</span><span class="sc">{product_id}</span><span class="st">"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> read_product(product_id: <span class="bu">int</span>):</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="cf">with</span> AsyncClient() <span class="im">as</span> client:</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="cf">await</span> client.get(<span class="ss">f"https://fakestoreapi.com/products/</span><span class="sc">{</span>product_id<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        product <span class="op">=</span> response.json()</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> product</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="at">@router.post</span>(<span class="st">"/products/"</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> create_product(product: Product):</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="cf">with</span> AsyncClient() <span class="im">as</span> client:</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="cf">await</span> client.post(<span class="st">"https://fakestoreapi.com/products"</span>, json<span class="op">=</span>product.<span class="bu">dict</span>())</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        product <span class="op">=</span> response.json()</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> product</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="at">@router.put</span>(<span class="st">"/products/</span><span class="sc">{product_id}</span><span class="st">"</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> update_product(product_id: <span class="bu">int</span>, product: Product):</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="cf">with</span> AsyncClient() <span class="im">as</span> client:</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="cf">await</span> client.put(<span class="ss">f"https://fakestoreapi.com/products/</span><span class="sc">{</span>product_id<span class="sc">}</span><span class="ss">"</span>, json<span class="op">=</span>product.<span class="bu">dict</span>())</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        product <span class="op">=</span> response.json()</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> product</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="at">@router.delete</span>(<span class="st">"/products/</span><span class="sc">{product_id}</span><span class="st">"</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> delete_product(product_id: <span class="bu">int</span>):</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">async</span> <span class="cf">with</span> AsyncClient() <span class="im">as</span> client:</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> <span class="cf">await</span> client.delete(<span class="ss">f"https://fakestoreapi.com/products/</span><span class="sc">{</span>product_id<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        product <span class="op">=</span> response.json()</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> product</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En el ejemplo anterior se definen las rutas para consumir la API de &lt;fakestoreapi.com&gt;. Las rutas <strong>read_products</strong> y <strong>read_product</strong> permiten obtener la lista de productos y un producto en particular, respectivamente. Las rutas <strong>create_product</strong>, <strong>update_product</strong> y <strong>delete_product</strong> permiten crear, actualizar y eliminar un producto, respectivamente.</p>
+</section>
+<section id="ejecución-de-la-api" class="level2">
+<h2 class="anchored" data-anchor-id="ejecución-de-la-api">Ejecución de la API</h2>
+<p>Para ejecutar la API, se debe crear un archivo <strong>main.py</strong> en el directorio <strong>app/</strong> con el siguiente contenido:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .routes <span class="im">import</span> router</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>app.include_router(router)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para ejecutar la API, se utiliza el siguiente comando:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uvicorn</span> app.main:app <span class="at">--reload</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Una vez que la API esté en ejecución, se pueden realizar peticiones a las rutas definidas en el archivo <strong>routes.py</strong>. Por ejemplo, para obtener la lista de productos se puede acceder a la URL <a href="http://127.0.0.1:8000/products/" class="uri">http://127.0.0.1:8000/products/</a>.</p>
+</section>
+<section id="pruebas-de-la-api" class="level2">
+<h2 class="anchored" data-anchor-id="pruebas-de-la-api">Pruebas de la API</h2>
+<p>Para probar la API se puede utilizar un cliente HTTP como Thunder Client en Visual Studio Code o Postman. También se puede acceder a la documentación interactiva de la API en <a href="http://127.0.0.1:8000/docs" class="uri">http://127.0.0.1:8000/docs</a> para probar las rutas y ver los resultados de las peticiones.</p>
+<div class="center">
+<p><img src="images/paste-1.png" class="img-fluid"></p>
+<p><img src="images/paste-2.png" class="img-fluid"></p>
+<p><img src="images/paste-3.png" class="img-fluid"></p>
+<p><img src="images/paste-4.png" class="img-fluid"></p>
+</div>
+<p>En este apartado se mostró cómo configurar y utilizar FastAPI para consumir APIs. FastAPI facilita la creación de APIs RESTful y permite consumir APIs de forma sencilla y eficiente. En el siguiente apartado se mostrará cómo realizar pruebas unitarias a las rutas de la API creada en este apartado.</p>
+<p>En este apartado se mostró cómo configurar y utilizar FastAPI para consumir APIs. FastAPI facilita la creación de APIs RESTful y permite consumir APIs de forma sencilla y eficiente. En el siguiente apartado se mostrará cómo realizar pruebas unitarias a las rutas de la API creada en este apartado.</p>
+</section>
+</div>
 
 
 

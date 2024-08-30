@@ -1,1 +1,138 @@
+::: justify
 # Configuración y Uso de FastAPI para consumir APIs
+
+:::{.center}
+![](images/paste-5.png)
+:::
+
+FastAPI se caracteriza por su facilidad de uso y su capacidad para crear APIs RESTful de forma rápida y sencilla. En este apartado se muestra cómo configurar y utilizar FastAPI para consumir APIs para este ejemplo consumiremos la API de <https://fakestoreapi.com/>.
+
+## Creación de un entorno virtual
+
+Para empezar, se debe crear un entorno virtual e instalar FastAPI y Uvicorn. Para ello, se ejecutan los siguientes comandos:
+
+``` bash
+python3 -m venv env
+source env/bin/activate
+pip install fastapi uvicorn httpx pydantic
+```
+
+Nuestro proyecto tendrá la siguiente estructura:
+
+``` plaintext
+proyecto/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── models.py
+│   ├── routes.py
+│
+├── .gitignore
+├── README.md
+├── requirements.txt
+```
+
+En el directorio **app/** se encuentra el archivo **routes.py** que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para consumir la API de \<fakestoreapi.com\>. A continuación se muestra el contenido del archivo **models**:
+
+``` python
+from pydantic import BaseModel
+
+class Product(BaseModel):
+    id: int
+    title: str
+    price: float
+    description: str
+    category: str
+    image: str
+```
+
+En el ejemplo anterior se define el modelo **Product** que hereda de la clase **BaseModel** de Pydantic. El modelo tiene los campos **id**, **title**, **price**, **description**, **category** e **image** que representan los datos de los productos.
+
+## Consumo de la API
+
+A continuación se muestra el contenido del archivo **routes.py** que contiene la definición de las rutas de la API:
+
+``` python
+from fastapi import APIRouter, HTTPException
+from httpx import AsyncClient
+from .models import Product
+
+router = APIRouter()
+
+@router.get("/products/")
+async def read_products():
+    async with AsyncClient() as client:
+        response = await client.get("https://fakestoreapi.com/products")
+        products = response.json()
+        return products
+
+@router.get("/products/{product_id}")
+async def read_product(product_id: int):
+    async with AsyncClient() as client:
+        response = await client.get(f"https://fakestoreapi.com/products/{product_id}")
+        product = response.json()
+        return product
+
+@router.post("/products/")
+async def create_product(product: Product):
+    async with AsyncClient() as client:
+        response = await client.post("https://fakestoreapi.com/products", json=product.dict())
+        product = response.json()
+        return product
+
+@router.put("/products/{product_id}")
+async def update_product(product_id: int, product: Product):
+    async with AsyncClient() as client:
+        response = await client.put(f"https://fakestoreapi.com/products/{product_id}", json=product.dict())
+        product = response.json()
+        return product
+
+@router.delete("/products/{product_id}")
+async def delete_product(product_id: int):
+    async with AsyncClient() as client:
+        response = await client.delete(f"https://fakestoreapi.com/products/{product_id}")
+        product = response.json()
+        return product
+```
+
+En el ejemplo anterior se definen las rutas para consumir la API de \<fakestoreapi.com\>. Las rutas **read_products** y **read_product** permiten obtener la lista de productos y un producto en particular, respectivamente. Las rutas **create_product**, **update_product** y **delete_product** permiten crear, actualizar y eliminar un producto, respectivamente.
+
+## Ejecución de la API
+
+Para ejecutar la API, se debe crear un archivo **main.py** en el directorio **app/** con el siguiente contenido:
+
+``` python
+from fastapi import FastAPI
+from .routes import router
+
+app = FastAPI()
+
+app.include_router(router)
+```
+
+Para ejecutar la API, se utiliza el siguiente comando:
+
+``` bash
+uvicorn app.main:app --reload
+```
+
+Una vez que la API esté en ejecución, se pueden realizar peticiones a las rutas definidas en el archivo **routes.py**. Por ejemplo, para obtener la lista de productos se puede acceder a la URL <http://127.0.0.1:8000/products/>.
+
+## Pruebas de la API
+
+Para probar la API se puede utilizar un cliente HTTP como Thunder Client en Visual Studio Code o Postman. También se puede acceder a la documentación interactiva de la API en <http://127.0.0.1:8000/docs> para probar las rutas y ver los resultados de las peticiones.
+
+:::{.center}
+![](images/paste-1.png)
+
+![](images/paste-2.png)
+
+![](images/paste-3.png)
+
+![](images/paste-4.png)
+:::
+En este apartado se mostró cómo configurar y utilizar FastAPI para consumir APIs. FastAPI facilita la creación de APIs RESTful y permite consumir APIs de forma sencilla y eficiente. En el siguiente apartado se mostrará cómo realizar pruebas unitarias a las rutas de la API creada en este apartado.
+
+En este apartado se mostró cómo configurar y utilizar FastAPI para consumir APIs. FastAPI facilita la creación de APIs RESTful y permite consumir APIs de forma sencilla y eficiente. En el siguiente apartado se mostrará cómo realizar pruebas unitarias a las rutas de la API creada en este apartado.
+:::

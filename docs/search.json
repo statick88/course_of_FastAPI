@@ -480,146 +480,69 @@
     ]
   },
   {
-    "objectID": "unidades/laboratorios/lab1.html",
-    "href": "unidades/laboratorios/lab1.html",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "",
-    "text": "1. Configuración Inicial del Proyecto",
+    "objectID": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias",
+    "href": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias",
+    "title": "Pruebas Unitarias en FastAPI",
+    "section": "Pruebas Unitarias",
+    "text": "Pruebas Unitarias\nLas pruebas unitarias son una técnica de programación que consiste en verificar que una unidad de código (como una función o un método) funcione correctamente. En el caso de una API RESTful, las pruebas unitarias se utilizan para verificar que las rutas de la API devuelvan la respuesta esperada.",
     "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Pruebas Unitarias en FastAPI</span>"
     ]
   },
   {
-    "objectID": "unidades/laboratorios/lab1.html#configuración-inicial-del-proyecto",
-    "href": "unidades/laboratorios/lab1.html#configuración-inicial-del-proyecto",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "",
-    "text": "1.1. Crear un Proyecto Django\nAbre tu terminal y ejecuta los siguientes comandos para crear un nuevo proyecto Django:\npython -m venv env\nsource env/bin/activate\npip install django==4.2\ndjango-admin startproject ecommerce_project .\ncd ecommerce_project\n\n\n1.2 Crear una Aplicación Django\nDentro del directorio del proyecto, crea una aplicación para manejar el e-commerce:\npython manage.py startapp products\n\n\n1.3 Instalar Django Rest Framework\nInstala DRF usando pip:\npip install djangorestframework\n\n\n1.4 Configurar el Proyecto\nAñade ‘rest_framework’ y tu nueva aplicación ‘products’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:\nINSTALLED_APPS = [\n    # ... otras apps\n    'rest_framework',\n    'products',\n]",
+    "objectID": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias-en-fastapi",
+    "href": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias-en-fastapi",
+    "title": "Pruebas Unitarias en FastAPI",
+    "section": "Pruebas Unitarias en FastAPI",
+    "text": "Pruebas Unitarias en FastAPI\nFastAPI proporciona una forma sencilla de realizar pruebas unitarias a las rutas de la API. Para ello, se utiliza la biblioteca pytest y el módulo test_app.py de FastAPI.\npip install pytest httpx \nA continuación se muestra un ejemplo de cómo realizar pruebas unitarias a las rutas de la API creada en el capítulo anterior:\nimport pytest\nfrom fastapi.testclient import TestClient\nfrom app.main import app\nfrom app.models import Adoption, Animal, Person\n\nclient = TestClient(app)\n\ndef test_create_adoption():\n    response = client.post(\"/adoptions/\", json={\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    }\n\ndef test_read_adoptions():\n    response = client.get(\"/adoptions/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_adoption():\n    test_create_adoption()\n    response = client.get(\"/adoptions/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_animal():\n    response = client.post(\"/animals/\", json={\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    }\n\ndef test_read_animals():\n    response = client.get(\"/animals/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_animal():\n    test_create_animal()  # Ensure there's at least one animal\n    response = client.get(\"/animals/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_person():\n    response = client.post(\"/persons/\", json={\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    }\n\ndef test_read_persons():\n    response = client.get(\"/persons/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_person():\n    test_create_person()  # Ensure there's at least one person\n    response = client.get(\"/persons/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\nEn el ejemplo anterior se importa la clase TestClient de FastAPI y se crea una instancia de TestClient con la aplicación FastAPI. Luego se definen dos pruebas unitarias: una para verificar que la ruta /adoptions/ devuelva una lista vacía de adopciones y otra para verificar que la ruta /adoptions/ cree una nueva adopción con los datos proporcionados.\nPara ejecutar las pruebas unitarias, se utiliza el comando pytest en la terminal:\npytest\nAl ejecutar las pruebas unitarias, se mostrará el resultado de las pruebas en la terminal. Si todas las pruebas pasan, se mostrará un mensaje indicando que todas las pruebas han pasado correctamente.\n\n\n\nEn resumen, en este capítulo se mostró cómo realizar pruebas unitarias a las rutas de una API RESTful creada con FastAPI. Las pruebas unitarias son una técnica de programación que permite verificar que una unidad de código funcione correctamente y que la API devuelva la respuesta esperada.\nEn el siguiente capítulo se mostrará cómo mejorar la optimización y el rendimiento.",
     "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Pruebas Unitarias en FastAPI</span>"
     ]
   },
   {
-    "objectID": "unidades/laboratorios/lab1.html#definir-el-modelo-de-datos",
-    "href": "unidades/laboratorios/lab1.html#definir-el-modelo-de-datos",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "2. Definir el Modelo de Datos",
-    "text": "2. Definir el Modelo de Datos\n\n2.1 Crear Modelos en products/models.py\nDefine los modelos para el e-commerce, como Product, Category, y Order:\nfrom django.db import models\n\nclass Category(models.Model):\n    name = models.CharField(max_length=100)\n\n    def __str__(self):\n        return self.name\n\nclass Product(models.Model):\n    name = models.CharField(max_length=100)\n    description = models.TextField()\n    price = models.DecimalField(max_digits=10, decimal_places=2)\n    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)\n    stock = models.PositiveIntegerField()\n\n    def __str__(self):\n        return self.name\n\nclass Order(models.Model):\n    product = models.ForeignKey(Product, related_name='orders', on_delete=models.CASCADE)\n    quantity = models.PositiveIntegerField()\n    total_price = models.DecimalField(max_digits=10, decimal_places=2)\n    order_date = models.DateTimeField(auto_now_add=True)\n\n    def __str__(self):\n        return f\"Order {self.id} - {self.product.name}\"\n\n\n2.2 Crear y Aplicar Migraciones\nGenera y aplica las migraciones para los modelos:\npython manage.py makemigrations\npython manage.py migrate",
+    "objectID": "unidades/unidad5/7_optimizacion_y_rendimiento.html#caché",
+    "href": "unidades/unidad5/7_optimizacion_y_rendimiento.html#caché",
+    "title": "Optimización y Rendimiento",
+    "section": "Caché",
+    "text": "Caché\nLa caché es una técnica que se utiliza para almacenar temporalmente los resultados de operaciones costosas en memoria o en disco, de modo que puedan ser reutilizados en futuras solicitudes. La caché mejora el rendimiento de una API al reducir el tiempo de respuesta de las solicitudes.\nFastAPI proporciona soporte para la caché a través de la biblioteca cachetools. A continuación se muestra un ejemplo de cómo implementar la caché, lo primero que haremos será instalar la librería cachetools:\npip install cachetools\nAhora modificamos el archivo routes.py para implementar la caché en la ruta de lectura de animales:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Adoption, Animal, Person\nfrom cachetools import TTLCache, cached\n\nrouter = APIRouter()\n\nadoptions = []\nanimals = []\npersons = []\n\n# Define TTL caches for each resource\nadoptions_cache = TTLCache(maxsize=100, ttl=300)\nanimals_cache = TTLCache(maxsize=100, ttl=300)\npersons_cache = TTLCache(maxsize=100, ttl=300)\n\n@router.post(\"/adoptions/\")\ndef create_adoption(adoption: Adoption):\n    adoptions.append(adoption)\n    adoptions_cache.clear()  # Clear cache when new data is added\n    return adoption\n\n@router.get(\"/adoptions/\")\n@cached(adoptions_cache)\ndef read_adoptions():\n    return adoptions\n\n@router.get(\"/adoptions/{adoption_id}\")\ndef read_adoption(adoption_id: int):\n    for adoption in adoptions:\n        if adoption.id == adoption_id:\n            return adoption\n\n@router.post(\"/animals/\")\ndef create_animal(animal: Animal):\n    animals.append(animal)\n    animals_cache.clear()  # Clear cache when new data is added\n    return animal\n\n@router.get(\"/animals/\")\n@cached(animals_cache)\ndef read_animals():\n    return animals\n\n@router.get(\"/animals/{animal_id}\")\ndef read_animal(animal_id: int):\n    for animal in animals:\n        if animal.id == animal_id:\n            return animal\n\n@router.post(\"/persons/\")\ndef create_person(person: Person):\n    persons.append(person)\n    persons_cache.clear()  # Clear cache when new data is added\n    return person\n\n@router.get(\"/persons/\")\n@cached(persons_cache)\ndef read_persons():\n    return persons\n\n@router.get(\"/persons/{person_id}\")\ndef read_person(person_id: int):\n    for person in persons:\n        if person.id == person_id:\n            return person\nEn el ejemplo anterior, se crearon tres cachés TTL (Time-To-Live) para almacenar los resultados de las operaciones de lectura de adopciones, animales y personas. La caché se activa mediante el decorador @cached, que toma como argumento la caché a utilizar. La caché se limpia cuando se añaden nuevos datos a la lista correspondiente.\nAhora modificamos el archivo test_app.py para probar la caché en la ruta de lectura de animales:\nimport pytest\nfrom fastapi.testclient import TestClient\nfrom app.main import app\n\nclient = TestClient(app)\n\ndef test_create_adoption():\n    response = client.post(\"/adoptions/\", json={\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    }\n\ndef test_read_adoptions():\n    response = client.get(\"/adoptions/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_adoption():\n    response = client.post(\"/adoptions/\", json={\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    })\n    response = client.get(\"/adoptions/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_animal():\n    response = client.post(\"/animals/\", json={\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    }\n\ndef test_read_animals():\n    response = client.get(\"/animals/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_animal():\n    response = client.post(\"/animals/\", json={\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    })\n    response = client.get(\"/animals/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_person():\n    response = client.post(\"/persons/\", json={\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    }\n\ndef test_read_persons():\n    response = client.get(\"/persons/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_person():\n    response = client.post(\"/persons/\", json={\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    })\n    response = client.get(\"/persons/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\nEn el ejemplo anterior, se añadieron pruebas unitarias para probar la caché en la ruta de lectura de animales. Se crearon pruebas para las operaciones de creación y lectura de animales, y se verificó que los resultados de las operaciones de lectura se almacenan en caché.\nFinalmente ejecutarmos las pruebas unitarias:\npytest\n\n\n\nEn el ejemplo anterior se ejecutaron las pruebas unitarias para verificar que la caché funciona correctamente en la ruta de lectura de animales. Las pruebas pasaron con éxito, lo que indica que la caché está implementada correctamente y mejora el rendimiento de la API.\nEn este capítulo se abordaron temas relacionados con la optimización y el rendimiento de una API, como la implementación de caché. En el siguiente capítulo se verá cómo crear una api de gestión de tareas con FastAPI.",
     "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Optimización y Rendimiento</span>"
     ]
   },
   {
-    "objectID": "unidades/laboratorios/lab1.html#crear-serializers",
-    "href": "unidades/laboratorios/lab1.html#crear-serializers",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "3. Crear Serializers",
-    "text": "3. Crear Serializers\n\n3.1 Definir Serializers en products/serializers.py\nLos serializers se encargan de transformar los modelos en formatos JSON y viceversa:\nfrom rest_framework import serializers\nfrom .models import Category, Product, Order\n\nclass CategorySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Category\n        fields = '__all__'\n\nclass ProductSerializer(serializers.ModelSerializer):\n    category = CategorySerializer()\n\n    class Meta:\n        model = Product\n        fields = '__all__'\n\nclass OrderSerializer(serializers.ModelSerializer):\n    product = ProductSerializer()\n\n    class Meta:\n        model = Order\n        fields = '__all__'",
+    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-una-api-de-gestión-de-tareas",
+    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-una-api-de-gestión-de-tareas",
+    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
+    "section": "Creación de una API de gestión de tareas",
+    "text": "Creación de una API de gestión de tareas\nEmpezamos por la creación de un entorno virtual y la instalación de FastAPI, Uvicorn y pydantic:\npip install fastapi uvicorn pydantic\nEl proyecto tendrá la siguiente estructura:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n│   ├── models.py\n│   ├── routes.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una API de gestión de tareas. A continuación se muestra el contenido del archivo models:\nfrom pydantic import BaseModel\n\nclass Task(BaseModel):\n    id: int\n    title: str\n    description: str\n    status: str\nEn el ejemplo anterior se define el modelo Task que hereda de la clase BaseModel de Pydantic. El modelo tiene los campos id, title, description y status que representan los datos de las tareas.",
     "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
     ]
   },
   {
-    "objectID": "unidades/laboratorios/lab1.html#crear-vistas-y-rutas",
-    "href": "unidades/laboratorios/lab1.html#crear-vistas-y-rutas",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "4. Crear Vistas y Rutas",
-    "text": "4. Crear Vistas y Rutas\n\n4.1 Definir Vistas en products/views.py\nUtiliza las vistas basadas en clases de DRF para crear y manejar las operaciones CRUD:\nfrom rest_framework import generics\nfrom .models import Category, Product, Order\nfrom .serializers import CategorySerializer, ProductSerializer, OrderSerializer\n\nclass CategoryListCreate(generics.ListCreateAPIView):\n    queryset = Category.objects.all()\n    serializer_class = CategorySerializer\n\nclass CategoryDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Category.objects.all()\n    serializer_class = CategorySerializer\n\nclass ProductListCreate(generics.ListCreateAPIView):\n    queryset = Product.objects.all()\n    serializer_class = ProductSerializer\n\nclass ProductDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Product.objects.all()\n    serializer_class = ProductSerializer\n\nclass OrderListCreate(generics.ListCreateAPIView):\n    queryset = Order.objects.all()\n    serializer_class = OrderSerializer\n\nclass OrderDetail(generics.RetrieveUpdateDestroyAPIView):\n    queryset = Order.objects.all()\n    serializer_class = OrderSerializer",
+    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-las-rutas",
+    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-las-rutas",
+    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
+    "section": "Creación de las Rutas",
+    "text": "Creación de las Rutas\nA continuación se muestra el contenido del archivo routes.py que contiene la definición de las rutas de la API:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Task\n\nrouter = APIRouter()\n\ntasks = []\n\n@router.post(\"/tasks/\")\ndef create_task(task: Task):\n    tasks.append(task)\n    return task\n\n@router.get(\"/tasks/\")\ndef read_tasks():\n    return tasks\n\n@router.get(\"/tasks/{task_id}\")\ndef read_task(task_id: int):\n    for task in tasks:\n        if task.id == task_id:\n            return task\n\n@router.put(\"/tasks/{task_id}\")\ndef update_task(task_id: int, task: Task):\n    for t in tasks:\n        if t.id == task_id:\n            t.title = task.title\n            t.description = task.description\n            t.status = task.status\n            return t\n\n@router.delete(\"/tasks/{task_id}\")\ndef delete_task(task_id: int):\n    for i, task in enumerate(tasks):\n        if task.id == task_id:\n            del tasks[i]\n            return task\nEn el ejemplo anterior se definen las rutas para crear, leer, actualizar y eliminar tareas. La ruta POST /tasks/ permite crear una nueva tarea, la ruta GET /tasks/ permite leer todas las tareas, la ruta GET /tasks/{task_id} permite leer una tarea específica, la ruta PUT /tasks/{task_id} permite actualizar una tarea y la ruta DELETE /tasks/{task_id} permite eliminar una tarea.\nFinalmente, en el archivo main.py se importan las rutas y se crea la aplicación FastAPI:\nfrom fastapi import FastAPI\nfrom .routes import router\n\napp = FastAPI()\n\napp.include_router(router)",
     "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
     ]
   },
   {
-    "objectID": "unidades/laboratorios/lab1.html#configurar-rutas-en-productsurls.py",
-    "href": "unidades/laboratorios/lab1.html#configurar-rutas-en-productsurls.py",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "4.2 Configurar Rutas en products/urls.py",
-    "text": "4.2 Configurar Rutas en products/urls.py\nDefine las rutas para acceder a las vistas:\nfrom django.urls import path\nfrom . import views\n\nurlpatterns = [\n    path('categories/', views.CategoryListCreate.as_view(), name='category-list-create'),\n    path('categories/&lt;int:pk&gt;/', views.CategoryDetail.as_view(), name='category-detail'),\n    path('products/', views.ProductListCreate.as_view(), name='product-list-create'),\n    path('products/&lt;int:pk&gt;/', views.ProductDetail.as_view(), name='product-detail'),\n    path('orders/', views.OrderListCreate.as_view(), name='order-list-create'),\n    path('orders/&lt;int:pk&gt;/', views.OrderDetail.as_view(), name='order-detail'),\n]",
+    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#ejecución-de-la-api",
+    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#ejecución-de-la-api",
+    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
+    "section": "Ejecución de la API",
+    "text": "Ejecución de la API\nPara ejecutar la API, se utiliza el siguiente comando:\nuvicorn app.main:app --reload\nLa API estará disponible en la dirección http://127.0.0.1:8000. Se pueden probar las rutas utilizando un cliente Thunder Client en Visual Studio Code o Postman. Tambien visitando en el navegador http://127.0.0.1:8000/docs se puede acceder a la documentación interactiva de la API.\n\n\n\n\n\n\nEn este capítulo se vio cómo crear una API de gestión de tareas utilizando FastAPI. En el próximo capítulo se verá cómo realizar pruebas unitarias a las rutas de la API.",
     "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#incluir-las-urls-en-ecommerce_projecturls.py",
-    "href": "unidades/laboratorios/lab1.html#incluir-las-urls-en-ecommerce_projecturls.py",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "4.3 Incluir las URLs en ecommerce_project/urls.py",
-    "text": "4.3 Incluir las URLs en ecommerce_project/urls.py\nAñade las URLs de la aplicación al archivo principal de URLs del proyecto:\nfrom django.contrib import admin\nfrom django.urls import path, include\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('products.urls')),\n]",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#probar-la-api",
-    "href": "unidades/laboratorios/lab1.html#probar-la-api",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "5. Probar la API",
-    "text": "5. Probar la API\n\n5.1 Ejecutar el Servidor de Desarrollo\nInicia el servidor de desarrollo de Django:\npython manage.py runserver",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#probar-los-endpoints",
-    "href": "unidades/laboratorios/lab1.html#probar-los-endpoints",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "5.2 Probar los Endpoints",
-    "text": "5.2 Probar los Endpoints\nUtiliza herramientas como Postman o cURL para probar los endpoints:\n\nListar categorías: GET /api/categories/\nCrear categoría: POST /api/categories/\nObtener categoría específica: GET /api/categories/{id}/\nActualizar categoría: PUT /api/categories/{id}/\nEliminar categoría: DELETE /api/categories/{id}/\n\nY lo mismo para productos y pedidos.\n\nListar productos: GET /api/products/\nCrear producto: POST /api/products/\nObtener producto específico: GET /api/products/{id}/\nActualizar producto: PUT /api/products/{id}/\nEliminar producto: DELETE /api/products/{id}/",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#instalar-django-rest-swagger",
-    "href": "unidades/laboratorios/lab1.html#instalar-django-rest-swagger",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "1. Instalar Django Rest Swagger",
-    "text": "1. Instalar Django Rest Swagger\nInstala Django Rest Swagger usando pip:\npip install drf-yasg",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#configurar-django-rest-swagger",
-    "href": "unidades/laboratorios/lab1.html#configurar-django-rest-swagger",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "2. Configurar Django Rest Swagger",
-    "text": "2. Configurar Django Rest Swagger\nAñade ‘rest_framework_swagger’ a la lista INSTALLED_APPS en ecommerce_project/settings.py:\nfrom django.contrib import admin\nfrom django.urls import path, include\nfrom rest_framework import permissions\nfrom drf_yasg.views import get_schema_view\nfrom drf_yasg import openapi\n\nschema_view = get_schema_view(\n    openapi.Info(\n        title=\"E-commerce API\",\n        default_version='v1',\n        description=\"API documentation for the E-commerce project\",\n        terms_of_service=\"https://www.google.com/policies/terms/\",\n        contact=openapi.Contact(email=\"contact@ecommerce.local\"),\n        license=openapi.License(name=\"BSD License\"),\n    ),\n    public=True,\n    permission_classes=(permissions.AllowAny,),\n)\n\nurlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('products.urls')),\n    path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n]",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#configurar-las-urls",
-    "href": "unidades/laboratorios/lab1.html#configurar-las-urls",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "3. Configurar las URLs",
-    "text": "3. Configurar las URLs\nAñade las URLs de Swagger al archivo principal de URLs del proyecto:\n´´´\nfrom rest_framework_swagger.views import get_swagger_view\n\nschema_view = get_swagger_view(title='E-Commerce API')\n\nurlpatterns = [\n    ´´´\n    path('docs/', schema_view),\n]\n\n\n\n\n\n\nTip\n\n\n\nPara evitar un error común es necesario instalr setuptools con el siguiente comando:\npip install setuptools\n\n\nFinalmente es necesario agregar el siguiente código al final del archivo settings.py\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'drf_yasg',\n    'rest_framework',\n    'products',\n]\n\n´´´\nREST_FRAMEWORK = {\n    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'\n}\n\nCORS_ALLOWED_ORIGINS = [\n    \"http://localhost:8000\",\n    \"http://127.0.0.1:8000\",\n    # Añade otros orígenes permitidos aquí\n]",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/lab1.html#probar-la-documentación",
-    "href": "unidades/laboratorios/lab1.html#probar-la-documentación",
-    "title": "Desarrollo del Backend para un E-Commerce con Django Rest Framework",
-    "section": "4. Probar la Documentación",
-    "text": "4. Probar la Documentación",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Desarrollo del Backend para un E-Commerce con Django Rest Framework</span>"
+      "Unidad 5: Introducción a FastAPI",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
     ]
   },
   {
@@ -658,124 +581,58 @@
     "text": "Cambios en la Licencia\n[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.\nGracias por respetar nuestros derechos de autor y por tu comprensión."
   },
   {
-    "objectID": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html",
-    "href": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html",
-    "title": "Pruebas Unitarias en FastAPI",
+    "objectID": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html",
+    "href": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html",
+    "title": "Configuración y Uso de FastAPI para consumir APIs",
     "section": "",
-    "text": "Pruebas Unitarias\nLas pruebas unitarias son una técnica de programación que consiste en verificar que una unidad de código (como una función o un método) funcione correctamente. En el caso de una API RESTful, las pruebas unitarias se utilizan para verificar que las rutas de la API devuelvan la respuesta esperada.",
+    "text": "Creación de un entorno virtual\nPara empezar, se debe crear un entorno virtual e instalar FastAPI y Uvicorn. Para ello, se ejecutan los siguientes comandos:\nNuestro proyecto tendrá la siguiente estructura:\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para consumir la API de &lt;fakestoreapi.com&gt;. A continuación se muestra el contenido del archivo models:\nEn el ejemplo anterior se define el modelo Product que hereda de la clase BaseModel de Pydantic. El modelo tiene los campos id, title, price, description, category e image que representan los datos de los productos.",
     "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Pruebas Unitarias en FastAPI</span>"
+      "Unidad 6: Consumo API con FastAPI",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Configuración y Uso de FastAPI para consumir APIs</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias-en-fastapi",
-    "href": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias-en-fastapi",
-    "title": "Pruebas Unitarias en FastAPI",
-    "section": "Pruebas Unitarias en FastAPI",
-    "text": "Pruebas Unitarias en FastAPI\nFastAPI proporciona una forma sencilla de realizar pruebas unitarias a las rutas de la API. Para ello, se utiliza la biblioteca pytest y el módulo test_app.py de FastAPI.\npip install pytest httpx \nA continuación se muestra un ejemplo de cómo realizar pruebas unitarias a las rutas de la API creada en el capítulo anterior:\nimport pytest\nfrom fastapi.testclient import TestClient\nfrom app.main import app\nfrom app.models import Adoption, Animal, Person\n\nclient = TestClient(app)\n\ndef test_create_adoption():\n    response = client.post(\"/adoptions/\", json={\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    }\n\ndef test_read_adoptions():\n    response = client.get(\"/adoptions/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_adoption():\n    test_create_adoption()\n    response = client.get(\"/adoptions/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_animal():\n    response = client.post(\"/animals/\", json={\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    }\n\ndef test_read_animals():\n    response = client.get(\"/animals/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_animal():\n    test_create_animal()  # Ensure there's at least one animal\n    response = client.get(\"/animals/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_person():\n    response = client.post(\"/persons/\", json={\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    }\n\ndef test_read_persons():\n    response = client.get(\"/persons/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_person():\n    test_create_person()  # Ensure there's at least one person\n    response = client.get(\"/persons/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\nEn el ejemplo anterior se importa la clase TestClient de FastAPI y se crea una instancia de TestClient con la aplicación FastAPI. Luego se definen dos pruebas unitarias: una para verificar que la ruta /adoptions/ devuelva una lista vacía de adopciones y otra para verificar que la ruta /adoptions/ cree una nueva adopción con los datos proporcionados.\nPara ejecutar las pruebas unitarias, se utiliza el comando pytest en la terminal:\npytest\nAl ejecutar las pruebas unitarias, se mostrará el resultado de las pruebas en la terminal. Si todas las pruebas pasan, se mostrará un mensaje indicando que todas las pruebas han pasado correctamente.\n\n\n\nEn resumen, en este capítulo se mostró cómo realizar pruebas unitarias a las rutas de una API RESTful creada con FastAPI. Las pruebas unitarias son una técnica de programación que permite verificar que una unidad de código funcione correctamente y que la API devuelva la respuesta esperada.\nEn el siguiente capítulo se mostrará cómo mejorar la optimización y el rendimiento.",
+    "objectID": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#creación-de-un-entorno-virtual",
+    "href": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#creación-de-un-entorno-virtual",
+    "title": "Configuración y Uso de FastAPI para consumir APIs",
+    "section": "Creación de un entorno virtual",
+    "text": "Creación de un entorno virtual\nPara empezar, se debe crear un entorno virtual e instalar FastAPI y Uvicorn. Para ello, se ejecutan los siguientes comandos:\npython3 -m venv env\nsource env/bin/activate\npip install fastapi uvicorn httpx pydantic\nNuestro proyecto tendrá la siguiente estructura:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n│   ├── models.py\n│   ├── routes.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para consumir la API de &lt;fakestoreapi.com&gt;. A continuación se muestra el contenido del archivo models:\nfrom pydantic import BaseModel\n\nclass Product(BaseModel):\n    id: int\n    title: str\n    price: float\n    description: str\n    category: str\n    image: str\nEn el ejemplo anterior se define el modelo Product que hereda de la clase BaseModel de Pydantic. El modelo tiene los campos id, title, price, description, category e image que representan los datos de los productos.",
     "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Pruebas Unitarias en FastAPI</span>"
+      "Unidad 6: Consumo API con FastAPI",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Configuración y Uso de FastAPI para consumir APIs</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad5/7_optimizacion_y_rendimiento.html",
-    "href": "unidades/unidad5/7_optimizacion_y_rendimiento.html",
-    "title": "Optimización y Rendimiento",
-    "section": "",
-    "text": "Caché\nLa caché es una técnica que se utiliza para almacenar temporalmente los resultados de operaciones costosas en memoria o en disco, de modo que puedan ser reutilizados en futuras solicitudes. La caché mejora el rendimiento de una API al reducir el tiempo de respuesta de las solicitudes.\nFastAPI proporciona soporte para la caché a través de la biblioteca cachetools. A continuación se muestra un ejemplo de cómo implementar la caché en una ruta de la API:\nEn el ejemplo anterior se define una caché con un tamaño máximo de 100 elementos y un tiempo de vida de 300 segundos. La función read_items() se decora con el decorador @cached(cache) para almacenar en caché el resultado de la función y reutilizarlo en futuras solicitudes.",
+    "objectID": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#consumo-de-la-api",
+    "href": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#consumo-de-la-api",
+    "title": "Configuración y Uso de FastAPI para consumir APIs",
+    "section": "Consumo de la API",
+    "text": "Consumo de la API\nA continuación se muestra el contenido del archivo routes.py que contiene la definición de las rutas de la API:\nfrom fastapi import APIRouter, HTTPException\nfrom httpx import AsyncClient\nfrom .models import Product\n\nrouter = APIRouter()\n\n@router.get(\"/products/\")\nasync def read_products():\n    async with AsyncClient() as client:\n        response = await client.get(\"https://fakestoreapi.com/products\")\n        products = response.json()\n        return products\n\n@router.get(\"/products/{product_id}\")\nasync def read_product(product_id: int):\n    async with AsyncClient() as client:\n        response = await client.get(f\"https://fakestoreapi.com/products/{product_id}\")\n        product = response.json()\n        return product\n\n@router.post(\"/products/\")\nasync def create_product(product: Product):\n    async with AsyncClient() as client:\n        response = await client.post(\"https://fakestoreapi.com/products\", json=product.dict())\n        product = response.json()\n        return product\n\n@router.put(\"/products/{product_id}\")\nasync def update_product(product_id: int, product: Product):\n    async with AsyncClient() as client:\n        response = await client.put(f\"https://fakestoreapi.com/products/{product_id}\", json=product.dict())\n        product = response.json()\n        return product\n\n@router.delete(\"/products/{product_id}\")\nasync def delete_product(product_id: int):\n    async with AsyncClient() as client:\n        response = await client.delete(f\"https://fakestoreapi.com/products/{product_id}\")\n        product = response.json()\n        return product\nEn el ejemplo anterior se definen las rutas para consumir la API de &lt;fakestoreapi.com&gt;. Las rutas read_products y read_product permiten obtener la lista de productos y un producto en particular, respectivamente. Las rutas create_product, update_product y delete_product permiten crear, actualizar y eliminar un producto, respectivamente.",
     "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Optimización y Rendimiento</span>"
+      "Unidad 6: Consumo API con FastAPI",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Configuración y Uso de FastAPI para consumir APIs</span>"
     ]
   },
   {
-    "objectID": "unidades/unidad5/7_optimizacion_y_rendimiento.html#caché",
-    "href": "unidades/unidad5/7_optimizacion_y_rendimiento.html#caché",
-    "title": "Optimización y Rendimiento",
-    "section": "Caché",
-    "text": "Caché\nLa caché es una técnica que se utiliza para almacenar temporalmente los resultados de operaciones costosas en memoria o en disco, de modo que puedan ser reutilizados en futuras solicitudes. La caché mejora el rendimiento de una API al reducir el tiempo de respuesta de las solicitudes.\nFastAPI proporciona soporte para la caché a través de la biblioteca cachetools. A continuación se muestra un ejemplo de cómo implementar la caché, lo primero que haremos será instalar la librería cachetools:\npip install cachetools\nAhora modificamos el archivo routes.py para implementar la caché en la ruta de lectura de animales:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Adoption, Animal, Person\nfrom cachetools import TTLCache, cached\n\nrouter = APIRouter()\n\nadoptions = []\nanimals = []\npersons = []\n\n# Define TTL caches for each resource\nadoptions_cache = TTLCache(maxsize=100, ttl=300)\nanimals_cache = TTLCache(maxsize=100, ttl=300)\npersons_cache = TTLCache(maxsize=100, ttl=300)\n\n@router.post(\"/adoptions/\")\ndef create_adoption(adoption: Adoption):\n    adoptions.append(adoption)\n    adoptions_cache.clear()  # Clear cache when new data is added\n    return adoption\n\n@router.get(\"/adoptions/\")\n@cached(adoptions_cache)\ndef read_adoptions():\n    return adoptions\n\n@router.get(\"/adoptions/{adoption_id}\")\ndef read_adoption(adoption_id: int):\n    for adoption in adoptions:\n        if adoption.id == adoption_id:\n            return adoption\n\n@router.post(\"/animals/\")\ndef create_animal(animal: Animal):\n    animals.append(animal)\n    animals_cache.clear()  # Clear cache when new data is added\n    return animal\n\n@router.get(\"/animals/\")\n@cached(animals_cache)\ndef read_animals():\n    return animals\n\n@router.get(\"/animals/{animal_id}\")\ndef read_animal(animal_id: int):\n    for animal in animals:\n        if animal.id == animal_id:\n            return animal\n\n@router.post(\"/persons/\")\ndef create_person(person: Person):\n    persons.append(person)\n    persons_cache.clear()  # Clear cache when new data is added\n    return person\n\n@router.get(\"/persons/\")\n@cached(persons_cache)\ndef read_persons():\n    return persons\n\n@router.get(\"/persons/{person_id}\")\ndef read_person(person_id: int):\n    for person in persons:\n        if person.id == person_id:\n            return person\nEn el ejemplo anterior, se crearon tres cachés TTL (Time-To-Live) para almacenar los resultados de las operaciones de lectura de adopciones, animales y personas. La caché se activa mediante el decorador @cached, que toma como argumento la caché a utilizar. La caché se limpia cuando se añaden nuevos datos a la lista correspondiente.\nAhora modificamos el archivo test_app.py para probar la caché en la ruta de lectura de animales:\nimport pytest\nfrom fastapi.testclient import TestClient\nfrom app.main import app\n\nclient = TestClient(app)\n\ndef test_create_adoption():\n    response = client.post(\"/adoptions/\", json={\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    }\n\ndef test_read_adoptions():\n    response = client.get(\"/adoptions/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_adoption():\n    response = client.post(\"/adoptions/\", json={\n        \"id\": 1,\n        \"animal_id\": 1,\n        \"person_id\": 1,\n        \"date\": \"2023-07-30\",\n        \"status\": \"pending\"\n    })\n    response = client.get(\"/adoptions/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_animal():\n    response = client.post(\"/animals/\", json={\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    }\n\ndef test_read_animals():\n    response = client.get(\"/animals/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_animal():\n    response = client.post(\"/animals/\", json={\n        \"id\": 1,\n        \"name\": \"Buddy\",\n        \"species\": \"Dog\",\n        \"breed\": \"Golden Retriever\"\n    })\n    response = client.get(\"/animals/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\n\ndef test_create_person():\n    response = client.post(\"/persons/\", json={\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    })\n    assert response.status_code == 200\n    assert response.json() == {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    }\n\ndef test_read_persons():\n    response = client.get(\"/persons/\")\n    assert response.status_code == 200\n    assert isinstance(response.json(), list)\n\ndef test_read_person():\n    response = client.post(\"/persons/\", json={\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"phone\": \"1234567890\"\n    })\n    response = client.get(\"/persons/1\")\n    assert response.status_code == 200\n    assert response.json()[\"id\"] == 1\nEn el ejemplo anterior, se añadieron pruebas unitarias para probar la caché en la ruta de lectura de animales. Se crearon pruebas para las operaciones de creación y lectura de animales, y se verificó que los resultados de las operaciones de lectura se almacenan en caché.\nFinalmente ejecutarmos las pruebas unitarias:\npytest",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Optimización y Rendimiento</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/7_optimizacion_y_rendimiento.html#compresión-de-respuestas",
-    "href": "unidades/unidad5/7_optimizacion_y_rendimiento.html#compresión-de-respuestas",
-    "title": "Optimización y Rendimiento",
-    "section": "Compresión de Respuestas",
-    "text": "Compresión de Respuestas\nLa compresión de respuestas es una técnica que se utiliza para reducir el tamaño de las respuestas de una API, lo que mejora el rendimiento de la API al reducir el tiempo de transferencia de datos. FastAPI proporciona soporte para la compresión de respuestas a través de la biblioteca starlette. A continuación se muestra un ejemplo de cómo habilitar la compresión de respuestas en una aplicación FastAPI:\nfrom fastapi import FastAPI\nfrom starlette.middleware.gzip import GZipMiddleware\n\napp = FastAPI()\n\napp.add_middleware(GZipMiddleware, minimum_size=1000)\nEn el ejemplo anterior se agrega el middleware GZipMiddleware a la aplicación FastAPI con un tamaño mínimo de 1000 bytes. La compresión de respuestas se activará automáticamente cuando el tamaño de la respuesta sea mayor que el tamaño mínimo especificado.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Optimización y Rendimiento</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/7_optimizacion_y_rendimiento.html#configuración-de-la-api-para-producción",
-    "href": "unidades/unidad5/7_optimizacion_y_rendimiento.html#configuración-de-la-api-para-producción",
-    "title": "Optimización y Rendimiento",
-    "section": "Configuración de la API para Producción",
-    "text": "Configuración de la API para Producción\nPara configurar una API FastAPI para producción, se recomienda utilizar un servidor ASGI como uvicorn y un servidor de aplicaciones como gunicorn. A continuación se muestra un ejemplo de cómo ejecutar una aplicación FastAPI con uvicorn y gunicorn:\nuvicorn app.main:app --host\nEn el ejemplo anterior se ejecuta la aplicación FastAPI con uvicorn en el puerto 8000. Luego, se puede utilizar gunicorn para ejecutar la aplicación en un entorno de producción:\ngunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app\nEn el ejemplo anterior se ejecuta la aplicación FastAPI con gunicorn en un entorno de producción con 4 workers y el worker UvicornWorker.\nEn este capítulo se abordaron temas relacionados con la optimización y el rendimiento de una API, como la implementación de caché, la compresión de respuestas y la configuración de la API para producción. Estos temas son fundamentales para garantizar que una API sea eficiente y escalable en entornos de producción.\nEn el siguiente capítulo crearemos una API de Gestión de Tareas con FastAPI",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Optimización y Rendimiento</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias",
-    "href": "unidades/unidad5/6_pruebas_unitarias_en_fastapi.html#pruebas-unitarias",
-    "title": "Pruebas Unitarias en FastAPI",
-    "section": "Pruebas Unitarias",
-    "text": "Pruebas Unitarias\nLas pruebas unitarias son una técnica de programación que consiste en verificar que una unidad de código (como una función o un método) funcione correctamente. En el caso de una API RESTful, las pruebas unitarias se utilizan para verificar que las rutas de la API devuelvan la respuesta esperada.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Pruebas Unitarias en FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html",
-    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html",
-    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
-    "section": "",
-    "text": "Creación de una API de gestión de tareas\nEmpezamos por la creación de un entorno virtual y la instalación de FastAPI y Uvicorn:\nEl proyecto tendrá la siguiente estructura:\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una API de gestión de tareas. A continuación se muestra el contenido del archivo models:\nEn el ejemplo anterior se define el modelo Task que hereda de la clase BaseModel de Pydantic. El modelo tiene los campos id, title, description y status que representan los datos de las tareas.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-una-api-de-gestión-de-tareas",
-    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-una-api-de-gestión-de-tareas",
-    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
-    "section": "Creación de una API de gestión de tareas",
-    "text": "Creación de una API de gestión de tareas\nEmpezamos por la creación de un entorno virtual y la instalación de FastAPI, Uvicorn y pydantic:\npip install fastapi uvicorn pydantic\nEl proyecto tendrá la siguiente estructura:\nproyecto/\n│\n├── app/\n│   ├── __init__.py\n│   ├── main.py\n│   ├── models.py\n│   ├── routes.py\n│\n├── .gitignore\n├── README.md\n├── requirements.txt\nEn el directorio app/ se encuentra el archivo routes.py que contiene la definición de las rutas de la API. Vamos a crear los modelos, las rutas y las validaciones para una API de gestión de tareas. A continuación se muestra el contenido del archivo models:\nfrom pydantic import BaseModel\n\nclass Task(BaseModel):\n    id: int\n    title: str\n    description: str\n    status: str\nEn el ejemplo anterior se define el modelo Task que hereda de la clase BaseModel de Pydantic. El modelo tiene los campos id, title, description y status que representan los datos de las tareas.",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-las-rutas",
-    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#creación-de-las-rutas",
-    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
-    "section": "Creación de las Rutas",
-    "text": "Creación de las Rutas\nA continuación se muestra el contenido del archivo routes.py que contiene la definición de las rutas de la API:\nfrom fastapi import APIRouter, HTTPException\nfrom .models import Task\n\nrouter = APIRouter()\n\ntasks = []\n\n@router.post(\"/tasks/\")\ndef create_task(task: Task):\n    tasks.append(task)\n    return task\n\n@router.get(\"/tasks/\")\ndef read_tasks():\n    return tasks\n\n@router.get(\"/tasks/{task_id}\")\ndef read_task(task_id: int):\n    for task in tasks:\n        if task.id == task_id:\n            return task\n\n@router.put(\"/tasks/{task_id}\")\ndef update_task(task_id: int, task: Task):\n    for t in tasks:\n        if t.id == task_id:\n            t.title = task.title\n            t.description = task.description\n            t.status = task.status\n            return t\n\n@router.delete(\"/tasks/{task_id}\")\ndef delete_task(task_id: int):\n    for i, task in enumerate(tasks):\n        if task.id == task_id:\n            del tasks[i]\n            return task\nEn el ejemplo anterior se definen las rutas para crear, leer, actualizar y eliminar tareas. La ruta POST /tasks/ permite crear una nueva tarea, la ruta GET /tasks/ permite leer todas las tareas, la ruta GET /tasks/{task_id} permite leer una tarea específica, la ruta PUT /tasks/{task_id} permite actualizar una tarea y la ruta DELETE /tasks/{task_id} permite eliminar una tarea.\nFinalmente, en el archivo main.py se importan las rutas y se crea la aplicación FastAPI:\nfrom fastapi import FastAPI\nfrom .routes import router\n\napp = FastAPI()\n\napp.include_router(router)",
-    "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#ejecución-de-la-api",
-    "href": "unidades/unidad5/8_creacion_de_una_api_de_gestion_de_tareas.html#ejecución-de-la-api",
-    "title": "Creación de una API de gestión de tareas utilizando FastAPI",
+    "objectID": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#ejecución-de-la-api",
+    "href": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#ejecución-de-la-api",
+    "title": "Configuración y Uso de FastAPI para consumir APIs",
     "section": "Ejecución de la API",
-    "text": "Ejecución de la API\nPara ejecutar la API, se utiliza el siguiente comando:\nuvicorn app.main:app --reload\nLa API estará disponible en la dirección http://127.0.0.1:8000. Se pueden probar las rutas utilizando un cliente Thunder Client en Visual Studio Code o Postman. Tambien visitando en el navegador http://127.0.0.1:8000/docs se puede acceder a la documentación interactiva de la API.\n\n\n\n\n\n\nEn este capítulo se vio cómo crear una API de gestión de tareas utilizando FastAPI. En el próximo capítulo se verá cómo realizar pruebas unitarias a las rutas de la API.",
+    "text": "Ejecución de la API\nPara ejecutar la API, se debe crear un archivo main.py en el directorio app/ con el siguiente contenido:\nfrom fastapi import FastAPI\nfrom .routes import router\n\napp = FastAPI()\n\napp.include_router(router)\nPara ejecutar la API, se utiliza el siguiente comando:\nuvicorn app.main:app --reload\nUna vez que la API esté en ejecución, se pueden realizar peticiones a las rutas definidas en el archivo routes.py. Por ejemplo, para obtener la lista de productos se puede acceder a la URL http://127.0.0.1:8000/products/.",
     "crumbs": [
-      "Unidad 5: Introducción a FastAPI",
-      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Creación de una API de gestión de tareas utilizando FastAPI</span>"
+      "Unidad 6: Consumo API con FastAPI",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Configuración y Uso de FastAPI para consumir APIs</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#pruebas-de-la-api",
+    "href": "unidades/unidad6/1_configuracion_y_uso_fastapi_para_consumir_api.html#pruebas-de-la-api",
+    "title": "Configuración y Uso de FastAPI para consumir APIs",
+    "section": "Pruebas de la API",
+    "text": "Pruebas de la API\nPara probar la API se puede utilizar un cliente HTTP como Thunder Client en Visual Studio Code o Postman. También se puede acceder a la documentación interactiva de la API en http://127.0.0.1:8000/docs para probar las rutas y ver los resultados de las peticiones.\n\n\n\n\n\n\nEn este apartado se mostró cómo configurar y utilizar FastAPI para consumir APIs. FastAPI facilita la creación de APIs RESTful y permite consumir APIs de forma sencilla y eficiente. En el siguiente apartado se mostrará cómo realizar pruebas unitarias a las rutas de la API creada en este apartado.\nEn este apartado se mostró cómo configurar y utilizar FastAPI para consumir APIs. FastAPI facilita la creación de APIs RESTful y permite consumir APIs de forma sencilla y eficiente. En el siguiente apartado se mostrará cómo realizar pruebas unitarias a las rutas de la API creada en este apartado.",
+    "crumbs": [
+      "Unidad 6: Consumo API con FastAPI",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Configuración y Uso de FastAPI para consumir APIs</span>"
     ]
   }
 ]

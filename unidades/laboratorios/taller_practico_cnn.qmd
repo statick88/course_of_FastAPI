@@ -1,0 +1,274 @@
+:::{.justify}
+# Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)
+
+## Objetivo
+
+En este taller, los estudiantes aprenderán a implementar una Red Neuronal Convolucional (CNN) básica para realizar tareas de reconocimiento de imágenes utilizando la librería TensorFlow y Keras. Trabajarán con un conjunto de datos preexistente y observarán cómo se entrenan las redes neuronales para clasificar imágenes. Además, se explorarán técnicas de preprocesamiento de datos y se analizará el rendimiento del modelo mediante la evaluación de la precisión en los datos de prueba. Al finalizar el taller, los estudiantes estarán familiarizados con los conceptos básicos de las CNN y podrán aplicarlos en proyectos de visión por computadora.
+
+## Requisitos Previos
+
+*   Conocimientos básicos de Python.
+*   Familiaridad con conceptos de redes neuronales.
+*   TensorFlow y Keras instalados (si no están instalados, usar el siguiente comando):
+
+
+```bash
+pip install tensorflow matplotlib
+```
+
+## Materiales
+
+*   Computadora con acceso a Internet.
+*   IDE o editor de código (como Jupyter Notebook, VSCode, o Google Colab).
+*   Conjunto de datos CIFAR-10 (disponible en https://www.cs.toronto.edu/~kriz/cifar.html).
+*   TensorFlow y Keras instalados (si no están instalados, usar el siguiente comando):
+
+
+## Pasos del Taller
+
+0. Crear el Entorno de Desarrollo
+
+* Crear el archivo creado con jupyter notebook se llame **cnn_taller.ipynb**.
+
+* Si usamos Google Colab, creamos un nuevo cuaderno le damos el nombre **cnn_taller.ipynb**.
+
+1. Configuración del Entorno
+
+Importar las Librerías Necesarias.
+
+Abre tu entorno de desarrollo y ejecuta el siguiente código para importar las librerías:
+
+``` python
+# Importamos las librerias necesarias
+import tensorflow as tf
+from tensorflow.keras import datasets, layers, models
+import matplotlib.pyplot as plt
+```
+
+Como podemos observer en el código anterior importamos las librerías necesarias para trabajar con TensorFlow y Keras, así como Matplotlib para visualizar las imágenes.
+
+2. Cargar y Preprocesar el Conjunto de Datos
+
+# Cargar el Conjunto de Datos CIFAR-10
+CIFAR-10 es un conjunto de datos popular que contiene 60,000 imágenes de 10 clases diferentes (como aviones, automóviles, pájaros, gatos, etc.). Carga y divide el conjunto en datos de entrenamiento y prueba:
+
+```python
+# Cargar el conjunto de datos CIFAR-10
+(train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
+train_images, test_images = train_images / 255.0, test_images / 255.0
+```
+
+El código anterior carga el conjunto de datos CIFAR-10 y normaliza los valores de píxeles de las imágenes para que estén en el rango [0, 1].
+
+Visualizar Algunas Imágenes de Entrenamiento Para familiarizarse con el conjunto de datos, visualiza algunas imágenes de entrenamiento:
+
+``` python
+# Nombres de las clases en español
+class_names = ['avión', 'automóvil', 'pájaro', 'gato', 'ciervo', 
+               'perro', 'rana', 'caballo', 'barco', 'camión']
+
+# Mostrar las primeras 16 imágenes del conjunto de entrenamiento
+plt.figure(figsize=(10,10))
+for i in range(16):
+    plt.subplot(4,4,i+1)
+    plt.xticks([])
+    plt.yticks([])
+    plt.grid(False)
+    plt.imshow(train_images[i], cmap=plt.cm.binary)
+    plt.xlabel(class_names[train_labels[i][0]])
+plt.show()
+```
+
+El código anterio muestra las primeras 16 imágenes del conjunto de entrenamiento con sus respectivas etiquetas. Cada imagen está asociada con una de las 10 clases en CIFAR-10.
+
+3. Construir la CNN
+
+Definir la Arquitectura de la CNN Implementa una red neuronal convolucional básica con capas convolucionales, de agrupamiento (pooling), y densamente conectadas (fully connected):
+
+``` python
+# Definir la arquitectura mejorada de la CNN
+model = models.Sequential([
+    layers.Conv2D(32, (3, 3), activation='relu', padding='same', input_shape=(32, 32, 3)),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(128, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+    layers.Flatten(),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(10, activation='softmax')  # Asumiendo que hay 10 clases
+])
+
+```
+
+El código anterior es muy importante ya que define la arquitectura de la CNN. La red consta de varias capas convolucionales y de agrupamiento, seguidas de capas densamente conectadas. La última capa utiliza una función de activación softmax para clasificar las imágenes en una de las 10 clases posibles.
+
+Los conceptos que necesitamos recordar son:
+
+*   **Capa Convolucional (Conv2D)**: Aplica un conjunto de filtros a la imagen de entrada para extraer características.
+
+*   **Capa de Agrupamiento (MaxPooling2D)**: Reduce la dimensionalidad de las características extraídas para mejorar la eficiencia computacional.
+
+*   **Capa Densa (Dense)**: Conecta todas las neuronas de la capa anterior con las de la capa actual.
+
+*   **Función de Activación (ReLU, Softmax)**: Introduce no linealidades en la red para aprender patrones complejos y realizar clasificaciones.
+
+Ahora nos vamos a compilar el Modelo Define la función de pérdida, el optimizador, y las métricas que se usarán para entrenar el modelo:
+
+``` python
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+# Resumen del modelo
+model.summary()
+```
+
+El código anterior compila el modelo con el optimizador Adam, la función de pérdida de entropía cruzada categórica escasa (sparse categorical crossentropy), y la métrica de precisión. También muestra un resumen de la arquitectura de la CNN.
+
+4. Entrenar y Evaluar la CNN
+
+Entrenar el Modelo Entrena la CNN utilizando los datos de entrenamiento:
+
+``` python
+# Definir callbacks
+callbacks = [
+    tf.keras.callbacks.EarlyStopping(patience=3, monitor='val_loss', restore_best_weights=True),
+    tf.keras.callbacks.ModelCheckpoint('best_model.keras', save_best_only=True, monitor='val_loss'),
+    tf.keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=2, min_lr=1e-6)
+]
+
+# Entrenar el modelo
+history = model.fit(
+    train_images, train_labels, 
+    epochs=30,  # Aumentar el número de epochs para un mejor entrenamiento
+    validation_data=(test_images, test_labels),
+    batch_size=64,  # Ajustar el tamaño del lote para optimizar el uso de la GPU
+    callbacks=callbacks
+)
+```
+El código anterior entrena la CNN durante 30 épocas y utiliza un conjunto de validación para monitorear el rendimiento del modelo. También incluye callbacks para detener el entrenamiento temprano, guardar el mejor modelo, y ajustar la tasa de aprendizaje.
+
+Evaluar el Modelo Evalúa el rendimiento del modelo en los datos de prueba:
+
+``` python
+# Evaluar el modelo
+test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
+print(f'\nPrecisión en los datos de prueba: {test_acc:.2%}')
+```
+
+El código anterior evalúa la precisión del modelo en los datos de prueba y muestra el resultado en porcentaje.
+
+5. Análisis de Resultados
+
+Visualizar el Progreso del Entrenamiento Muestra cómo la precisión y la pérdida cambian durante el entrenamiento:
+
+``` python
+# Graficar la precisión durante el entrenamiento
+plt.plot(history.history['accuracy'], label='Precisión en el entrenamiento')
+plt.plot(history.history['val_accuracy'], label='Precisión en la validación')
+plt.xlabel('Época')
+plt.ylabel('Precisión')
+plt.ylim([0, 1])
+plt.legend(loc='lower right')
+plt.show()
+```
+
+El código anterior muestra cómo la precisión en el entrenamiento y la validación cambian a lo largo de las épocas. Idealmente, queremos que la precisión en el conjunto de validación aumente y se mantenga estable.
+
+Hacer Predicciones Utiliza el modelo para predecir las etiquetas de las imágenes de prueba:
+
+``` python
+# Hacer predicciones
+predictions = model.predict(test_images)
+
+def plot_image(i, predictions_array, true_label, img):
+    predictions_array = np.array(predictions_array)
+    true_label = np.array(true_label)
+    img = np.array(img)
+    
+    # Asegúrate de que las entradas sean escalares
+    predictions_array, true_label, img = predictions_array[i], true_label[i], img[i]
+    true_label = true_label.item()
+    plt.grid(False)
+    plt.xticks([])
+    plt.yticks([])
+    plt.imshow(img, cmap=plt.cm.binary)
+    
+    predicted_label = np.argmax(predictions_array)
+    predicted_label = predicted_label.item()
+    
+    color = 'blue' if predicted_label == true_label else 'red'
+    
+    plt.xlabel(f"{class_names[int(predicted_label)]} {100*np.max(predictions_array):2.0f}% ({class_names[int(true_label)]})", color=color)
+
+def plot_value_array(i, predictions_array, true_label):
+    predictions_array = np.array(predictions_array)
+    true_label = np.array(true_label)
+    
+    predictions_array, true_label = predictions_array[i], true_label[i]
+    true_label = true_label.item()
+    
+    plt.grid(False)
+    plt.xticks(range(len(class_names)))
+    plt.yticks([])
+    thisplot = plt.bar(range(len(class_names)), predictions_array, color="#777777")
+    plt.ylim([0, 1])
+    
+    predicted_label = np.argmax(predictions_array)
+    predicted_label = predicted_label.item()
+    
+    thisplot[int(predicted_label)].set_color('red')
+    thisplot[int(true_label)].set_color('blue')
+```
+
+El código anterior lo analizaremos paso a paso:
+
+*   **plot_image**: Muestra una imagen con su predicción y etiqueta verdadera.
+
+*   **plot_value_array**: Muestra un gráfico de barras con las probabilidades de predicción para cada clase.
+
+El mismo nos permite visualizar las predicciones del modelo en las imágenes de prueba.
+
+Ahora para visualizar una imagen con su predicción:
+
+``` python
+# Mostrar predicciones para la primera imagen de prueba
+i = 1
+plt.figure(figsize=(12, 6))  # Ajusta el tamaño de la figura si es necesario
+plt.subplot(1, 2, 1)
+plot_image(i, predictions, test_labels, test_images)
+plt.subplot(1, 2, 2)
+plot_value_array(i, predictions, test_labels)
+plt.show()
+```
+
+Podemos cambiar el valor de `i` para visualizar diferentes imágenes y sus predicciones.
+
+Por ejemplo si queremos visualizar la imagen 10:
+
+``` python
+# Mostrar predicciones para la décima imagen de prueba
+i = 10
+plt.figure(figsize=(12, 6))  # Ajusta el tamaño de la figura si es necesario
+plt.subplot(1, 2, 1)
+plot_image(i, predictions, test_labels, test_images)
+plt.subplot(1, 2, 2)
+plot_value_array(i, predictions, test_labels)
+plt.show()
+```
+
+# Reto
+
+*   Modifica la arquitectura de la CNN para mejorar la precisión en los datos de prueba.
+
+*   Experimenta con diferentes hiperparámetros (como el número de filtros, el tamaño del kernel, la tasa de aprendizaje, etc.) para optimizar el rendimiento del modelo.
+
+*   Prueba con diferentes técnicas de regularización (como la disminución de la tasa de aprendizaje, la regularización L2, la eliminación de neuronas, etc.) para evitar el sobreajuste.
+
+*   Implementa una red neuronal preentrenada (como VGG16, ResNet, etc.) y compara su rendimiento con la CNN básica.
+
+Conclusión
+
+En este taller, implementaste una CNN básica para el reconocimiento de imágenes y la evaluaste en el conjunto de datos CIFAR-10. Este es un primer paso hacia el uso de redes neuronales para aplicaciones más complejas en visión por computador.
+:::
