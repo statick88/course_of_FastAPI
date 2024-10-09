@@ -1,3 +1,4 @@
+:::{.justify}
 # Configuración del Frontend con Vite + React + Tailwind CSS
 
 ![](images/frontend-cifar-10.png)
@@ -7,8 +8,7 @@
 Crea un nuevo proyecto de Vite utilizando React:
 
 ```bash
-npm create vite@latest my-cifar10-app -- --template react
-cd my-cifar10-app
+npm create vite@latest .
 ```
 ## Paso 2: Instalar Depedencias de Axios y Tailwind CSS
 
@@ -48,7 +48,7 @@ Abre el archivo src/index.css y agrega las directivas de Tailwind:
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+```
 ## Paso 5: Crear el Componente Principal
 
 Reemplaza el contenido de src/App.jsx con el siguiente código para crear una interfaz mejorada:
@@ -140,3 +140,4 @@ Ahora deberías tener una aplicación completamente funcional que permite a los 
 ## Conclusión
 
 Este tutorial cubre cómo configurar un backend con FastAPI para manejar la predicción de imágenes utilizando TensorFlow y un frontend con Vite + React y Tailwind CSS. Si deseas personalizar aún más la aplicación o agregar nuevas características, ¡no dudes en preguntar!
+:::

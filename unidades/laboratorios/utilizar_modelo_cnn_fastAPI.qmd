@@ -7,35 +7,71 @@ En este laboratorio, vamos a utilizar el modelo de clasificación de imágenes d
 Crear el archivo **main,py** con el siguiente contenido:
 
 ```python
-from fastapi import FastAPI, File, UploadFile
+``import io
+import os
 import tensorflow as tf
 import numpy as np
 from PIL import Image
-import io
+from fastapi import FastAPI, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+# Configurar CORS
+origins = [
+    "http://localhost:5173",  # Origen de tu frontend (Vite)
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Cargar el modelo
-model = tf.keras.models.load_model('cifar10_model.keras')
+model_path = "cifar10_model.keras"  # Actualiza esta ruta según sea necesario
+
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"El archivo {model_path} no se encuentra. Verifica la ruta.")
+
+model = tf.keras.models.load_model(model_path)
+
+# Lista de clases de CIFAR-10 con emojis
+class_names = [
+    "Avión ✈️",
+    "Automóvil 🚗",
+    "Pájaro 🐦",
+    "Gato 🐱",
+    "Ciervo 🦌",
+    "Perro 🐶",
+    "Rana 🐸",
+    "Caballo 🐎",
+    "Barco ⛴️",
+    "Camión 🚚",
+]
 
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
     try:
-        image = Image.open(io.BytesIO(await file.read()))
-        image = image.convert("RGB")  # Asegúrate de que la imagen esté en formato RGB
-        image = image.resize((32, 32))  # Ajustar tamaño de imagen
-        image = np.array(image) / 255.0  # Normalizar
-        image = np.expand_dims(image, axis=0)  # Añadir dimensión del batch
+        # Leer el archivo subido
+        contents = await file.read()
+        image = Image.open(io.BytesIO(contents))
+        image = image.resize((32, 32))  # Asegúrate de que la imagen tenga el tamaño correcto
+        image = np.array(image) / 255.0  # Normalizar la imagen
+        image = np.expand_dims(image, axis=0)  # Añadir una dimensión para el batch
 
+        # Realizar la predicción
         predictions = model.predict(image)
-        class_idx = np.argmax(predictions, axis=1)[0]
-        return {"class_idx": int(class_idx), "confidence": float(np.max(predictions))}
+        predicted_class_index = np.argmax(predictions, axis=1)[0]
+
+        # Obtener el nombre de la clase correspondiente con emoji
+        predicted_class_name = class_names[predicted_class_index]
+
+        return {"predicted_class": predicted_class_name}
     except Exception as e:
         return {"error": str(e)}
-
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to pyDay Piura 2024"}
 ```
 
 ## 2. Ejecutar la API
@@ -57,27 +93,24 @@ curl -X POST "http://127.0.0.1:8000/predict/" -H "accept: application/json" -H "
 Por ejemplo:
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/predict/" -F "file=@/home/statick/workspaces/charlas/practica/img_example/aeroplano.jpg"
+curl -X POST "http://127.0.0.1:8000/predict/" -F "file=@//home/statick/workspaces/practicas/fast_api/part2/avion.jpg"
 ```
-
 En el caso de que la imagen sea un **avión**, deberías obtener una respuesta similar a la siguiente:
 
-```json
-{"class_idx": 0, "confidence": 0.9999998807907104}
-```
+{"predicted_class":"Avión ✈️"}% 
 
 :::{.callout-tip}
+
 Recuerda la lista de clases de CIFAR-10:
 
-0. Avión
-1. Automóvil
-2. Pájaro
-3. Gato
-4. Ciervo
-5. Perro
-6. Rana
-7. Caballo
-8. Barco
-9. Camión
+- "Avión ✈️",
+- "Automóvil 🚗",
+- "Pájaro 🐦",
+- "Gato 🐱",
+- "Ciervo 🦌",
+- "Perro 🐶",
+- "Rana 🐸",
+- "Caballo 🐎",
+- "Barco ⛴️",
+- "Camión 🚚",
 :::
-
