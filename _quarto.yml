@@ -89,7 +89,7 @@ book:
       chapters: 
         - unidades/laboratorios/taller_practico_cnn.qmd
         - unidades/laboratorios/utilizar_modelo_cnn_fastAPI.qmd
-
+        - unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.qmd 
 
 bibliography: references.bib
 biblio-style: "apalike"
