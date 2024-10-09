@@ -592,166 +592,155 @@
   {
     "objectID": "unidades/laboratorios/taller_practico_cnn.html#objetivo",
     "href": "unidades/laboratorios/taller_practico_cnn.html#objetivo",
-    "title": "Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
+    "title": "1. Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
     "section": "Objetivo",
     "text": "Objetivo\nEn este taller, los estudiantes aprenderán a implementar una Red Neuronal Convolucional (CNN) básica para realizar tareas de reconocimiento de imágenes utilizando la librería TensorFlow y Keras. Trabajarán con un conjunto de datos preexistente y observarán cómo se entrenan las redes neuronales para clasificar imágenes. Además, se explorarán técnicas de preprocesamiento de datos y se analizará el rendimiento del modelo mediante la evaluación de la precisión en los datos de prueba. Al finalizar el taller, los estudiantes estarán familiarizados con los conceptos básicos de las CNN y podrán aplicarlos en proyectos de visión por computadora.",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>1. Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/taller_practico_cnn.html#requisitos-previos",
     "href": "unidades/laboratorios/taller_practico_cnn.html#requisitos-previos",
-    "title": "Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
+    "title": "1. Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
     "section": "Requisitos Previos",
     "text": "Requisitos Previos\n\nConocimientos básicos de Python.\nFamiliaridad con conceptos de redes neuronales.\nTensorFlow y Keras instalados (si no están instalados, usar el siguiente comando):\n\npip install tensorflow matplotlib",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>1. Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/taller_practico_cnn.html#materiales",
     "href": "unidades/laboratorios/taller_practico_cnn.html#materiales",
-    "title": "Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
+    "title": "1. Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
     "section": "Materiales",
     "text": "Materiales\n\nComputadora con acceso a Internet.\nIDE o editor de código (como Jupyter Notebook, VSCode, o Google Colab).\nConjunto de datos CIFAR-10 (disponible en https://www.cs.toronto.edu/~kriz/cifar.html).\nTensorFlow y Keras instalados (si no están instalados, usar el siguiente comando):",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>1. Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/taller_practico_cnn.html#pasos-del-taller",
     "href": "unidades/laboratorios/taller_practico_cnn.html#pasos-del-taller",
-    "title": "Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
+    "title": "1. Implementando una CNN para Reconocimiento de Imágenes (20 minutos)",
     "section": "Pasos del Taller",
     "text": "Pasos del Taller\n\nCrear el Entorno de Desarrollo\n\n\nCrear el archivo creado con jupyter notebook se llame cnn_taller.ipynb.\nSi usamos Google Colab, creamos un nuevo cuaderno le damos el nombre cnn_taller.ipynb.\n\n\nConfiguración del Entorno\n\nImportar las Librerías Necesarias.\nAbre tu entorno de desarrollo y ejecuta el siguiente código para importar las librerías:\n# Importamos las librerias necesarias\nimport tensorflow as tf\nfrom tensorflow.keras import datasets, layers, models\nimport matplotlib.pyplot as plt\nComo podemos observer en el código anterior importamos las librerías necesarias para trabajar con TensorFlow y Keras, así como Matplotlib para visualizar las imágenes.\n\nCargar y Preprocesar el Conjunto de Datos",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
-    ]
-  },
-  {
-    "objectID": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html",
-    "href": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html",
-    "title": "Laboratorio de CNN con FastAPI",
-    "section": "",
-    "text": "1. Cargar el modelo creado en el laboratorio anterior\nCrear el archivo main,py con el siguiente contenido:",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Laboratorio de CNN con FastAPI</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>1. Implementando una CNN para Reconocimiento de Imágenes (20 minutos)</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#cargar-el-modelo-creado-en-el-laboratorio-anterior",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#cargar-el-modelo-creado-en-el-laboratorio-anterior",
-    "title": "Laboratorio de CNN con FastAPI",
-    "section": "",
-    "text": "``import io\nimport os\nimport tensorflow as tf\nimport numpy as np\nfrom PIL import Image\nfrom fastapi import FastAPI, UploadFile, File\nfrom fastapi.middleware.cors import CORSMiddleware\n\napp = FastAPI()\n\n# Configurar CORS\norigins = [\n    \"http://localhost:5173\",  # Origen de tu frontend (Vite)\n]\n\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=origins,\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n\n# Cargar el modelo\nmodel_path = \"cifar10_model.keras\"  # Actualiza esta ruta según sea necesario\n\nif not os.path.exists(model_path):\n    raise FileNotFoundError(f\"El archivo {model_path} no se encuentra. Verifica la ruta.\")\n\nmodel = tf.keras.models.load_model(model_path)\n\n# Lista de clases de CIFAR-10 con emojis\nclass_names = [\n    \"Avión ✈️\",\n    \"Automóvil 🚗\",\n    \"Pájaro 🐦\",\n    \"Gato 🐱\",\n    \"Ciervo 🦌\",\n    \"Perro 🐶\",\n    \"Rana 🐸\",\n    \"Caballo 🐎\",\n    \"Barco ⛴️\",\n    \"Camión 🚚\",\n]\n\n@app.post(\"/predict/\")\nasync def predict(file: UploadFile = File(...)):\n    try:\n        # Leer el archivo subido\n        contents = await file.read()\n        image = Image.open(io.BytesIO(contents))\n        image = image.resize((32, 32))  # Asegúrate de que la imagen tenga el tamaño correcto\n        image = np.array(image) / 255.0  # Normalizar la imagen\n        image = np.expand_dims(image, axis=0)  # Añadir una dimensión para el batch\n\n        # Realizar la predicción\n        predictions = model.predict(image)\n        predicted_class_index = np.argmax(predictions, axis=1)[0]\n\n        # Obtener el nombre de la clase correspondiente con emoji\n        predicted_class_name = class_names[predicted_class_index]\n\n        return {\"predicted_class\": predicted_class_name}\n    except Exception as e:\n        return {\"error\": str(e)}",
+    "title": "3. Laboratorio de CNN con FastAPI",
+    "section": "1. Cargar el modelo creado en el laboratorio anterior",
+    "text": "1. Cargar el modelo creado en el laboratorio anterior\nCrear el archivo main,py con el siguiente contenido:\n``import io\nimport os\nimport tensorflow as tf\nimport numpy as np\nfrom PIL import Image\nfrom fastapi import FastAPI, UploadFile, File\nfrom fastapi.middleware.cors import CORSMiddleware\n\napp = FastAPI()\n\n# Configurar CORS\norigins = [\n    \"http://localhost:5173\",  # Origen de tu frontend (Vite)\n]\n\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=origins,\n    allow_credentials=True,\n    allow_methods=[\"*\"],\n    allow_headers=[\"*\"],\n)\n\n# Cargar el modelo\nmodel_path = \"cifar10_model.keras\"  # Actualiza esta ruta según sea necesario\n\nif not os.path.exists(model_path):\n    raise FileNotFoundError(f\"El archivo {model_path} no se encuentra. Verifica la ruta.\")\n\nmodel = tf.keras.models.load_model(model_path)\n\n# Lista de clases de CIFAR-10 con emojis\nclass_names = [\n    \"Avión ✈️\",\n    \"Automóvil 🚗\",\n    \"Pájaro 🐦\",\n    \"Gato 🐱\",\n    \"Ciervo 🦌\",\n    \"Perro 🐶\",\n    \"Rana 🐸\",\n    \"Caballo 🐎\",\n    \"Barco ⛴️\",\n    \"Camión 🚚\",\n]\n\n@app.post(\"/predict/\")\nasync def predict(file: UploadFile = File(...)):\n    try:\n        # Leer el archivo subido\n        contents = await file.read()\n        image = Image.open(io.BytesIO(contents))\n        image = image.resize((32, 32))  # Asegúrate de que la imagen tenga el tamaño correcto\n        image = np.array(image) / 255.0  # Normalizar la imagen\n        image = np.expand_dims(image, axis=0)  # Añadir una dimensión para el batch\n\n        # Realizar la predicción\n        predictions = model.predict(image)\n        predicted_class_index = np.argmax(predictions, axis=1)[0]\n\n        # Obtener el nombre de la clase correspondiente con emoji\n        predicted_class_name = class_names[predicted_class_index]\n\n        return {\"predicted_class\": predicted_class_name}\n    except Exception as e:\n        return {\"error\": str(e)}",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Laboratorio de CNN con FastAPI</span>"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>3. Laboratorio de CNN con FastAPI</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#ejecutar-la-api",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#ejecutar-la-api",
-    "title": "Laboratorio de CNN con FastAPI",
+    "title": "3. Laboratorio de CNN con FastAPI",
     "section": "2. Ejecutar la API",
     "text": "2. Ejecutar la API\nPara ejecutar la API, ejecuta el siguiente comando:\nuvicorn main:app --reload",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Laboratorio de CNN con FastAPI</span>"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>3. Laboratorio de CNN con FastAPI</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#probar-la-api",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_fastAPI.html#probar-la-api",
-    "title": "Laboratorio de CNN con FastAPI",
+    "title": "3. Laboratorio de CNN con FastAPI",
     "section": "3. Probar la API",
     "text": "3. Probar la API\nPara probar la API vamos a utilizar la herramienta curl. Ejecuta el siguiente comando en una terminal:\ncurl -X POST \"http://127.0.0.1:8000/predict/\" -H \"accept: application/json\" -H \"Content-Type: multipart/form-data\" -F \"file=@&lt;ruta de la imagen&gt;\"\nPor ejemplo:\ncurl -X POST \"http://127.0.0.1:8000/predict/\" -F \"file=@//home/statick/workspaces/practicas/fast_api/part2/avion.jpg\"\nEn el caso de que la imagen sea un avión, deberías obtener una respuesta similar a la siguiente:\n{“predicted_class”:“Avión ✈️”}%\n\n\n\n\n\n\nTip\n\n\n\nRecuerda la lista de clases de CIFAR-10:\n\n“Avión ✈️”,\n“Automóvil 🚗”,\n“Pájaro 🐦”,\n“Gato 🐱”,\n“Ciervo 🦌”,\n“Perro 🐶”,\n“Rana 🐸”,\n“Caballo 🐎”,\n“Barco ⛴️”,\n“Camión 🚚”,",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Laboratorio de CNN con FastAPI</span>"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>3. Laboratorio de CNN con FastAPI</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-1-crear-el-proyecto-de-vite",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-1-crear-el-proyecto-de-vite",
-    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
+    "title": "2. Configuración del Frontend con Vite + React + Tailwind CSS",
     "section": "Paso 1: Crear el Proyecto de Vite",
     "text": "Paso 1: Crear el Proyecto de Vite\nCrea un nuevo proyecto de Vite utilizando React:\nnpm create vite@latest .",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>2. Configuración del Frontend con Vite + React + Tailwind CSS</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-2-instalar-depedencias-de-axios-y-tailwind-css",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-2-instalar-depedencias-de-axios-y-tailwind-css",
-    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
+    "title": "2. Configuración del Frontend con Vite + React + Tailwind CSS",
     "section": "Paso 2: Instalar Depedencias de Axios y Tailwind CSS",
     "text": "Paso 2: Instalar Depedencias de Axios y Tailwind CSS\nDentro del directorio del proyecto, instala Axios y Tailwind CSS:\nnpm install axios\nnpm install -D tailwindcss postcss autoprefixer",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>2. Configuración del Frontend con Vite + React + Tailwind CSS</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-3-crear-archivos-de-configuración-de-tailwind-css",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-3-crear-archivos-de-configuración-de-tailwind-css",
-    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
+    "title": "2. Configuración del Frontend con Vite + React + Tailwind CSS",
     "section": "Paso 3: Crear Archivos de Configuración de Tailwind CSS",
     "text": "Paso 3: Crear Archivos de Configuración de Tailwind CSS\nEjecuta el siguiente comando para inicializar Tailwind CSS:\nnpx tailwindcss init -p\nLuego, actualiza tailwind.config.js para incluir las rutas de tus archivos:\nCopiar código\n/** @type {import('tailwindcss').Config} */\nmodule.exports = {\n  content: [\n    \"./index.html\",\n    \"./src/**/*.{js,ts,jsx,tsx}\",\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>2. Configuración del Frontend con Vite + React + Tailwind CSS</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-4-agregar-tailwind-a-tu-css",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-4-agregar-tailwind-a-tu-css",
-    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
+    "title": "2. Configuración del Frontend con Vite + React + Tailwind CSS",
     "section": "Paso 4: Agregar Tailwind a tu CSS",
     "text": "Paso 4: Agregar Tailwind a tu CSS\nAbre el archivo src/index.css y agrega las directivas de Tailwind:\n@tailwind base;\n@tailwind components;\n@tailwind utilities;",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>2. Configuración del Frontend con Vite + React + Tailwind CSS</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-5-crear-el-componente-principal",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-5-crear-el-componente-principal",
-    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
+    "title": "2. Configuración del Frontend con Vite + React + Tailwind CSS",
     "section": "Paso 5: Crear el Componente Principal",
     "text": "Paso 5: Crear el Componente Principal\nReemplaza el contenido de src/App.jsx con el siguiente código para crear una interfaz mejorada:\nimport { useState } from \"react\";\nimport axios from \"axios\";\n\nfunction App() {\n  const [file, setFile] = useState(null);\n  const [prediction, setPrediction] = useState(\"\");\n  const [error, setError] = useState(\"\");\n\n  const handleFileChange = (event) =&gt; {\n    setFile(event.target.files[0]);\n  };\n\n  const handleSubmit = async (event) =&gt; {\n    event.preventDefault();\n    if (!file) {\n      setError(\"Por favor, sube una imagen.\");\n      return;\n    }\n    setError(\"\");\n\n    const formData = new FormData();\n    formData.append(\"file\", file);\n\n    try {\n      const response = await axios.post(\"http://localhost:8000/predict/\", formData, {\n        headers: {\n          \"Content-Type\": \"multipart/form-data\",\n        },\n      });\n      setPrediction(response.data.predicted_class);\n    } catch (error) {\n      setError(\"Ocurrió un error al realizar la predicción.\");\n    }\n  };\n\n  return (\n    &lt;div className=\"min-h-screen flex items-center justify-center bg-gray-100\"&gt;\n      &lt;div className=\"bg-white p-8 rounded-lg shadow-md max-w-lg w-full\"&gt;\n        &lt;h1 className=\"text-2xl font-bold mb-4 text-center\"&gt;Predicción de CIFAR-10&lt;/h1&gt;\n        &lt;form onSubmit={handleSubmit} className=\"flex flex-col\"&gt;\n          &lt;input\n            type=\"file\"\n            accept=\"image/*\"\n            onChange={handleFileChange}\n            className=\"mb-4 border border-gray-300 rounded-lg p-2\"\n          /&gt;\n          &lt;button\n            type=\"submit\"\n            className=\"bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition\"\n          &gt;\n            Predecir\n          &lt;/button&gt;\n        &lt;/form&gt;\n        {prediction && (\n          &lt;div className=\"mt-4 p-2 bg-green-100 text-green-800 border border-green-400 rounded\"&gt;\n            &lt;strong&gt;Clase Predicha:&lt;/strong&gt; {prediction}\n          &lt;/div&gt;\n        )}\n        {error && (\n          &lt;div className=\"mt-4 p-2 bg-red-100 text-red-800 border border-red-400 rounded\"&gt;\n            &lt;strong&gt;Error:&lt;/strong&gt; {error}\n          &lt;/div&gt;\n        )}\n      &lt;/div&gt;\n    &lt;/div&gt;\n  );\n}\n\nexport default App;",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>2. Configuración del Frontend con Vite + React + Tailwind CSS</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#parte-3-ejecutar-el-proyecto-frontend",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#parte-3-ejecutar-el-proyecto-frontend",
-    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
+    "title": "2. Configuración del Frontend con Vite + React + Tailwind CSS",
     "section": "Parte 3: Ejecutar el Proyecto Frontend",
     "text": "Parte 3: Ejecutar el Proyecto Frontend\nPara ejecutar el proyecto de frontend, utiliza el siguiente comando:\nnpm run dev\nEl frontend estará disponible en http://localhost:5173.",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>2. Configuración del Frontend con Vite + React + Tailwind CSS</span>"
     ]
   },
   {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#conclusión",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#conclusión",
-    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
+    "title": "2. Configuración del Frontend con Vite + React + Tailwind CSS",
     "section": "Conclusión",
     "text": "Conclusión\nEste tutorial cubre cómo configurar un backend con FastAPI para manejar la predicción de imágenes utilizando TensorFlow y un frontend con Vite + React y Tailwind CSS. Si deseas personalizar aún más la aplicación o agregar nuevas características, ¡no dudes en preguntar!",
     "crumbs": [
       "Laboratorios",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>2. Configuración del Frontend con Vite + React + Tailwind CSS</span>"
     ]
   },
   {
