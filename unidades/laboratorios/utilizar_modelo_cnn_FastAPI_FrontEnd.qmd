@@ -1,5 +1,5 @@
 :::{.justify}
-# 2. Configuración del Frontend con Vite + React + Tailwind CSS
+# 3. Configuración del Frontend con Vite + React + Tailwind CSS
 
 ![](images/frontend-cifar-10.png)
 
