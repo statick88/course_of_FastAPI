@@ -1,5 +1,5 @@
 :::{.justify}
-# Taller Práctico: Implementando una CNN para Reconocimiento de Imágenes (20 minutos)
+# 1. Implementando una CNN para Reconocimiento de Imágenes (20 minutos)
 
 ## Objetivo
 

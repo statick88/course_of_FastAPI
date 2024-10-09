@@ -678,17 +678,6 @@
     ]
   },
   {
-    "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html",
-    "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html",
-    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
-    "section": "",
-    "text": "Paso 1: Crear el Proyecto de Vite\nCrea un nuevo proyecto de Vite utilizando React:",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
-    ]
-  },
-  {
     "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-1-crear-el-proyecto-de-vite",
     "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-1-crear-el-proyecto-de-vite",
     "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
@@ -727,6 +716,17 @@
     "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
     "section": "Paso 4: Agregar Tailwind a tu CSS",
     "text": "Paso 4: Agregar Tailwind a tu CSS\nAbre el archivo src/index.css y agrega las directivas de Tailwind:\n@tailwind base;\n@tailwind components;\n@tailwind utilities;",
+    "crumbs": [
+      "Laboratorios",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
+    ]
+  },
+  {
+    "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-5-crear-el-componente-principal",
+    "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-5-crear-el-componente-principal",
+    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
+    "section": "Paso 5: Crear el Componente Principal",
+    "text": "Paso 5: Crear el Componente Principal\nReemplaza el contenido de src/App.jsx con el siguiente código para crear una interfaz mejorada:\nimport { useState } from \"react\";\nimport axios from \"axios\";\n\nfunction App() {\n  const [file, setFile] = useState(null);\n  const [prediction, setPrediction] = useState(\"\");\n  const [error, setError] = useState(\"\");\n\n  const handleFileChange = (event) =&gt; {\n    setFile(event.target.files[0]);\n  };\n\n  const handleSubmit = async (event) =&gt; {\n    event.preventDefault();\n    if (!file) {\n      setError(\"Por favor, sube una imagen.\");\n      return;\n    }\n    setError(\"\");\n\n    const formData = new FormData();\n    formData.append(\"file\", file);\n\n    try {\n      const response = await axios.post(\"http://localhost:8000/predict/\", formData, {\n        headers: {\n          \"Content-Type\": \"multipart/form-data\",\n        },\n      });\n      setPrediction(response.data.predicted_class);\n    } catch (error) {\n      setError(\"Ocurrió un error al realizar la predicción.\");\n    }\n  };\n\n  return (\n    &lt;div className=\"min-h-screen flex items-center justify-center bg-gray-100\"&gt;\n      &lt;div className=\"bg-white p-8 rounded-lg shadow-md max-w-lg w-full\"&gt;\n        &lt;h1 className=\"text-2xl font-bold mb-4 text-center\"&gt;Predicción de CIFAR-10&lt;/h1&gt;\n        &lt;form onSubmit={handleSubmit} className=\"flex flex-col\"&gt;\n          &lt;input\n            type=\"file\"\n            accept=\"image/*\"\n            onChange={handleFileChange}\n            className=\"mb-4 border border-gray-300 rounded-lg p-2\"\n          /&gt;\n          &lt;button\n            type=\"submit\"\n            className=\"bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition\"\n          &gt;\n            Predecir\n          &lt;/button&gt;\n        &lt;/form&gt;\n        {prediction && (\n          &lt;div className=\"mt-4 p-2 bg-green-100 text-green-800 border border-green-400 rounded\"&gt;\n            &lt;strong&gt;Clase Predicha:&lt;/strong&gt; {prediction}\n          &lt;/div&gt;\n        )}\n        {error && (\n          &lt;div className=\"mt-4 p-2 bg-red-100 text-red-800 border border-red-400 rounded\"&gt;\n            &lt;strong&gt;Error:&lt;/strong&gt; {error}\n          &lt;/div&gt;\n        )}\n      &lt;/div&gt;\n    &lt;/div&gt;\n  );\n}\n\nexport default App;",
     "crumbs": [
       "Laboratorios",
       "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
@@ -788,16 +788,5 @@
     "title": "Licencia",
     "section": "Cambios en la Licencia",
     "text": "Cambios en la Licencia\n[Nombre de la Compañía] se reserva el derecho de modificar los términos de esta licencia en cualquier momento. Cualquier cambio se reflejará en esta página.\nGracias por respetar nuestros derechos de autor y por tu comprensión."
-  },
-  {
-    "objectID": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-5-crear-el-componente-principal",
-    "href": "unidades/laboratorios/utilizar_modelo_cnn_FastAPI_FrontEnd.html#paso-5-crear-el-componente-principal",
-    "title": "Configuración del Frontend con Vite + React + Tailwind CSS",
-    "section": "Paso 5: Crear el Componente Principal",
-    "text": "Paso 5: Crear el Componente Principal\nReemplaza el contenido de src/App.jsx con el siguiente código para crear una interfaz mejorada:\nimport { useState } from \"react\";\nimport axios from \"axios\";\n\nfunction App() {\n  const [file, setFile] = useState(null);\n  const [prediction, setPrediction] = useState(\"\");\n  const [error, setError] = useState(\"\");\n\n  const handleFileChange = (event) =&gt; {\n    setFile(event.target.files[0]);\n  };\n\n  const handleSubmit = async (event) =&gt; {\n    event.preventDefault();\n    if (!file) {\n      setError(\"Por favor, sube una imagen.\");\n      return;\n    }\n    setError(\"\");\n\n    const formData = new FormData();\n    formData.append(\"file\", file);\n\n    try {\n      const response = await axios.post(\"http://localhost:8000/predict/\", formData, {\n        headers: {\n          \"Content-Type\": \"multipart/form-data\",\n        },\n      });\n      setPrediction(response.data.predicted_class);\n    } catch (error) {\n      setError(\"Ocurrió un error al realizar la predicción.\");\n    }\n  };\n\n  return (\n    &lt;div className=\"min-h-screen flex items-center justify-center bg-gray-100\"&gt;\n      &lt;div className=\"bg-white p-8 rounded-lg shadow-md max-w-lg w-full\"&gt;\n        &lt;h1 className=\"text-2xl font-bold mb-4 text-center\"&gt;Predicción de CIFAR-10&lt;/h1&gt;\n        &lt;form onSubmit={handleSubmit} className=\"flex flex-col\"&gt;\n          &lt;input\n            type=\"file\"\n            accept=\"image/*\"\n            onChange={handleFileChange}\n            className=\"mb-4 border border-gray-300 rounded-lg p-2\"\n          /&gt;\n          &lt;button\n            type=\"submit\"\n            className=\"bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition\"\n          &gt;\n            Predecir\n          &lt;/button&gt;\n        &lt;/form&gt;\n        {prediction && (\n          &lt;div className=\"mt-4 p-2 bg-green-100 text-green-800 border border-green-400 rounded\"&gt;\n            &lt;strong&gt;Clase Predicha:&lt;/strong&gt; {prediction}\n          &lt;/div&gt;\n        )}\n        {error && (\n          &lt;div className=\"mt-4 p-2 bg-red-100 text-red-800 border border-red-400 rounded\"&gt;\n            &lt;strong&gt;Error:&lt;/strong&gt; {error}\n          &lt;/div&gt;\n        )}\n      &lt;/div&gt;\n    &lt;/div&gt;\n  );\n}\n\nexport default App;",
-    "crumbs": [
-      "Laboratorios",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Configuración del Frontend con Vite + React + Tailwind CSS</span>"
-    ]
   }
 ]

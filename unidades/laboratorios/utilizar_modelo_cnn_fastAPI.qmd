@@ -1,4 +1,5 @@
-# Laboratorio de CNN con FastAPI
+:::{.justify}
+# 3. Laboratorio de CNN con FastAPI
 
 En este laboratorio, vamos a utilizar el modelo de clasificación de imágenes de CIFAR-10 que creamos en el laboratorio anterior, y vamos a crear una API REST con FastAPI para poder hacer predicciones con el modelo.
 
